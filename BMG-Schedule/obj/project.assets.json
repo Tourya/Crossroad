@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\TouryaData\\CSharp\\ASP-NET-Core\\BMG-Schedule\\BMG-Schedule.csproj",
+      "projectUniqueName": "C:\\TouryaData\\CSharp\\Crossroad\\Crossroad\\BMG-Schedule\\BMG-Schedule.csproj",
       "projectName": "BMG-Schedule",
-      "projectPath": "C:\\TouryaData\\CSharp\\ASP-NET-Core\\BMG-Schedule\\BMG-Schedule.csproj",
+      "projectPath": "C:\\TouryaData\\CSharp\\Crossroad\\Crossroad\\BMG-Schedule\\BMG-Schedule.csproj",
       "packagesPath": "C:\\Users\\avasileva\\.nuget\\packages\\",
-      "outputPath": "C:\\TouryaData\\CSharp\\ASP-NET-Core\\BMG-Schedule\\obj\\",
+      "outputPath": "C:\\TouryaData\\CSharp\\Crossroad\\Crossroad\\BMG-Schedule\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\avasileva\\AppData\\Roaming\\NuGet\\NuGet.Config",
