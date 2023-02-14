@@ -1,44 +1,44 @@
-.navbar-toggler {
+.navbar-toggler[b-a6k2eqkgrp] {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.top-row {
+.top-row[b-a6k2eqkgrp] {
     height: 140px;
     background-color: rgba(0,0,0,0.4);
 }
 
-.logo {
+.logo[b-a6k2eqkgrp] {
     height: 100px;
     display: block;
     margin: auto;
 }
 
-.navbar-brand {
+.navbar-brand[b-a6k2eqkgrp] {
     font-size: 1.1rem;
     font-weight: bold;
 }
 
-.oi {
+.oi[b-a6k2eqkgrp] {
     width: 2rem;
     font-size: 1.1rem;
     vertical-align: text-top;
     top: -2px;
 }
 
-.nav-item {
+.nav-item[b-a6k2eqkgrp] {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
 }
 
-    .nav-item:first-of-type {
+    .nav-item:first-of-type[b-a6k2eqkgrp] {
         padding-top: 1rem;
     }
 
-    .nav-item:last-of-type {
+    .nav-item:last-of-type[b-a6k2eqkgrp] {
         padding-bottom: 1rem;
     }
 
-    .nav-item ::deep a {
+    .nav-item[b-a6k2eqkgrp]  a {
         color: #d7d7d7;
         border-radius: 4px;
         height: 3rem;
@@ -47,22 +47,22 @@
         line-height: 3rem;
     }
 
-.nav-item ::deep a.active {
+.nav-item[b-a6k2eqkgrp]  a.active {
     background-color: rgba(76,153,0,0.25);
     color: black;
 }
 
-.nav-item ::deep a:hover {
+.nav-item[b-a6k2eqkgrp]  a:hover {
     background-color: rgba(255,255,255,0.1);
     color: black;
 }
 
 @media (min-width: 641px) {
-    .navbar-toggler {
+    .navbar-toggler[b-a6k2eqkgrp] {
         display: none;
     }
 
-    .collapse {
+    .collapse[b-a6k2eqkgrp] {
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
