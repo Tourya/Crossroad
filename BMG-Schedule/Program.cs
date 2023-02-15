@@ -1,13 +1,30 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using BMG_Schedule.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddDbContextFactory<EmployeeManagerDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("BMGEmployeeManagerDb")));
 
 var app = builder.Build();
+
+//To be used only for development, NOT in production!
+await EnsureDatabaseIsMigrated(app.Services);
+
+async Task EnsureDatabaseIsMigrated(IServiceProvider services)
+{
+    using var scope = services.CreateScope();
+    using var context = scope.ServiceProvider.GetService<EmployeeManagerDbContext>();
+
+    if (context is not null)
+    {
+        await context.Database.MigrateAsync();
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
