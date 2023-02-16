@@ -15,5 +15,11 @@ namespace BMG_Schedule.Data.Models
         public string? LastName { get; set; }
 
         public string? Info { get; set; }
+
+        
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}";
+        }
     }
 }

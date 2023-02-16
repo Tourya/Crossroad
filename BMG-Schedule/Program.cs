@@ -1,4 +1,5 @@
 using BMG_Schedule.Data;
+using BMG_Schedule.Shared;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContextFactory<EmployeeManagerDbContext>(
     options => options.UseSqlServer(
         builder.Configuration.GetConnectionString("BMGEmployeeManagerDb")));
+builder.Services.AddScoped<StateContainer>();
 
 var app = builder.Build();
 
