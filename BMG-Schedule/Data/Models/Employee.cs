@@ -16,7 +16,11 @@ namespace BMG_Schedule.Data.Models
 
         public string? Info { get; set; }
 
-        
+        public IEnumerable<WorkingDay>? WorkingDays { get; set; }
+
+        //public IEnumerable<Exit>? Exits { get; set; }
+
+
         public override string ToString()
         {
             return $"{FirstName} {LastName}";

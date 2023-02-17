@@ -28,6 +28,18 @@ namespace BMG_Schedule.Migrations
                     { 9, "Стоян", null, "Константинов" },
                     { 10, "Галя", null, "Стоянова" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "RecordTypes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Работен ден" },
+                    { 2, "Командировка" },
+                    { 3, "Отпуск - платен" },
+                    { 4, "Отпуск - неплатен" },
+                    { 5, "Болнични" }
+                });
         }
 
         /// <inheritdoc />
@@ -82,6 +94,31 @@ namespace BMG_Schedule.Migrations
                 table: "Employees",
                 keyColumn: "Id",
                 keyValue: 10);
+
+            migrationBuilder.DeleteData(
+                table: "RecordTypes",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "RecordTypes",
+                keyColumn: "Id",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "RecordTypes",
+                keyColumn: "Id",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "RecordTypes",
+                keyColumn: "Id",
+                keyValue: 4);
+
+            migrationBuilder.DeleteData(
+                table: "RecordTypes",
+                keyColumn: "Id",
+                keyValue: 5);
         }
     }
 }
