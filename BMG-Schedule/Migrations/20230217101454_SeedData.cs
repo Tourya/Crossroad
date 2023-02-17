@@ -7,7 +7,7 @@
 namespace BMG_Schedule.Migrations
 {
     /// <inheritdoc />
-    public partial class SeedDatabase : Migration
+    public partial class SeedData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,16 +17,16 @@ namespace BMG_Schedule.Migrations
                 columns: new[] { "Id", "FirstName", "Info", "LastName" },
                 values: new object[,]
                 {
-                    { 1, "Anna", null, "Rockstar" },
-                    { 2, "Julia", null, "Developer" },
-                    { 3, "Thomas", null, "Huber" },
-                    { 4, "Sara", null, "Metroid" },
-                    { 5, "Ben", null, "Rockstar" },
-                    { 6, "Alex", null, "Rider" },
-                    { 7, "Sophie", null, "Ramos" },
-                    { 8, "Julien", null, "Russell" },
-                    { 9, "Yvonne", null, "Snider" },
-                    { 10, "Jasmin", null, "Curtis" }
+                    { 1, "Миглена", null, "Велева" },
+                    { 2, "Иван", null, "Петров" },
+                    { 3, "Никола", null, "Попов" },
+                    { 4, "Стефка", null, "Стоянова" },
+                    { 5, "Мария", null, "Донева" },
+                    { 6, "Георги", null, "Митев" },
+                    { 7, "Петър", null, "Николов" },
+                    { 8, "Павел", null, "Попов" },
+                    { 9, "Стоян", null, "Константинов" },
+                    { 10, "Галя", null, "Стоянова" }
                 });
         }
 

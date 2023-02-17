@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMG_Schedule.Migrations
 {
     [DbContext(typeof(EmployeeManagerDbContext))]
-    [Migration("20230215082057_SeedDatabase")]
-    partial class SeedDatabase
+    [Migration("20230217101454_SeedData")]
+    partial class SeedData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,62 +53,62 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 1,
-                            FirstName = "Anna",
-                            LastName = "Rockstar"
+                            FirstName = "Миглена",
+                            LastName = "Велева"
                         },
                         new
                         {
                             Id = 2,
-                            FirstName = "Julia",
-                            LastName = "Developer"
+                            FirstName = "Иван",
+                            LastName = "Петров"
                         },
                         new
                         {
                             Id = 3,
-                            FirstName = "Thomas",
-                            LastName = "Huber"
+                            FirstName = "Никола",
+                            LastName = "Попов"
                         },
                         new
                         {
                             Id = 4,
-                            FirstName = "Sara",
-                            LastName = "Metroid"
+                            FirstName = "Стефка",
+                            LastName = "Стоянова"
                         },
                         new
                         {
                             Id = 5,
-                            FirstName = "Ben",
-                            LastName = "Rockstar"
+                            FirstName = "Мария",
+                            LastName = "Донева"
                         },
                         new
                         {
                             Id = 6,
-                            FirstName = "Alex",
-                            LastName = "Rider"
+                            FirstName = "Георги",
+                            LastName = "Митев"
                         },
                         new
                         {
                             Id = 7,
-                            FirstName = "Sophie",
-                            LastName = "Ramos"
+                            FirstName = "Петър",
+                            LastName = "Николов"
                         },
                         new
                         {
                             Id = 8,
-                            FirstName = "Julien",
-                            LastName = "Russell"
+                            FirstName = "Павел",
+                            LastName = "Попов"
                         },
                         new
                         {
                             Id = 9,
-                            FirstName = "Yvonne",
-                            LastName = "Snider"
+                            FirstName = "Стоян",
+                            LastName = "Константинов"
                         },
                         new
                         {
                             Id = 10,
-                            FirstName = "Jasmin",
-                            LastName = "Curtis"
+                            FirstName = "Галя",
+                            LastName = "Стоянова"
                         });
                 });
 #pragma warning restore 612, 618
