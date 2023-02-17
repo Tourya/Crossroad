@@ -6,11 +6,11 @@ namespace BMG_Schedule.Data.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Моля, въведете името на служителя.")]
         [StringLength(50)]
         public string? FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Моля, въведете фамилията на служителя.")]
         [StringLength(50)]
         public string? LastName { get; set; }
 

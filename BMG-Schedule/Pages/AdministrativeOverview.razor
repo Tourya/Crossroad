@@ -24,8 +24,8 @@ else
                     }
                 }
             </InputSelect>
-            <button class="btn btn-outline-danger col-md-3" @onclick="() => HandleDelete()">Изтрий</button>
-            <a class="btn btn-outline-primary col-md-4">Нов служител</a>
+            <button class="btn btn-outline-danger col-md-3 gap" @onclick="() => HandleDelete()">Изтрий</button>
+            <a href="/administrative/employee/add" class="btn btn-outline-primary col-md-4">Нов служител</a>
         </div>
     </EditForm>
 
@@ -153,7 +153,7 @@ else
             return;
         }
 
-        ErrorMessage = "";
+        ErrorMessage = null;
         var isOK = await JS.InvokeAsync<bool>("confirm", $"Сигурни ли сте, че искате да изтриете служител {currentEmployee.FirstName} {currentEmployee.LastName}?");
 
         if (isOK)
