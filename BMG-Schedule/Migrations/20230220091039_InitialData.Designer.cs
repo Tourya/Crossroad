@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMG_Schedule.Migrations
 {
     [DbContext(typeof(EmployeeManagerDbContext))]
-    [Migration("20230217140235_SeedData")]
-    partial class SeedData
+    [Migration("20230220091039_InitialData")]
+    partial class InitialData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,68 +49,6 @@ namespace BMG_Schedule.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FirstName = "Миглена",
-                            LastName = "Велева"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FirstName = "Иван",
-                            LastName = "Петров"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FirstName = "Никола",
-                            LastName = "Попов"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            FirstName = "Стефка",
-                            LastName = "Стоянова"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            FirstName = "Мария",
-                            LastName = "Донева"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            FirstName = "Георги",
-                            LastName = "Митев"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            FirstName = "Петър",
-                            LastName = "Николов"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            FirstName = "Павел",
-                            LastName = "Попов"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            FirstName = "Стоян",
-                            LastName = "Константинов"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            FirstName = "Галя",
-                            LastName = "Стоянова"
-                        });
                 });
 
             modelBuilder.Entity("BMG_Schedule.Data.Models.RecordType", b =>
@@ -128,33 +66,6 @@ namespace BMG_Schedule.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RecordTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Работен ден"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Командировка"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Отпуск - платен"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Отпуск - неплатен"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Болнични"
-                        });
                 });
 
             modelBuilder.Entity("BMG_Schedule.Data.Models.WorkingDay", b =>

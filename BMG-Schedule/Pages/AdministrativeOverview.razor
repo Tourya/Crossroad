@@ -63,7 +63,9 @@ else
             {
                 <tr>
                     <td class="col-md-1"></td>
-                    <td class="col-md-1"></td>
+                    <td class="col-md-1 text-center align-middle">
+                        <button class="btn btn-outline-primary" @onclick="() => HandleBeginEndDay(employee)">@BeginEndButton(employee)</button>
+                    </td>
                     <td>@employee.FirstName</td>
                     <td>@employee.LastName</td>
                     <td></td>
@@ -80,6 +82,9 @@ else
     {
         <div class="alert-danger">@ErrorMessage</div>
     }
+
+    <div>@CurrentDateTime</div>
+    <div>@Employees.First() - @Employees.First().WorkingDays?.Last()</div>
 }
 
 
@@ -101,11 +106,18 @@ else
 
     private string? ErrorMessage { get; set; }
 
+    [Parameter]
+    public DateTime CurrentDateTime { get; set; }
+
+    public bool IsDisabled { get; set; }
+
 
     protected override async Task OnParametersSetAsync()
     {
+        CurrentDateTime = DateTime.Now;
         await LoadData();
     }
+
 
     private async Task LoadData()
     {
@@ -131,6 +143,7 @@ else
         var itemsToSkip = (CurrentPage.Value - 1) * ItemsPerPage;
 
         Employees = await context.Employees
+        .Include(emp => emp.WorkingDays)
         .OrderBy(emp => emp.FirstName)
         .Skip(itemsToSkip)
         .Take(ItemsPerPage)
@@ -171,5 +184,70 @@ else
 
             await LoadData();
         }
+    }
+
+    private async Task HandleBeginEndDay(Employee employee)
+    {
+
+        using var context = ContextFactory.CreateDbContext();
+
+        var lastDay = context.WorkingDays.Where(day => day.EmployeeId == employee.Id).OrderBy(day => day.Start).Last();
+
+        var newWorkingDay = new WorkingDay
+            {
+                EmployeeId = employee.Id
+            };
+
+        try
+        {
+            if (lastDay is null || (lastDay.Start != default(DateTime) && lastDay.End != default(DateTime)))
+            {
+                IsDisabled = false;
+
+                newWorkingDay.Start = DateTime.Now;
+
+                context.WorkingDays.Add(newWorkingDay);
+                await context.SaveChangesAsync();
+
+                NavigationManager.NavigateTo($"/administrative/mainPage/{CurrentPage}", true);
+
+                return;
+            }
+            else
+            {
+                lastDay.End = DateTime.Now;
+                IsDisabled = true;
+            }
+
+            context.WorkingDays.Update(lastDay);
+            await context.SaveChangesAsync();
+
+
+            NavigationManager.NavigateTo($"/administrative/mainPage/{CurrentPage}", true);
+
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Грешка при запис на начален/краен час на работен ден: {ex}";
+        }
+
+    }
+}
+
+@functions {
+    public string BeginEndButton(Employee employee)
+    {
+
+        var lastWorkingDay = employee.WorkingDays?.OrderBy(day => day.Start).Last();
+
+        if (lastWorkingDay is not null && lastWorkingDay.End == default(DateTime))
+        {
+            return "Край";
+        }
+        else
+        {
+            return "Начало";
+        }
+
     }
 }

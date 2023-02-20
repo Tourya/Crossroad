@@ -7,5 +7,12 @@
         public DateTime End { get; set; }
         public int RecordTypeId { get; set; }
         public int EmployeeId { get; set; }
+
+        public override string ToString()
+        {
+            return (Start, End, EmployeeId).ToString();
+        }
     }
+
+
 }
