@@ -76,6 +76,17 @@
                 context.Employees.Add(Employee);
                 await context.SaveChangesAsync();
 
+                var newEmployee = context.Employees.OrderBy(emp => emp.Id).Last();
+
+                var newWorkingDay = new WorkingDay
+                    {
+                        RecordTypeId = 1,
+                        EmployeeId = newEmployee.Id
+                    };
+
+                context.WorkingDays.Add(newWorkingDay);
+                await context.SaveChangesAsync();
+
                 SuccessMessage = $"Служител {Employee.FirstName} {Employee.LastName} беше добавен успешно!";
                 ErrorMessage = null;
             }
