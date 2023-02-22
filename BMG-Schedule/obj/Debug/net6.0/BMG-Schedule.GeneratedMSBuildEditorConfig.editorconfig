@@ -23,6 +23,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYXRpdmVBZGRFbXBsb3llZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/TouryaData/CSharp/Crossroad/Crossroad/BMG-Schedule/Pages/AdministrativeEmployeeDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYXRpdmVFbXBsb3llZURldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/TouryaData/CSharp/Crossroad/Crossroad/BMG-Schedule/Pages/AdministrativeOverview.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYXRpdmVPdmVydmlldy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

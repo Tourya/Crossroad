@@ -1,0 +1,12 @@
+﻿@page "/administrative/employeeDetails/{employeeId:int}"
+@inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
+@inject StateContainer StateContainer
+
+<PageTitle>Детайли за служител</PageTitle>
+
+<h5>Детайли за служител</h5>
+
+@code{
+    [Parameter]
+    public int EmployeeId { get; set; }
+}
