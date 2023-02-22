@@ -61,12 +61,29 @@ else
         <tbody>
             @foreach (var employee in Employees)
             {
-                <tr>
-                    <td class="col-md-1"></td>
-                    <td class="col-md-1 text-center align-middle">
+                <tr class="text-center align-middle">
+                    <td class="col-md-1">
+                        @{
+                            string onWorkColor = string.Empty;
+                            string onWorkText = string.Empty;
+
+                            if (employee.WorkingDays?.OrderBy(day => day.Id).Last().Start.Date == CurrentDateTime.Date && employee.WorkingDays?.OrderBy(day => day.Id).Last().RecordTypeId == 1)
+                            {
+                                onWorkColor = "background-color:rgba(76,153,0,0.5)";
+                                onWorkText = "На работа е";
+                            }
+                            else
+                            {
+                                onWorkColor = "background-color:rgba(154,0,0,0.5)";
+                                onWorkText = "Не е на работа";
+                            }
+                        }
+                        <button class="btn btn-outline-primary" disabled style="@onWorkColor"></button>
+                    </td>
+                    <td class="col-md-1">
                         @{
                             bool disabled = false;
-                            if (CurrentDateTime.Date == @employee?.WorkingDays?.OrderBy(day => day.Id).Last().End.Date)
+                            if (CurrentDateTime.Date == employee.WorkingDays?.OrderBy(day => day.Id).Last().End.Date)
                             {
                                 disabled = true;
                             }
@@ -75,8 +92,10 @@ else
                     </td>
                     <td>@employee!.FirstName</td>
                     <td>@employee.LastName</td>
-                    <td></td>
-                    <td></td>
+                    <td class="col-md-2"></td>
+                    <td class="col-md-2">
+                        <a>@onWorkText</a>
+                    </td>
                     <td class="btn-group-sm col-md-1">
                         <a href="/administrative/details/@employee.Id" class="btn btn-outline-primary oi oi-magnifying-glass"></a>
                     </td>
@@ -111,9 +130,6 @@ else
 
     [Parameter]
     public DateTime CurrentDateTime { get; set; }
-
-    //public bool IsDisabled { get; set; }
-
 
     protected override async Task OnParametersSetAsync()
     {
@@ -247,7 +263,8 @@ else
     {
         var lastWorkingDay = employee.WorkingDays?.OrderBy(day => day.Id).Last();
 
-        if (lastWorkingDay is not null && lastWorkingDay.Start == default(DateTime)) {
+        if (lastWorkingDay is not null && lastWorkingDay.Start == default(DateTime))
+        {
             return "Начало";
         }
 
