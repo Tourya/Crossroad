@@ -1,12 +1,81 @@
 ﻿@page "/administrative/employeeDetails/{employeeId:int}"
 @inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
 @inject StateContainer StateContainer
+@inject NavigationManager NavigationManager
+
 
 <PageTitle>Детайли за служител</PageTitle>
+@*<AdministrativeOverview CurrentPage="@currentPage" />*@
 
-<h5>Детайли за служител</h5>
+<div class="container">
+    <div class="col-md-12 border border-light">
+        <h6 style="color:darkgray">Работно време</h6>
+        <button class="btn btn-outline-primary">Ново излизане</button>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-6 border border-light">
+                <h6 style="color:darkgray">Излизания</h6>
 
-@code{
+            </div>
+
+            <div class="col-5 offset-1 border border-light">
+                <h6 style="color:darkgray">Други</h6>
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col-md-3 d-grid gap-3 d-md-flex">
+        <button class="btn btn-outline-primary">Експорт към Excel</button>
+        <button type="button" class="btn btn-outline-secondary" @onclick="HandleCancel">Назад</button>
+    </div>
+</div>
+
+
+@code {
     [Parameter]
     public int EmployeeId { get; set; }
+
+    private Employee? Employee { get; set; }
+
+    private WorkingDay[]? WorkingDays { get; set; }
+
+    private bool IsBusy { get; set; }
+
+    private string? ErrorMessage { get; set; }
+
+    //private int? currentPage { get; set; }
+
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        IsBusy = true;
+
+        try
+        {
+            using var context = ContextFactory.CreateDbContext();
+            Employee = await context.Employees
+                                    .AsNoTracking()
+                                    .FirstOrDefaultAsync(emp => emp.Id == EmployeeId);
+
+            WorkingDays = await context.WorkingDays
+                                    .AsNoTracking()
+                                    .Where(day => day.EmployeeId == EmployeeId)
+                                    .OrderBy(day => day.Id)
+                                    .ToArrayAsync();
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    private void HandleCancel()
+    {
+        NavigationManager.NavigateTo($"/administrative/mainPage/{StateContainer.AdministrativeOverviewPage}");
+    }
+
 }

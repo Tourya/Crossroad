@@ -227,8 +227,7 @@ else
                 context.WorkingDays.Add(newWorkingDay);
                 await context.SaveChangesAsync();
 
-                NavigationManager.NavigateTo($"/administrative/mainPage/{CurrentPage}", true);
-
+                await LoadData();
                 return;
             }
             else
@@ -247,8 +246,7 @@ else
             context.WorkingDays.Update(lastDay);
             await context.SaveChangesAsync();
 
-            NavigationManager.NavigateTo($"/administrative/mainPage/{CurrentPage}", true);
-
+            await LoadData();
         }
         catch (Exception ex)
         {
