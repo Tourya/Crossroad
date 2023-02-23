@@ -83,6 +83,7 @@
         WorkingDays = await context.WorkingDays
                                    .AsNoTracking()
                                    .Where(emp => emp.Id == EmployeeId)
+                                   .Where(day => day.Start.Year == Year)
                                    .Where(day => day.Start.Month == Month)
                                    .OrderBy(day => day.Start)
                                    .ToArrayAsync();
@@ -143,25 +144,33 @@
         return displayMonth;
     }
 
-    public void OnClickLeft()
+    public async Task OnClickLeft()
     {
         if (Month == 1)
         {
             Month = 12;
             Year--;
+            await LoadData();
+
             return;
         }
+
         Month--;
+        await LoadData();
+
     }
 
-    public void OnClickRight()
+    public async Task OnClickRight()
     {
         if (Month == 12)
         {
             Month = 1;
             Year++;
+            await LoadData();
+
             return;
         }
         Month++;
+        await LoadData();
     }
 }
