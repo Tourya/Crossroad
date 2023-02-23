@@ -1,12 +1,13 @@
 ﻿@page "/administrative/employee/add"
 @inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
 @inject NavigationManager NavigationManager
+@inject StateContainer StateContainer
 
 <PageTitle>Нов служител</PageTitle>
 
 <h5 class="col-md-3 d-md-flex justify-content-md-center">Нов служител</h5>
 
-<EditForm Model="Employee" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+<EditForm Model="Employee" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -100,11 +101,12 @@
 
     private void HandleInvalidSubmit()
     {
-
+        SuccessMessage = null;
+        ErrorMessage = null;
     }
 
     private void HandleCancel()
     {
-        NavigationManager.NavigateTo("/administrative/mainPage/1");
+        NavigationManager.NavigateTo($"/administrative/mainPage/{StateContainer.AdministrativeOverviewPage}");
     }
 }

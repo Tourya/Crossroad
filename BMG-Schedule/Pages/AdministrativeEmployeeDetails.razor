@@ -10,6 +10,12 @@
 <div class="container">
     <div class="col-md-12 border border-light">
         <h6 style="color:darkgray">Работно време</h6>
+        <br />
+        <div class="col-md-6 d-grid d-md-flex">
+            <div>Служител: @Employee?.FirstName @Employee?.LastName</div>
+            <div class="offset-2">Месец: @DisplayMonth(Month) @Year</div>
+        </div>
+        <br />
         <button class="btn btn-outline-primary">Ново излизане</button>
     </div>
     <br />
@@ -38,6 +44,12 @@
     [Parameter]
     public int EmployeeId { get; set; }
 
+    [Parameter]
+    public int Month { get; set; }
+
+    [Parameter]
+    public int Year { get; set; }
+
     private Employee? Employee { get; set; }
 
     private WorkingDay[]? WorkingDays { get; set; }
@@ -46,31 +58,32 @@
 
     private string? ErrorMessage { get; set; }
 
-    //private int? currentPage { get; set; }
-
 
 
     protected override async Task OnParametersSetAsync()
     {
-        IsBusy = true;
+        Month = DateTime.Now.Month;
+        Year = DateTime.Now.Year;
 
-        try
-        {
-            using var context = ContextFactory.CreateDbContext();
-            Employee = await context.Employees
-                                    .AsNoTracking()
-                                    .FirstOrDefaultAsync(emp => emp.Id == EmployeeId);
+        await LoadData();
+    }
 
-            WorkingDays = await context.WorkingDays
-                                    .AsNoTracking()
-                                    .Where(day => day.EmployeeId == EmployeeId)
-                                    .OrderBy(day => day.Id)
-                                    .ToArrayAsync();
-        }
-        finally
-        {
-            IsBusy = false;
-        }
+    private async Task LoadData()
+    {
+        using var context = ContextFactory.CreateDbContext();
+
+
+        Employee = await context.Employees
+                                .AsNoTracking()
+                                .Include(emp => emp.WorkingDays)
+                                .FirstOrDefaultAsync(emp => emp.Id == EmployeeId);
+
+        WorkingDays = await context.WorkingDays
+                                   .AsNoTracking()
+                                   .Where(emp => emp.Id == EmployeeId)
+                                   .Where(day => day.Start.Month == Month)
+                                   .OrderBy(day => day.Start)
+                                   .ToArrayAsync();
     }
 
     private void HandleCancel()
@@ -78,4 +91,53 @@
         NavigationManager.NavigateTo($"/administrative/mainPage/{StateContainer.AdministrativeOverviewPage}");
     }
 
+}
+
+@functions {
+    public string DisplayMonth(int month)
+    {
+        var displayMonth = "";
+
+        switch (month)
+        {
+            case 1:
+                displayMonth = "Януари";
+                break;
+            case 2:
+                displayMonth = "Февруари";
+                break;
+            case 3:
+                displayMonth = "Март";
+                break;
+            case 4:
+                displayMonth = "Април";
+                break;
+            case 5:
+                displayMonth = "Май";
+                break;
+            case 6:
+                displayMonth = "Юни";
+                break;
+            case 7:
+                displayMonth = "Юли";
+                break;
+            case 8:
+                displayMonth = "Август";
+                break;
+            case 9:
+                displayMonth = "Септември";
+                break;
+            case 10:
+                displayMonth = "Октомври";
+                break;
+            case 11:
+                displayMonth = "Ноември";
+                break;
+            case 12:
+                displayMonth = "Декемпври";
+                break;
+        }
+
+        return displayMonth;
+    }
 }
