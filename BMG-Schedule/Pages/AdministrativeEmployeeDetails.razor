@@ -39,7 +39,19 @@ else
                     <tbody>
                         @foreach (var workingDay in WorkingDays)
                         {
-
+                            <tr class="text-center align-middle">
+                                <td class="btn-group-sm col-md-1">
+                                    <a href="/administrative/employeeDetails/editWorkingDay/@workingDay.Id" class="btn btn-outline-primary oi oi-magnifying-glass"></a>
+                                </td>
+                                @{
+                                    var recordType = RecordTypes?.FirstOrDefault(type => type.Id == workingDay.RecordTypeId);
+                                }
+                                <td>@recordType?.Name</td>
+                                <td class="col-md-2">@workingDay.Start.Date.ToString("dd/MM/yyyy")</td>
+                                <td>@workingDay.Start.ToString("HH:mm")</td>
+                                <td>@workingDay.End.ToString("HH:mm")</td>
+                                <td></td>
+                            </tr>
                         }
                     </tbody>
                 </table>
@@ -106,6 +118,8 @@ else
 
     private WorkingDay[]? WorkingDays { get; set; }
 
+    private RecordType[]? RecordTypes { get; set; }
+
     private bool IsBusy { get; set; }
 
     private string? ErrorMessage { get; set; }
@@ -130,9 +144,11 @@ else
                                 .Include(emp => emp.WorkingDays)
                                 .FirstOrDefaultAsync(emp => emp.Id == EmployeeId);
 
+        RecordTypes = await context.RecordTypes.ToArrayAsync();
+
         WorkingDays = await context.WorkingDays
                                    .AsNoTracking()
-                                   .Where(emp => emp.Id == EmployeeId)
+                                   .Where(emp => emp.EmployeeId == EmployeeId)
                                    .Where(day => day.Start.Year == Year)
                                    .Where(day => day.Start.Month == Month)
                                    .OrderBy(day => day.Start)
