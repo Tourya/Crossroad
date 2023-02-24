@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMG_Schedule.Migrations
 {
     [DbContext(typeof(EmployeeManagerDbContext))]
-    [Migration("20230220091039_InitialData")]
+    [Migration("20230224064628_InitialData")]
     partial class InitialData
     {
         /// <inheritdoc />
