@@ -43,14 +43,11 @@ else
                                 <td class="btn-group-sm col-md-1">
                                     <a href="/administrative/employeeDetails/editWorkingDay/@workingDay.Id" class="btn btn-outline-primary oi oi-magnifying-glass"></a>
                                 </td>
-                                @{
-                                    var recordType = RecordTypes?.FirstOrDefault(type => type.Id == workingDay.RecordTypeId);
-                                }
-                                <td>@recordType?.Name</td>
+                                <td>@RecordTypes!.FirstOrDefault(type => type.Id == workingDay.RecordTypeId)!.Name</td>
                                 <td class="col-md-2">@workingDay.Start.Date.ToString("dd/MM/yyyy")</td>
                                 <td>@workingDay.Start.ToString("HH:mm")</td>
                                 <td>@workingDay.End.ToString("HH:mm")</td>
-                                <td></td>
+                                <td>@(@workingDay.RecordTypeId == 1 ? @CountWorkingHours() : "-")</td>
                             </tr>
                         }
                     </tbody>
@@ -160,9 +157,6 @@ else
         NavigationManager.NavigateTo($"/administrative/mainPage/{StateContainer.AdministrativeOverviewPage}");
     }
 
-}
-
-@functions {
     public string DisplayMonth(int month)
     {
         var displayMonth = "";
@@ -238,5 +232,10 @@ else
         }
         Month++;
         await LoadData();
+    }
+
+    private string CountWorkingHours()
+    {
+        return "Проба";
     }
 }

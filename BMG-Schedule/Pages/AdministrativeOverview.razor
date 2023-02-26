@@ -138,7 +138,6 @@ else
         await LoadData();
     }
 
-
     private async Task LoadData()
     {
         if (CurrentPage is null or < 1)
@@ -253,11 +252,8 @@ else
         {
             ErrorMessage = $"Грешка при запис на начален/краен час на работен ден: {ex}";
         }
-
     }
-}
 
-@functions {
     public string BeginEndButton(Employee employee)
     {
         var lastWorkingDay = employee.WorkingDays?.OrderBy(day => day.Id).Last();
