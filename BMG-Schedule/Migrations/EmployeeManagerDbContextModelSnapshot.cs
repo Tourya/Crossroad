@@ -193,7 +193,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 2,
                             EmployeeId = 1,
-                            End = new DateTime(2022, 12, 21, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 21, 17, 40, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -209,7 +209,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 4,
                             EmployeeId = 1,
-                            End = new DateTime(2022, 12, 22, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 22, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -249,7 +249,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 9,
                             EmployeeId = 1,
-                            End = new DateTime(2023, 2, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 1, 16, 50, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -273,7 +273,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 12,
                             EmployeeId = 1,
-                            End = new DateTime(2023, 2, 6, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 6, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -281,7 +281,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 13,
                             EmployeeId = 1,
-                            End = new DateTime(2023, 2, 7, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 7, 18, 30, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -321,7 +321,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 18,
                             EmployeeId = 2,
-                            End = new DateTime(2022, 12, 21, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 21, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -353,7 +353,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 22,
                             EmployeeId = 2,
-                            End = new DateTime(2023, 1, 27, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 27, 16, 55, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -393,7 +393,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 27,
                             EmployeeId = 2,
-                            End = new DateTime(2023, 2, 3, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 3, 18, 20, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -425,7 +425,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 31,
                             EmployeeId = 2,
-                            End = new DateTime(2023, 2, 9, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 9, 15, 48, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -457,7 +457,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 35,
                             EmployeeId = 3,
-                            End = new DateTime(2022, 12, 19, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 19, 17, 45, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -465,7 +465,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 36,
                             EmployeeId = 3,
-                            End = new DateTime(2022, 12, 22, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 22, 17, 55, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -473,7 +473,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 37,
                             EmployeeId = 3,
-                            End = new DateTime(2023, 1, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 26, 18, 30, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -537,7 +537,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 45,
                             EmployeeId = 3,
-                            End = new DateTime(2023, 2, 7, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 7, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -545,7 +545,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 46,
                             EmployeeId = 3,
-                            End = new DateTime(2023, 2, 8, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 8, 16, 38, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 8, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -569,7 +569,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 49,
                             EmployeeId = 4,
-                            End = new DateTime(2022, 12, 20, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 20, 16, 42, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -577,7 +577,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 50,
                             EmployeeId = 4,
-                            End = new DateTime(2022, 12, 21, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 21, 18, 5, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -625,7 +625,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 56,
                             EmployeeId = 4,
-                            End = new DateTime(2023, 1, 31, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 31, 17, 23, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 31, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -633,7 +633,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 57,
                             EmployeeId = 4,
-                            End = new DateTime(2023, 2, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 1, 17, 56, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -657,7 +657,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 60,
                             EmployeeId = 4,
-                            End = new DateTime(2023, 2, 6, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 6, 18, 13, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -689,7 +689,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 64,
                             EmployeeId = 4,
-                            End = new DateTime(2023, 2, 10, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 10, 16, 33, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -697,7 +697,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 65,
                             EmployeeId = 5,
-                            End = new DateTime(2022, 12, 20, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 20, 18, 5, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -705,7 +705,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 66,
                             EmployeeId = 5,
-                            End = new DateTime(2022, 12, 21, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 21, 17, 45, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -713,7 +713,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 67,
                             EmployeeId = 5,
-                            End = new DateTime(2022, 12, 19, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 19, 17, 49, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -761,7 +761,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 73,
                             EmployeeId = 5,
-                            End = new DateTime(2023, 2, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 1, 18, 22, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -769,7 +769,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 74,
                             EmployeeId = 5,
-                            End = new DateTime(2023, 2, 2, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 2, 18, 9, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -777,7 +777,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 75,
                             EmployeeId = 5,
-                            End = new DateTime(2023, 2, 3, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 3, 17, 20, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -785,7 +785,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 76,
                             EmployeeId = 5,
-                            End = new DateTime(2023, 2, 6, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 6, 16, 39, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -825,7 +825,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 81,
                             EmployeeId = 6,
-                            End = new DateTime(2022, 12, 20, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 20, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -841,7 +841,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 83,
                             EmployeeId = 6,
-                            End = new DateTime(2022, 12, 19, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 19, 17, 40, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -849,7 +849,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 84,
                             EmployeeId = 6,
-                            End = new DateTime(2022, 12, 22, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 22, 17, 25, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -857,7 +857,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 85,
                             EmployeeId = 6,
-                            End = new DateTime(2023, 1, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 26, 18, 20, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -865,7 +865,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 86,
                             EmployeeId = 6,
-                            End = new DateTime(2023, 1, 27, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 27, 17, 15, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -897,7 +897,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 90,
                             EmployeeId = 6,
-                            End = new DateTime(2023, 2, 2, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 2, 17, 32, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -905,7 +905,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 91,
                             EmployeeId = 6,
-                            End = new DateTime(2023, 2, 3, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 3, 17, 40, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -937,7 +937,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 95,
                             EmployeeId = 6,
-                            End = new DateTime(2023, 2, 9, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 9, 18, 9, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -945,7 +945,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 96,
                             EmployeeId = 6,
-                            End = new DateTime(2023, 2, 10, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 10, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -953,7 +953,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 97,
                             EmployeeId = 7,
-                            End = new DateTime(2022, 12, 20, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 20, 18, 5, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -961,7 +961,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 98,
                             EmployeeId = 7,
-                            End = new DateTime(2022, 12, 21, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 21, 17, 18, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -993,7 +993,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 102,
                             EmployeeId = 7,
-                            End = new DateTime(2023, 1, 27, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 27, 16, 20, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1001,7 +1001,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 103,
                             EmployeeId = 7,
-                            End = new DateTime(2023, 1, 30, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 30, 16, 45, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 30, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1009,7 +1009,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 104,
                             EmployeeId = 7,
-                            End = new DateTime(2023, 1, 31, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 31, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 31, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1041,7 +1041,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 108,
                             EmployeeId = 7,
-                            End = new DateTime(2023, 2, 6, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 6, 17, 45, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1049,7 +1049,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 109,
                             EmployeeId = 7,
-                            End = new DateTime(2023, 2, 7, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 7, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1065,7 +1065,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 111,
                             EmployeeId = 7,
-                            End = new DateTime(2023, 2, 9, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 9, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1073,7 +1073,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 112,
                             EmployeeId = 7,
-                            End = new DateTime(2023, 2, 10, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 10, 17, 15, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1081,7 +1081,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 113,
                             EmployeeId = 8,
-                            End = new DateTime(2022, 12, 20, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 20, 16, 30, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1089,7 +1089,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 114,
                             EmployeeId = 8,
-                            End = new DateTime(2022, 12, 21, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 21, 17, 20, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1113,7 +1113,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 117,
                             EmployeeId = 8,
-                            End = new DateTime(2023, 1, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 26, 17, 45, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1121,7 +1121,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 118,
                             EmployeeId = 8,
-                            End = new DateTime(2023, 1, 27, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 27, 17, 55, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1129,7 +1129,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 119,
                             EmployeeId = 8,
-                            End = new DateTime(2023, 1, 30, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 30, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 30, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1153,7 +1153,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 122,
                             EmployeeId = 8,
-                            End = new DateTime(2023, 2, 2, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 2, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1161,7 +1161,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 123,
                             EmployeeId = 8,
-                            End = new DateTime(2023, 2, 3, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 3, 16, 30, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1193,7 +1193,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 127,
                             EmployeeId = 8,
-                            End = new DateTime(2023, 2, 9, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 9, 18, 20, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1201,7 +1201,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 128,
                             EmployeeId = 8,
-                            End = new DateTime(2023, 2, 10, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 10, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1217,7 +1217,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 130,
                             EmployeeId = 9,
-                            End = new DateTime(2022, 12, 21, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 21, 18, 2, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1225,7 +1225,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 131,
                             EmployeeId = 9,
-                            End = new DateTime(2022, 12, 19, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 19, 17, 50, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1233,7 +1233,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 132,
                             EmployeeId = 9,
-                            End = new DateTime(2022, 12, 22, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 22, 18, 30, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1241,7 +1241,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 133,
                             EmployeeId = 9,
-                            End = new DateTime(2023, 1, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 26, 16, 20, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1249,7 +1249,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 134,
                             EmployeeId = 9,
-                            End = new DateTime(2023, 1, 27, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 27, 17, 45, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1257,7 +1257,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 135,
                             EmployeeId = 9,
-                            End = new DateTime(2023, 1, 30, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 30, 17, 55, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 30, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1297,7 +1297,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 140,
                             EmployeeId = 9,
-                            End = new DateTime(2023, 2, 6, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 6, 18, 5, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1305,7 +1305,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 141,
                             EmployeeId = 9,
-                            End = new DateTime(2023, 2, 7, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 7, 18, 20, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1313,7 +1313,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 142,
                             EmployeeId = 9,
-                            End = new DateTime(2023, 2, 8, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 8, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 8, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1321,7 +1321,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 143,
                             EmployeeId = 9,
-                            End = new DateTime(2023, 2, 9, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 9, 17, 18, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1337,7 +1337,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 145,
                             EmployeeId = 10,
-                            End = new DateTime(2022, 12, 20, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 20, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1345,7 +1345,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 146,
                             EmployeeId = 10,
-                            End = new DateTime(2022, 12, 21, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 21, 16, 45, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1361,7 +1361,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 148,
                             EmployeeId = 10,
-                            End = new DateTime(2022, 12, 22, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2022, 12, 22, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2022, 12, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1369,7 +1369,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 149,
                             EmployeeId = 10,
-                            End = new DateTime(2023, 1, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 26, 18, 22, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1385,7 +1385,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 151,
                             EmployeeId = 10,
-                            End = new DateTime(2023, 1, 30, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 30, 17, 45, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 30, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1393,7 +1393,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 152,
                             EmployeeId = 10,
-                            End = new DateTime(2023, 1, 31, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 1, 31, 17, 55, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 1, 31, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1425,7 +1425,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 156,
                             EmployeeId = 10,
-                            End = new DateTime(2023, 2, 6, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 6, 17, 15, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1433,7 +1433,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 157,
                             EmployeeId = 10,
-                            End = new DateTime(2023, 2, 7, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 7, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1441,7 +1441,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 158,
                             EmployeeId = 10,
-                            End = new DateTime(2023, 2, 8, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 8, 17, 45, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 8, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -1449,7 +1449,7 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 159,
                             EmployeeId = 10,
-                            End = new DateTime(2023, 2, 9, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            End = new DateTime(2023, 2, 9, 18, 30, 0, 0, DateTimeKind.Unspecified),
                             RecordTypeId = 1,
                             Start = new DateTime(2023, 2, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },

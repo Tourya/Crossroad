@@ -47,11 +47,12 @@ else
                                 <td class="col-md-2">@workingDay.Start.Date.ToString("dd/MM/yyyy")</td>
                                 <td>@workingDay.Start.ToString("HH:mm")</td>
                                 <td>@workingDay.End.ToString("HH:mm")</td>
-                                <td>@(@workingDay.RecordTypeId == 1 ? @CountWorkingHours() : "-")</td>
+                                <td>@(@workingDay.RecordTypeId == 1 ? Employee?.CountHours(workingDay).ToString("N2") : "-")</td>
                             </tr>
                         }
                     </tbody>
                 </table>
+                <div class="align-content-end">Общо работни часове за месеца: @Employee?.CountHours(Month, Year).ToString("N2")</div>
                 <br />
                 <button class="btn btn-outline-primary">Ново излизане</button>
             </div>
@@ -150,6 +151,8 @@ else
                                    .Where(day => day.Start.Month == Month)
                                    .OrderBy(day => day.Start)
                                    .ToArrayAsync();
+
+
     }
 
     private void HandleCancel()
@@ -206,36 +209,51 @@ else
 
     public async Task OnClickLeft()
     {
+
         if (Month == 1)
         {
             Month = 12;
             Year--;
+
             await LoadData();
 
             return;
         }
 
         Month--;
+
         await LoadData();
 
     }
 
     public async Task OnClickRight()
     {
+
         if (Month == 12)
         {
             Month = 1;
             Year++;
+
             await LoadData();
 
             return;
         }
         Month++;
+
         await LoadData();
     }
 
-    private string CountWorkingHours()
-    {
-        return "Проба";
-    }
+    //private string CountDayWorkingHours(WorkingDay workingDay)
+    //{
+
+    //    var dayTotalHours = (workingDay.End).Subtract(workingDay.Start).TotalHours;
+
+    //    return dayTotalHours.ToString("F");
+    //}
+
+    //private async Task CountBuisinessTrip()
+    //{
+    //    using var context = ContextFactory.CreateDbContext();
+
+    //}
 }
