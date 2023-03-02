@@ -21,9 +21,9 @@ namespace BMG_Schedule.Data.Models
         //public IEnumerable<Exit>? Exits { get; set; }
 
 
-        public (double hours, int noWorkingDays) CountHours(int month, int year)
+        public (double hours, int noWorkingDays, int businessTrip, int sick, int offPayed, int offUnpayed) CountHours(int month, int year)
         {
-            var currentMonthHours = WorkingDays?
+            var currentMonthWorking = WorkingDays?
                                    .Where(day => day.Start.Year == year)
                                    .Where(day => day.Start.Month == month)
                                    .Where(day => day.RecordTypeId == 1)
@@ -37,16 +37,40 @@ namespace BMG_Schedule.Data.Models
 
             double hours = 0;
             var noWorkingDays = 0;
+            var businessTrip = 0;
+            var sick = 0;
+            var offPayed = 0;
+            var offUnpayed = 0;
 
-            if(currentMonthNoWorking is not null)
+            if (currentMonthNoWorking is not null)
             {
-               noWorkingDays = currentMonthNoWorking.Length;
+                noWorkingDays = currentMonthNoWorking.Length;
+
+                foreach (var day in currentMonthNoWorking)  
+                {
+                    switch (day.RecordTypeId)
+                    {
+                        case 2:
+                            businessTrip++;
+                            break;
+                        case 3:
+                            offPayed++;
+                            break;
+                        case 4:
+                            offUnpayed++;
+                            break;
+                        case 5:
+                            sick++;
+                            break;
+                    }
+                }
+
             }
 
-            if (currentMonthHours is not null)
+            if (currentMonthWorking is not null)
             {
 
-                foreach (var day in currentMonthHours)
+                foreach (var day in currentMonthWorking)
                 {
                     if (day.Start != default(DateTime) && day.End != default(DateTime))
                     {
@@ -56,7 +80,7 @@ namespace BMG_Schedule.Data.Models
 
             }
 
-            return (Math.Round(hours, 2), noWorkingDays);
+            return (Math.Round(hours, 2), noWorkingDays, businessTrip, sick, offPayed, offUnpayed);
         }
 
         public double CountHours(WorkingDay workingDay)

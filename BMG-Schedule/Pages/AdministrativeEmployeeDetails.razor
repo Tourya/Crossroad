@@ -41,7 +41,7 @@ else
                         {
                             <tr class="text-center align-middle">
                                 <td class="btn-group-sm col-md-1">
-                                    <a href="/administrative/employeeDetails/editWorkingDay/@workingDay.Id" class="btn btn-outline-primary oi oi-magnifying-glass"></a>
+                                    <a href="/administrative/employeeDetails/@EmployeeId/@workingDay.Id" class="btn btn-outline-primary oi oi-magnifying-glass"></a>
                                 </td>
                                 <td>@RecordTypes!.FirstOrDefault(type => type.Id == workingDay.RecordTypeId)!.Name</td>
                                 <td class="col-md-2">@workingDay.Start.Date.ToString("dd/MM/yyyy")</td>
@@ -89,6 +89,14 @@ else
                                 <th>Болнични</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <tr class="text-center align-middle">
+                                <td>@(@Employee?.CountHours(Month, Year).businessTrip != 0 ? @Employee?.CountHours(Month, Year).businessTrip : "-")</td>
+                                <td>@(@Employee?.CountHours(Month, Year).offPayed != 0 ? @Employee?.CountHours(Month, Year).offPayed : "-")</td>
+                                <td>@(@Employee?.CountHours(Month, Year).offUnpayed != 0 ? @Employee?.CountHours(Month, Year).offUnpayed : "-")</td>
+                                <td>@(@Employee?.CountHours(Month, Year).sick != 0 ? @Employee?.CountHours(Month, Year).sick : "-")</td>
+                            </tr>
+                        </tbody>
                     </table>
 
                 </div>
@@ -244,17 +252,4 @@ else
         await LoadData();
     }
 
-    //private string CountDayWorkingHours(WorkingDay workingDay)
-    //{
-
-    //    var dayTotalHours = (workingDay.End).Subtract(workingDay.Start).TotalHours;
-
-    //    return dayTotalHours.ToString("F");
-    //}
-
-    //private async Task CountBuisinessTrip()
-    //{
-    //    using var context = ContextFactory.CreateDbContext();
-
-    //}
 }
