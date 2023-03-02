@@ -52,7 +52,8 @@ else
                         }
                     </tbody>
                 </table>
-                <div class="align-content-end">Общо работни часове за месеца: @Employee?.CountHours(Month, Year).ToString("N2")</div>
+                <div class="d-md-flex justify-content-end">Общо работни часове за месеца: @Employee?.CountHours(Month, Year).hours.ToString("N2")</div>
+                <div class="d-md-flex justify-content-end">Общо неработни дни за месеца: @Employee?.CountHours(Month, Year).noWorkingDays.ToString()</div>
                 <br />
                 <button class="btn btn-outline-primary">Ново излизане</button>
             </div>

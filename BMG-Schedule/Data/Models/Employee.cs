@@ -21,31 +21,52 @@ namespace BMG_Schedule.Data.Models
         //public IEnumerable<Exit>? Exits { get; set; }
 
 
-        public double CountHours(int month, int year)
+        public (double hours, int noWorkingDays) CountHours(int month, int year)
         {
             var currentMonthHours = WorkingDays?
                                    .Where(day => day.Start.Year == year)
                                    .Where(day => day.Start.Month == month)
                                    .Where(day => day.RecordTypeId == 1)
                                    .ToArray();
+
+            var currentMonthNoWorking = WorkingDays?
+                                       .Where(day => day.Start.Year == year)
+                                       .Where(day => day.Start.Month == month)
+                                       .Where(day => day.RecordTypeId != 1)
+                                       .ToArray();
+
             double hours = 0;
+            var noWorkingDays = 0;
+
+            if(currentMonthNoWorking is not null)
+            {
+               noWorkingDays = currentMonthNoWorking.Length;
+            }
 
             if (currentMonthHours is not null)
             {
 
                 foreach (var day in currentMonthHours)
                 {
-                    hours += Math.Round(day.End.Subtract(day.Start).TotalHours, 2);
+                    if (day.Start != default(DateTime) && day.End != default(DateTime))
+                    {
+                        hours += Math.Round(day.End.Subtract(day.Start).TotalHours, 2);
+                    }
                 }
 
             }
 
-            return Math.Round(hours, 2);
+            return (Math.Round(hours, 2), noWorkingDays);
         }
 
         public double CountHours(WorkingDay workingDay)
         {
-            double hours = workingDay.End.Subtract(workingDay.Start).TotalHours;
+            double hours = 0;
+
+            if (workingDay.Start != default(DateTime) && workingDay.End != default(DateTime))
+            {
+                hours = workingDay.End.Subtract(workingDay.Start).TotalHours;
+            }
 
             return Math.Round(hours, 2);
         }
