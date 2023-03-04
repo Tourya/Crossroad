@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMG_Schedule.Migrations
 {
     [DbContext(typeof(EmployeeManagerDbContext))]
-    [Migration("20230304055440_InitialData")]
+    [Migration("20230304061015_InitialData")]
     partial class InitialData
     {
         /// <inheritdoc />
@@ -59,7 +59,7 @@ namespace BMG_Schedule.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("EmployeeId")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("End")
@@ -134,7 +134,9 @@ namespace BMG_Schedule.Migrations
                 {
                     b.HasOne("BMG_Schedule.Data.Models.Employee", null)
                         .WithMany("Exits")
-                        .HasForeignKey("EmployeeId");
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BMG_Schedule.Data.Models.WorkingDay", null)
                         .WithMany("Exits")

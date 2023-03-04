@@ -118,7 +118,7 @@ namespace BMG_Schedule.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("EmployeeId")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("End")
@@ -148,6 +148,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 1,
+                            EmployeeId = 1,
                             End = new DateTime(2023, 2, 1, 12, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -157,6 +158,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 2,
+                            EmployeeId = 1,
                             End = new DateTime(2023, 2, 2, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -166,6 +168,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 3,
+                            EmployeeId = 1,
                             End = new DateTime(2023, 2, 3, 12, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -175,6 +178,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 4,
+                            EmployeeId = 1,
                             End = new DateTime(2023, 2, 6, 11, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -184,6 +188,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 5,
+                            EmployeeId = 1,
                             End = new DateTime(2023, 2, 7, 13, 45, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -193,6 +198,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 6,
+                            EmployeeId = 2,
                             End = new DateTime(2023, 1, 31, 12, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -202,6 +208,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 7,
+                            EmployeeId = 2,
                             End = new DateTime(2023, 2, 1, 10, 45, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -211,6 +218,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 8,
+                            EmployeeId = 2,
                             End = new DateTime(2023, 2, 2, 15, 52, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -220,6 +228,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 9,
+                            EmployeeId = 2,
                             End = new DateTime(2023, 2, 3, 12, 43, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -229,6 +238,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 10,
+                            EmployeeId = 2,
                             End = new DateTime(2023, 2, 8, 15, 28, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -238,6 +248,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 11,
+                            EmployeeId = 3,
                             End = new DateTime(2022, 12, 20, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -247,6 +258,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 12,
+                            EmployeeId = 3,
                             End = new DateTime(2022, 12, 21, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -256,6 +268,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 13,
+                            EmployeeId = 3,
                             End = new DateTime(2022, 12, 19, 14, 15, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -265,6 +278,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 14,
+                            EmployeeId = 3,
                             End = new DateTime(2022, 12, 22, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -274,6 +288,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 15,
+                            EmployeeId = 3,
                             End = new DateTime(2023, 1, 26, 11, 48, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -283,6 +298,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 16,
+                            EmployeeId = 4,
                             End = new DateTime(2023, 2, 1, 10, 45, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -292,6 +308,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 17,
+                            EmployeeId = 4,
                             End = new DateTime(2023, 2, 2, 13, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -301,6 +318,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 18,
+                            EmployeeId = 4,
                             End = new DateTime(2023, 2, 3, 14, 23, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -310,6 +328,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 19,
+                            EmployeeId = 4,
                             End = new DateTime(2023, 2, 6, 12, 32, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -319,6 +338,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 20,
+                            EmployeeId = 4,
                             End = new DateTime(2023, 2, 7, 11, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -328,6 +348,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 21,
+                            EmployeeId = 5,
                             End = new DateTime(2023, 2, 1, 13, 45, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -337,6 +358,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 22,
+                            EmployeeId = 5,
                             End = new DateTime(2023, 2, 2, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -346,6 +368,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 23,
+                            EmployeeId = 5,
                             End = new DateTime(2023, 2, 3, 11, 15, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -355,6 +378,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 24,
+                            EmployeeId = 5,
                             End = new DateTime(2023, 2, 6, 12, 48, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -364,6 +388,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 25,
+                            EmployeeId = 5,
                             End = new DateTime(2023, 2, 7, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -373,6 +398,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 26,
+                            EmployeeId = 6,
                             End = new DateTime(2023, 2, 1, 11, 25, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -382,6 +408,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 27,
+                            EmployeeId = 6,
                             End = new DateTime(2023, 2, 2, 14, 32, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -391,6 +418,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 28,
+                            EmployeeId = 6,
                             End = new DateTime(2023, 2, 3, 12, 48, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -400,6 +428,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 29,
+                            EmployeeId = 6,
                             End = new DateTime(2023, 2, 6, 15, 15, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -409,6 +438,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 30,
+                            EmployeeId = 6,
                             End = new DateTime(2023, 2, 8, 15, 32, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -418,6 +448,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 31,
+                            EmployeeId = 7,
                             End = new DateTime(2023, 2, 2, 12, 23, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -427,6 +458,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 32,
+                            EmployeeId = 7,
                             End = new DateTime(2023, 2, 3, 11, 46, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -436,6 +468,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 33,
+                            EmployeeId = 7,
                             End = new DateTime(2023, 2, 6, 14, 47, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -445,6 +478,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 34,
+                            EmployeeId = 7,
                             End = new DateTime(2023, 2, 7, 12, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -454,6 +488,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 35,
+                            EmployeeId = 7,
                             End = new DateTime(2023, 2, 9, 13, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -463,6 +498,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 36,
+                            EmployeeId = 8,
                             End = new DateTime(2023, 1, 30, 10, 45, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -472,6 +508,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 37,
+                            EmployeeId = 8,
                             End = new DateTime(2023, 1, 31, 13, 36, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -481,6 +518,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 38,
+                            EmployeeId = 8,
                             End = new DateTime(2023, 2, 1, 13, 54, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -490,6 +528,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 39,
+                            EmployeeId = 8,
                             End = new DateTime(2023, 2, 2, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -499,6 +538,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 40,
+                            EmployeeId = 8,
                             End = new DateTime(2023, 2, 3, 12, 23, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -508,6 +548,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 41,
+                            EmployeeId = 9,
                             End = new DateTime(2023, 2, 2, 12, 20, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -517,6 +558,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 42,
+                            EmployeeId = 9,
                             End = new DateTime(2023, 2, 3, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -526,6 +568,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 43,
+                            EmployeeId = 9,
                             End = new DateTime(2023, 2, 6, 13, 45, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -535,6 +578,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 44,
+                            EmployeeId = 9,
                             End = new DateTime(2023, 2, 7, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -544,6 +588,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 45,
+                            EmployeeId = 9,
                             End = new DateTime(2023, 2, 8, 12, 40, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -553,6 +598,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 46,
+                            EmployeeId = 10,
                             End = new DateTime(2023, 2, 6, 11, 15, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -562,6 +608,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 47,
+                            EmployeeId = 10,
                             End = new DateTime(2023, 2, 7, 12, 40, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -571,6 +618,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 48,
+                            EmployeeId = 10,
                             End = new DateTime(2023, 2, 8, 15, 15, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -580,6 +628,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 49,
+                            EmployeeId = 10,
                             End = new DateTime(2023, 2, 9, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = false,
                             Reason = "",
@@ -589,6 +638,7 @@ namespace BMG_Schedule.Migrations
                         new
                         {
                             Id = 50,
+                            EmployeeId = 10,
                             End = new DateTime(2023, 2, 10, 11, 30, 0, 0, DateTimeKind.Unspecified),
                             IsPersonal = true,
                             Reason = "",
@@ -1954,7 +2004,9 @@ namespace BMG_Schedule.Migrations
                 {
                     b.HasOne("BMG_Schedule.Data.Models.Employee", null)
                         .WithMany("Exits")
-                        .HasForeignKey("EmployeeId");
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BMG_Schedule.Data.Models.WorkingDay", null)
                         .WithMany("Exits")

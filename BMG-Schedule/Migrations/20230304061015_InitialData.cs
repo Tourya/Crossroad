@@ -71,8 +71,8 @@ namespace BMG_Schedule.Migrations
                     End = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsPersonal = table.Column<bool>(type: "bit", nullable: false),
                     Reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WorkingDayId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: true)
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    WorkingDayId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,13 +81,14 @@ namespace BMG_Schedule.Migrations
                         name: "FK_Exits_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Exits_WorkingDays_WorkingDayId",
                         column: x => x.WorkingDayId,
                         principalTable: "WorkingDays",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
