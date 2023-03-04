@@ -41,7 +41,7 @@ else
                         {
                             <tr class="text-center align-middle">
                                 <td class="btn-group-sm col-md-1">
-                                    <a href="/administrative/employeeDetails/@EmployeeId/@workingDay.Id" class="btn btn-outline-primary oi oi-magnifying-glass"></a>
+                                    <a href="/administrative/employeeDetails/@EmployeeId/@workingDay.ExitId" class="btn btn-outline-primary oi oi-magnifying-glass @(workingDay.ExitId == 0 ? "disabled" : "")"></a>
                                 </td>
                                 <td>@RecordTypes!.FirstOrDefault(type => type.Id == workingDay.RecordTypeId)!.Name</td>
                                 <td class="col-md-2">@workingDay.Start.Date.ToString("dd/MM/yyyy")</td>

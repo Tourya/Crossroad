@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMG_Schedule.Migrations
 {
     [DbContext(typeof(EmployeeManagerDbContext))]
-    [Migration("20230304061015_InitialData")]
+    [Migration("20230304143510_InitialData")]
     partial class InitialData
     {
         /// <inheritdoc />
@@ -69,7 +69,8 @@ namespace BMG_Schedule.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Reason")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
@@ -80,8 +81,6 @@ namespace BMG_Schedule.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
-
-                    b.HasIndex("WorkingDayId");
 
                     b.ToTable("Exits");
                 });
@@ -117,6 +116,9 @@ namespace BMG_Schedule.Migrations
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ExitId")
+                        .HasColumnType("int");
+
                     b.Property<int>("RecordTypeId")
                         .HasColumnType("int");
 
@@ -137,12 +139,6 @@ namespace BMG_Schedule.Migrations
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("BMG_Schedule.Data.Models.WorkingDay", null)
-                        .WithMany("Exits")
-                        .HasForeignKey("WorkingDayId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BMG_Schedule.Data.Models.WorkingDay", b =>
@@ -159,11 +155,6 @@ namespace BMG_Schedule.Migrations
                     b.Navigation("Exits");
 
                     b.Navigation("WorkingDays");
-                });
-
-            modelBuilder.Entity("BMG_Schedule.Data.Models.WorkingDay", b =>
-                {
-                    b.Navigation("Exits");
                 });
 #pragma warning restore 612, 618
         }
