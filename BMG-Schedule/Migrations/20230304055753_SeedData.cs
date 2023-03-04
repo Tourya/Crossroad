@@ -208,11 +208,318 @@ namespace BMG_Schedule.Migrations
                     { 159, 10, new DateTime(2023, 2, 9, 18, 30, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2023, 2, 9, 9, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 160, 10, new DateTime(2023, 2, 10, 18, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2023, 2, 10, 9, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Exits",
+                columns: new[] { "Id", "EmployeeId", "End", "IsPersonal", "Reason", "Start", "WorkingDayId" },
+                values: new object[,]
+                {
+                    { 1, null, new DateTime(2023, 2, 1, 12, 30, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2023, 2, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), 9 },
+                    { 2, null, new DateTime(2023, 2, 2, 17, 0, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 2, 16, 0, 0, 0, DateTimeKind.Unspecified), 10 },
+                    { 3, null, new DateTime(2023, 2, 3, 12, 30, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 3, 12, 0, 0, 0, DateTimeKind.Unspecified), 11 },
+                    { 4, null, new DateTime(2023, 2, 6, 11, 30, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 6, 10, 30, 0, 0, DateTimeKind.Unspecified), 12 },
+                    { 5, null, new DateTime(2023, 2, 7, 13, 45, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2023, 2, 7, 13, 0, 0, 0, DateTimeKind.Unspecified), 13 },
+                    { 6, null, new DateTime(2023, 1, 31, 12, 30, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 1, 31, 11, 0, 0, 0, DateTimeKind.Unspecified), 24 },
+                    { 7, null, new DateTime(2023, 2, 1, 10, 45, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 1, 10, 0, 0, 0, DateTimeKind.Unspecified), 25 },
+                    { 8, null, new DateTime(2023, 2, 2, 15, 52, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2023, 2, 2, 15, 0, 0, 0, DateTimeKind.Unspecified), 26 },
+                    { 9, null, new DateTime(2023, 2, 3, 12, 43, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 3, 10, 30, 0, 0, DateTimeKind.Unspecified), 27 },
+                    { 10, null, new DateTime(2023, 2, 8, 15, 28, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 8, 10, 15, 0, 0, DateTimeKind.Unspecified), 30 },
+                    { 11, null, new DateTime(2022, 12, 20, 12, 0, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2022, 12, 20, 9, 40, 0, 0, DateTimeKind.Unspecified), 33 },
+                    { 12, null, new DateTime(2022, 12, 21, 13, 0, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2022, 12, 21, 12, 15, 0, 0, DateTimeKind.Unspecified), 34 },
+                    { 13, null, new DateTime(2022, 12, 19, 14, 15, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2022, 12, 19, 13, 10, 0, 0, DateTimeKind.Unspecified), 35 },
+                    { 14, null, new DateTime(2022, 12, 22, 16, 10, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2022, 12, 22, 15, 30, 0, 0, DateTimeKind.Unspecified), 36 },
+                    { 15, null, new DateTime(2023, 1, 26, 11, 48, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 1, 26, 10, 20, 0, 0, DateTimeKind.Unspecified), 37 },
+                    { 16, null, new DateTime(2023, 2, 1, 10, 45, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2023, 2, 1, 9, 30, 0, 0, DateTimeKind.Unspecified), 57 },
+                    { 17, null, new DateTime(2023, 2, 2, 13, 30, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 2, 12, 15, 0, 0, DateTimeKind.Unspecified), 58 },
+                    { 18, null, new DateTime(2023, 2, 3, 14, 23, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 3, 13, 5, 0, 0, DateTimeKind.Unspecified), 59 },
+                    { 19, null, new DateTime(2023, 2, 6, 12, 32, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 6, 11, 8, 0, 0, DateTimeKind.Unspecified), 60 },
+                    { 20, null, new DateTime(2023, 2, 7, 11, 30, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2023, 2, 7, 10, 0, 0, 0, DateTimeKind.Unspecified), 61 },
+                    { 21, null, new DateTime(2023, 2, 1, 13, 45, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 1, 12, 20, 0, 0, DateTimeKind.Unspecified), 73 },
+                    { 22, null, new DateTime(2023, 2, 2, 11, 20, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2023, 2, 2, 10, 0, 0, 0, DateTimeKind.Unspecified), 74 },
+                    { 23, null, new DateTime(2023, 2, 3, 11, 15, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 3, 10, 5, 0, 0, DateTimeKind.Unspecified), 75 },
+                    { 24, null, new DateTime(2023, 2, 6, 12, 48, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 6, 11, 32, 0, 0, DateTimeKind.Unspecified), 76 },
+                    { 25, null, new DateTime(2023, 2, 7, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 7, 14, 15, 0, 0, DateTimeKind.Unspecified), 77 },
+                    { 26, null, new DateTime(2023, 2, 1, 11, 25, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 1, 10, 17, 0, 0, DateTimeKind.Unspecified), 89 },
+                    { 27, null, new DateTime(2023, 2, 2, 14, 32, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 2, 11, 13, 0, 0, DateTimeKind.Unspecified), 90 },
+                    { 28, null, new DateTime(2023, 2, 3, 12, 48, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 3, 11, 30, 0, 0, DateTimeKind.Unspecified), 91 },
+                    { 29, null, new DateTime(2023, 2, 6, 15, 15, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2023, 2, 6, 14, 0, 0, 0, DateTimeKind.Unspecified), 92 },
+                    { 30, null, new DateTime(2023, 2, 8, 15, 32, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 8, 15, 0, 0, 0, DateTimeKind.Unspecified), 94 },
+                    { 31, null, new DateTime(2023, 2, 2, 12, 23, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 2, 9, 45, 0, 0, DateTimeKind.Unspecified), 106 },
+                    { 32, null, new DateTime(2023, 2, 3, 11, 46, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 3, 10, 30, 0, 0, DateTimeKind.Unspecified), 107 },
+                    { 33, null, new DateTime(2023, 2, 6, 14, 47, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 6, 13, 23, 0, 0, DateTimeKind.Unspecified), 108 },
+                    { 34, null, new DateTime(2023, 2, 7, 12, 30, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2023, 2, 7, 11, 0, 0, 0, DateTimeKind.Unspecified), 109 },
+                    { 35, null, new DateTime(2023, 2, 9, 13, 30, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 9, 11, 30, 0, 0, DateTimeKind.Unspecified), 111 },
+                    { 36, null, new DateTime(2023, 1, 30, 10, 45, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 1, 30, 9, 52, 0, 0, DateTimeKind.Unspecified), 119 },
+                    { 37, null, new DateTime(2023, 1, 31, 13, 36, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 1, 31, 11, 20, 0, 0, DateTimeKind.Unspecified), 120 },
+                    { 38, null, new DateTime(2023, 2, 1, 13, 54, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 1, 11, 43, 0, 0, DateTimeKind.Unspecified), 121 },
+                    { 39, null, new DateTime(2023, 2, 2, 10, 47, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2023, 2, 2, 10, 0, 0, 0, DateTimeKind.Unspecified), 122 },
+                    { 40, null, new DateTime(2023, 2, 3, 12, 23, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 3, 10, 30, 0, 0, DateTimeKind.Unspecified), 123 },
+                    { 41, null, new DateTime(2023, 2, 2, 12, 20, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 2, 11, 0, 0, 0, DateTimeKind.Unspecified), 138 },
+                    { 42, null, new DateTime(2023, 2, 3, 13, 0, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2023, 2, 3, 11, 30, 0, 0, DateTimeKind.Unspecified), 139 },
+                    { 43, null, new DateTime(2023, 2, 6, 13, 45, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 6, 13, 0, 0, 0, DateTimeKind.Unspecified), 140 },
+                    { 44, null, new DateTime(2023, 2, 7, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 7, 14, 15, 0, 0, DateTimeKind.Unspecified), 141 },
+                    { 45, null, new DateTime(2023, 2, 8, 12, 40, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 8, 12, 0, 0, 0, DateTimeKind.Unspecified), 142 },
+                    { 46, null, new DateTime(2023, 2, 6, 11, 15, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 6, 10, 0, 0, 0, DateTimeKind.Unspecified), 156 },
+                    { 47, null, new DateTime(2023, 2, 7, 12, 40, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 7, 11, 15, 0, 0, DateTimeKind.Unspecified), 157 },
+                    { 48, null, new DateTime(2023, 2, 8, 15, 15, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 8, 14, 2, 0, 0, DateTimeKind.Unspecified), 158 },
+                    { 49, null, new DateTime(2023, 2, 9, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "", new DateTime(2023, 2, 9, 13, 10, 0, 0, DateTimeKind.Unspecified), 159 },
+                    { 50, null, new DateTime(2023, 2, 10, 11, 30, 0, 0, DateTimeKind.Unspecified), true, "", new DateTime(2023, 2, 10, 10, 0, 0, 0, DateTimeKind.Unspecified), 160 }
+                });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 4);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 5);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 6);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 7);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 8);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 9);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 10);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 11);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 12);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 13);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 14);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 15);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 16);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 17);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 18);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 19);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 20);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 21);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 22);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 23);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 24);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 25);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 26);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 27);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 28);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 29);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 30);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 31);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 32);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 33);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 34);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 35);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 36);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 37);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 38);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 39);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 40);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 41);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 42);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 43);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 44);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 45);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 46);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 47);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 48);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 49);
+
+            migrationBuilder.DeleteData(
+                table: "Exits",
+                keyColumn: "Id",
+                keyValue: 50);
+
             migrationBuilder.DeleteData(
                 table: "RecordTypes",
                 keyColumn: "Id",
@@ -281,31 +588,6 @@ namespace BMG_Schedule.Migrations
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
                 keyColumn: "Id",
-                keyValue: 9);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 10);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 11);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 12);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 13);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
                 keyValue: 14);
 
             migrationBuilder.DeleteData(
@@ -356,26 +638,6 @@ namespace BMG_Schedule.Migrations
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
                 keyColumn: "Id",
-                keyValue: 24);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 25);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 26);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 27);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
                 keyValue: 28);
 
             migrationBuilder.DeleteData(
@@ -386,42 +648,12 @@ namespace BMG_Schedule.Migrations
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
                 keyColumn: "Id",
-                keyValue: 30);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
                 keyValue: 31);
 
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
                 keyColumn: "Id",
                 keyValue: 32);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 33);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 34);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 35);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 36);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 37);
 
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
@@ -521,31 +753,6 @@ namespace BMG_Schedule.Migrations
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
                 keyColumn: "Id",
-                keyValue: 57);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 58);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 59);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 60);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 61);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
                 keyValue: 62);
 
             migrationBuilder.DeleteData(
@@ -597,31 +804,6 @@ namespace BMG_Schedule.Migrations
                 table: "WorkingDays",
                 keyColumn: "Id",
                 keyValue: 72);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 73);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 74);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 75);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 76);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 77);
 
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
@@ -681,32 +863,7 @@ namespace BMG_Schedule.Migrations
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
                 keyColumn: "Id",
-                keyValue: 89);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 90);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 91);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 92);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
                 keyValue: 93);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 94);
 
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
@@ -766,32 +923,7 @@ namespace BMG_Schedule.Migrations
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
                 keyColumn: "Id",
-                keyValue: 106);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 107);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 108);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 109);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
                 keyValue: 110);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 111);
 
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
@@ -827,31 +959,6 @@ namespace BMG_Schedule.Migrations
                 table: "WorkingDays",
                 keyColumn: "Id",
                 keyValue: 118);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 119);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 120);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 121);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 122);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 123);
 
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
@@ -926,31 +1033,6 @@ namespace BMG_Schedule.Migrations
             migrationBuilder.DeleteData(
                 table: "WorkingDays",
                 keyColumn: "Id",
-                keyValue: 138);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 139);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 140);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 141);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
-                keyValue: 142);
-
-            migrationBuilder.DeleteData(
-                table: "WorkingDays",
-                keyColumn: "Id",
                 keyValue: 143);
 
             migrationBuilder.DeleteData(
@@ -1012,6 +1094,231 @@ namespace BMG_Schedule.Migrations
                 table: "WorkingDays",
                 keyColumn: "Id",
                 keyValue: 155);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 9);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 10);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 11);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 12);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 13);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 24);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 25);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 26);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 27);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 30);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 33);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 34);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 35);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 36);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 37);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 57);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 58);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 59);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 60);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 61);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 73);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 74);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 75);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 76);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 77);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 89);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 90);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 91);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 92);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 94);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 106);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 107);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 108);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 109);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 111);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 119);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 120);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 121);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 122);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 123);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 138);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 139);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 140);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 141);
+
+            migrationBuilder.DeleteData(
+                table: "WorkingDays",
+                keyColumn: "Id",
+                keyValue: 142);
 
             migrationBuilder.DeleteData(
                 table: "WorkingDays",

@@ -10,12 +10,15 @@ namespace BMG_Schedule.Data
         public DbSet<Employee> Employees => Set<Employee>();
         public DbSet<RecordType> RecordTypes => Set<RecordType>();
         public DbSet<WorkingDay> WorkingDays => Set<WorkingDay>();
+        public DbSet<Exit> Exits => Set<Exit>();
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Employee>().HasData(
+            modelBuilder.Entity<Employee>()
+                .HasData(
                 new Employee { Id = 1, FirstName = "Миглена", LastName = "Велева" },
                 new Employee { Id = 2, FirstName = "Иван", LastName = "Петров" },
                 new Employee { Id = 3, FirstName = "Никола", LastName = "Попов" },
@@ -36,7 +39,8 @@ namespace BMG_Schedule.Data
                 new RecordType { Id = 5, Name = "Болнични" }
                 );
 
-            modelBuilder.Entity<WorkingDay>().HasData(
+            modelBuilder.Entity<WorkingDay>()
+                .HasData(
                 new WorkingDay { Id = 1, Start = new DateTime(2022, 12, 20, 09, 00, 00), End = new DateTime(2022, 12, 20, 18, 00, 00), RecordTypeId = 1, EmployeeId = 1 },
                 new WorkingDay { Id = 2, Start = new DateTime(2022, 12, 21, 09, 00, 00), End = new DateTime(2022, 12, 21, 17, 40, 00), RecordTypeId = 1, EmployeeId = 1 },
                 new WorkingDay { Id = 3, Start = new DateTime(2022, 12, 19, 09, 00, 00), End = new DateTime(2022, 12, 19, 18, 00, 00), RecordTypeId = 1, EmployeeId = 1 },
@@ -207,8 +211,69 @@ namespace BMG_Schedule.Data
                 new WorkingDay { Id = 159, Start = new DateTime(2023, 02, 09, 09, 00, 00), End = new DateTime(2023, 02, 09, 18, 30, 00), RecordTypeId = 1, EmployeeId = 10 },
                 new WorkingDay { Id = 160, Start = new DateTime(2023, 02, 10, 09, 00, 00), End = new DateTime(2023, 02, 10, 18, 00, 00), RecordTypeId = 1, EmployeeId = 10 }
                 );
+
+            modelBuilder.Entity<Exit>().HasData(
+                new Exit { Id = 1, Start = new DateTime(2023, 02, 01, 12, 00, 00), End = new DateTime(2023, 02, 01, 12, 30, 00), IsPersonal = true, Reason = "", WorkingDayId = 9 },
+                new Exit { Id = 2, Start = new DateTime(2023, 02, 02, 16, 00, 00), End = new DateTime(2023, 02, 02, 17, 00, 00), IsPersonal = false, Reason = "", WorkingDayId = 10 },
+                new Exit { Id = 3, Start = new DateTime(2023, 02, 03, 12, 00, 00), End = new DateTime(2023, 02, 03, 12, 30, 00), IsPersonal = false, Reason = "", WorkingDayId = 11 },
+                new Exit { Id = 4, Start = new DateTime(2023, 02, 06, 10, 30, 00), End = new DateTime(2023, 02, 06, 11, 30, 00), IsPersonal = false, Reason = "", WorkingDayId = 12 },
+                new Exit { Id = 5, Start = new DateTime(2023, 02, 07, 13, 00, 00), End = new DateTime(2023, 02, 07, 13, 45, 00), IsPersonal = true, Reason = "", WorkingDayId = 13 },
+
+                new Exit { Id = 6, Start = new DateTime(2023, 01, 31, 11, 00, 00), End = new DateTime(2023, 01, 31, 12, 30, 00), IsPersonal = false, Reason = "", WorkingDayId = 24 },
+                new Exit { Id = 7, Start = new DateTime(2023, 02, 01, 10, 00, 00), End = new DateTime(2023, 02, 01, 10, 45, 00), IsPersonal = false, Reason = "", WorkingDayId = 25 },
+                new Exit { Id = 8, Start = new DateTime(2023, 02, 02, 15, 00, 00), End = new DateTime(2023, 02, 02, 15, 52, 00), IsPersonal = true, Reason = "", WorkingDayId = 26 },
+                new Exit { Id = 9, Start = new DateTime(2023, 02, 03, 10, 30, 00), End = new DateTime(2023, 02, 03, 12, 43, 00), IsPersonal = false, Reason = "", WorkingDayId = 27 },
+                new Exit { Id = 10, Start = new DateTime(2023, 02, 08, 10, 15, 00), End = new DateTime(2023, 02, 08, 15, 28, 00), IsPersonal = false, Reason = "", WorkingDayId = 30 },
+
+                new Exit { Id = 11, Start = new DateTime(2022, 12, 20, 09, 40, 00), End = new DateTime(2022, 12, 20, 12, 00, 00), IsPersonal = false, Reason = "", WorkingDayId = 33 },
+                new Exit { Id = 12, Start = new DateTime(2022, 12, 21, 12, 15, 00), End = new DateTime(2022, 12, 21, 13, 00, 00), IsPersonal = true, Reason = "", WorkingDayId = 34 },
+                new Exit { Id = 13, Start = new DateTime(2022, 12, 19, 13, 10, 00), End = new DateTime(2022, 12, 19, 14, 15, 00), IsPersonal = false, Reason = "", WorkingDayId = 35 },
+                new Exit { Id = 14, Start = new DateTime(2022, 12, 22, 15, 30, 00), End = new DateTime(2022, 12, 22, 16, 10, 00), IsPersonal = false, Reason = "", WorkingDayId = 36 },
+                new Exit { Id = 15, Start = new DateTime(2023, 01, 26, 10, 20, 00), End = new DateTime(2023, 01, 26, 11, 48, 00), IsPersonal = false, Reason = "", WorkingDayId = 37 },
+
+                new Exit { Id = 16, Start = new DateTime(2023, 02, 01, 09, 30, 00), End = new DateTime(2023, 02, 01, 10, 45, 00), IsPersonal = true, Reason = "", WorkingDayId = 57 },
+                new Exit { Id = 17, Start = new DateTime(2023, 02, 02, 12, 15, 00), End = new DateTime(2023, 02, 02, 13, 30, 00), IsPersonal = false, Reason = "", WorkingDayId = 58 },
+                new Exit { Id = 18, Start = new DateTime(2023, 02, 03, 13, 05, 00), End = new DateTime(2023, 02, 03, 14, 23, 00), IsPersonal = false, Reason = "", WorkingDayId = 59 },
+                new Exit { Id = 19, Start = new DateTime(2023, 02, 06, 11, 08, 00), End = new DateTime(2023, 02, 06, 12, 32, 00), IsPersonal = false, Reason = "", WorkingDayId = 60 },
+                new Exit { Id = 20, Start = new DateTime(2023, 02, 07, 10, 00, 00), End = new DateTime(2023, 02, 07, 11, 30, 00), IsPersonal = true, Reason = "", WorkingDayId = 61 },
+
+                new Exit { Id = 21, Start = new DateTime(2023, 02, 01, 12, 20, 00), End = new DateTime(2023, 02, 01, 13, 45, 00), IsPersonal = false, Reason = "", WorkingDayId = 73 },
+                new Exit { Id = 22, Start = new DateTime(2023, 02, 02, 10, 00, 00), End = new DateTime(2023, 02, 02, 11, 20, 00), IsPersonal = true, Reason = "", WorkingDayId = 74 },
+                new Exit { Id = 23, Start = new DateTime(2023, 02, 03, 10, 05, 00), End = new DateTime(2023, 02, 03, 11, 15, 00), IsPersonal = false, Reason = "", WorkingDayId = 75 },
+                new Exit { Id = 24, Start = new DateTime(2023, 02, 06, 11, 32, 00), End = new DateTime(2023, 02, 06, 12, 48, 00), IsPersonal = false, Reason = "", WorkingDayId = 76 },
+                new Exit { Id = 25, Start = new DateTime(2023, 02, 07, 14, 15, 00), End = new DateTime(2023, 02, 07, 15, 30, 00), IsPersonal = false, Reason = "", WorkingDayId = 77 },
+
+                new Exit { Id = 26, Start = new DateTime(2023, 02, 01, 10, 17, 00), End = new DateTime(2023, 02, 01, 11, 25, 00), IsPersonal = false, Reason = "", WorkingDayId = 89 },
+                new Exit { Id = 27, Start = new DateTime(2023, 02, 02, 11, 13, 00), End = new DateTime(2023, 02, 02, 14, 32, 00), IsPersonal = false, Reason = "", WorkingDayId = 90 },
+                new Exit { Id = 28, Start = new DateTime(2023, 02, 03, 11, 30, 00), End = new DateTime(2023, 02, 03, 12, 48, 00), IsPersonal = false, Reason = "", WorkingDayId = 91 },
+                new Exit { Id = 29, Start = new DateTime(2023, 02, 06, 14, 00, 00), End = new DateTime(2023, 02, 06, 15, 15, 00), IsPersonal = true, Reason = "", WorkingDayId = 92 },
+                new Exit { Id = 30, Start = new DateTime(2023, 02, 08, 15, 00, 00), End = new DateTime(2023, 02, 08, 15, 32, 00), IsPersonal = false, Reason = "", WorkingDayId = 94 },
+
+                new Exit { Id = 31, Start = new DateTime(2023, 02, 02, 09, 45, 00), End = new DateTime(2023, 02, 02, 12, 23, 00), IsPersonal = false, Reason = "", WorkingDayId = 106 },
+                new Exit { Id = 32, Start = new DateTime(2023, 02, 03, 10, 30, 00), End = new DateTime(2023, 02, 03, 11, 46, 00), IsPersonal = false, Reason = "", WorkingDayId = 107 },
+                new Exit { Id = 33, Start = new DateTime(2023, 02, 06, 13, 23, 00), End = new DateTime(2023, 02, 06, 14, 47, 00), IsPersonal = false, Reason = "", WorkingDayId = 108 },
+                new Exit { Id = 34, Start = new DateTime(2023, 02, 07, 11, 00, 00), End = new DateTime(2023, 02, 07, 12, 30, 00), IsPersonal = true, Reason = "", WorkingDayId = 109 },
+                new Exit { Id = 35, Start = new DateTime(2023, 02, 09, 11, 30, 00), End = new DateTime(2023, 02, 09, 13, 30, 00), IsPersonal = false, Reason = "", WorkingDayId = 111 },
+
+                new Exit { Id = 36, Start = new DateTime(2023, 01, 30, 09, 52, 00), End = new DateTime(2023, 01, 30, 10, 45, 00), IsPersonal = false, Reason = "", WorkingDayId = 119 },
+                new Exit { Id = 37, Start = new DateTime(2023, 01, 31, 11, 20, 00), End = new DateTime(2023, 01, 31, 13, 36, 00), IsPersonal = false, Reason = "", WorkingDayId = 120 },
+                new Exit { Id = 38, Start = new DateTime(2023, 02, 01, 11, 43, 00), End = new DateTime(2023, 02, 01, 13, 54, 00), IsPersonal = false, Reason = "", WorkingDayId = 121 },
+                new Exit { Id = 39, Start = new DateTime(2023, 02, 02, 10, 00, 00), End = new DateTime(2023, 02, 02, 10, 47, 00), IsPersonal = true, Reason = "", WorkingDayId = 122 },
+                new Exit { Id = 40, Start = new DateTime(2023, 02, 03, 10, 30, 00), End = new DateTime(2023, 02, 03, 12, 23, 00), IsPersonal = false, Reason = "", WorkingDayId = 123 },
+
+                new Exit { Id = 41, Start = new DateTime(2023, 02, 02, 11, 00, 00), End = new DateTime(2023, 02, 02, 12, 20, 00), IsPersonal = false, Reason = "", WorkingDayId = 138 },
+                new Exit { Id = 42, Start = new DateTime(2023, 02, 03, 11, 30, 00), End = new DateTime(2023, 02, 03, 13, 00, 00), IsPersonal = true, Reason = "", WorkingDayId = 139 },
+                new Exit { Id = 43, Start = new DateTime(2023, 02, 06, 13, 00, 00), End = new DateTime(2023, 02, 06, 13, 45, 00), IsPersonal = false, Reason = "", WorkingDayId = 140 },
+                new Exit { Id = 44, Start = new DateTime(2023, 02, 07, 14, 15, 00), End = new DateTime(2023, 02, 07, 15, 30, 00), IsPersonal = false, Reason = "", WorkingDayId = 141 },
+                new Exit { Id = 45, Start = new DateTime(2023, 02, 08, 12, 00, 00), End = new DateTime(2023, 02, 08, 12, 40, 00), IsPersonal = false, Reason = "", WorkingDayId = 142 },
+
+                new Exit { Id = 46, Start = new DateTime(2023, 02, 06, 10, 00, 00), End = new DateTime(2023, 02, 06, 11, 15, 00), IsPersonal = false, Reason = "", WorkingDayId = 156 },
+                new Exit { Id = 47, Start = new DateTime(2023, 02, 07, 11, 15, 00), End = new DateTime(2023, 02, 07, 12, 40, 00), IsPersonal = false, Reason = "", WorkingDayId = 157 },
+                new Exit { Id = 48, Start = new DateTime(2023, 02, 08, 14, 02, 00), End = new DateTime(2023, 02, 08, 15, 15, 00), IsPersonal = false, Reason = "", WorkingDayId = 158 },
+                new Exit { Id = 49, Start = new DateTime(2023, 02, 09, 13, 10, 00), End = new DateTime(2023, 02, 09, 15, 30, 00), IsPersonal = false, Reason = "", WorkingDayId = 159 },
+                new Exit { Id = 50, Start = new DateTime(2023, 02, 10, 10, 00, 00), End = new DateTime(2023, 02, 10, 11, 30, 00), IsPersonal = true, Reason = "", WorkingDayId = 160 }
+                );
         }
 
     }
 }
-    

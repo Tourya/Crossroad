@@ -61,6 +61,45 @@ namespace BMG_Schedule.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Exits",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Start = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    End = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsPersonal = table.Column<bool>(type: "bit", nullable: false),
+                    Reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WorkingDayId = table.Column<int>(type: "int", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Exits", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Exits_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Exits_WorkingDays_WorkingDayId",
+                        column: x => x.WorkingDayId,
+                        principalTable: "WorkingDays",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exits_EmployeeId",
+                table: "Exits",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exits_WorkingDayId",
+                table: "Exits",
+                column: "WorkingDayId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_WorkingDays_EmployeeId",
                 table: "WorkingDays",
@@ -70,6 +109,9 @@ namespace BMG_Schedule.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Exits");
+
             migrationBuilder.DropTable(
                 name: "RecordTypes");
 

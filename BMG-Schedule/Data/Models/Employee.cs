@@ -18,7 +18,7 @@ namespace BMG_Schedule.Data.Models
 
         public IEnumerable<WorkingDay>? WorkingDays { get; set; }
 
-        //public IEnumerable<Exit>? Exits { get; set; }
+        public IEnumerable<Exit>? Exits { get; set; }
 
 
         public (double hours, int noWorkingDays, int businessTrip, int sick, int offPayed, int offUnpayed) CountHours(int month, int year)

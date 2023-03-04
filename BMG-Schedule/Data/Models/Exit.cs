@@ -7,6 +7,7 @@
         public DateTime End { get; set; }
         public bool IsPersonal { get; set; }
         public string? Reason { get; set; }
-        public int EmployeeId { get; set; }
+        //public int EmployeeId { get; set; }
+        public int WorkingDayId { get; set; }
     }
 }

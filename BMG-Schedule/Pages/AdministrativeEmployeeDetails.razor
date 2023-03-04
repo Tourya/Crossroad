@@ -19,8 +19,8 @@ else
                 <h6 style="color:darkgray">Работно време</h6>
                 <br />
                 <div class="col-md-12 d-grid d-md-flex">
-                    <div class="col-md-6">Служител: @Employee?.FirstName @Employee?.LastName</div>
-                    <div class="col-md-2">Месец: @DisplayMonth(Month), @Year</div>
+                    <div class="col-md-5">Служител: @Employee?.FirstName @Employee?.LastName</div>
+                    <div class="col-md-3">Месец: @DisplayMonth(Month), @Year</div>
                     <button class="col-md-1 btn btn-sm btn-outline-primary oi oi-caret-left" @onclick="@OnClickLeft"></button>
                     <button class="col-md-1 btn btn-sm btn-outline-primary oi oi-caret-right" @onclick="@OnClickRight"></button>
                 </div>
@@ -126,8 +126,6 @@ else
     private WorkingDay[]? WorkingDays { get; set; }
 
     private RecordType[]? RecordTypes { get; set; }
-
-    private bool IsBusy { get; set; }
 
     private string? ErrorMessage { get; set; }
 

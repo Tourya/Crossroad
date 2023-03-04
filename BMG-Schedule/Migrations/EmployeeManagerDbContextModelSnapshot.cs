@@ -110,6 +110,493 @@ namespace BMG_Schedule.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BMG_Schedule.Data.Models.Exit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsPersonal")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Reason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("WorkingDayId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("WorkingDayId");
+
+                    b.ToTable("Exits");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            End = new DateTime(2023, 2, 1, 12, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 1, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 9
+                        },
+                        new
+                        {
+                            Id = 2,
+                            End = new DateTime(2023, 2, 2, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 2, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 10
+                        },
+                        new
+                        {
+                            Id = 3,
+                            End = new DateTime(2023, 2, 3, 12, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 3, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 11
+                        },
+                        new
+                        {
+                            Id = 4,
+                            End = new DateTime(2023, 2, 6, 11, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 12
+                        },
+                        new
+                        {
+                            Id = 5,
+                            End = new DateTime(2023, 2, 7, 13, 45, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 7, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 13
+                        },
+                        new
+                        {
+                            Id = 6,
+                            End = new DateTime(2023, 1, 31, 12, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 1, 31, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 24
+                        },
+                        new
+                        {
+                            Id = 7,
+                            End = new DateTime(2023, 2, 1, 10, 45, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 25
+                        },
+                        new
+                        {
+                            Id = 8,
+                            End = new DateTime(2023, 2, 2, 15, 52, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 2, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 26
+                        },
+                        new
+                        {
+                            Id = 9,
+                            End = new DateTime(2023, 2, 3, 12, 43, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 3, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 27
+                        },
+                        new
+                        {
+                            Id = 10,
+                            End = new DateTime(2023, 2, 8, 15, 28, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 8, 10, 15, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 30
+                        },
+                        new
+                        {
+                            Id = 11,
+                            End = new DateTime(2022, 12, 20, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2022, 12, 20, 9, 40, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 33
+                        },
+                        new
+                        {
+                            Id = 12,
+                            End = new DateTime(2022, 12, 21, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2022, 12, 21, 12, 15, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 34
+                        },
+                        new
+                        {
+                            Id = 13,
+                            End = new DateTime(2022, 12, 19, 14, 15, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2022, 12, 19, 13, 10, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 35
+                        },
+                        new
+                        {
+                            Id = 14,
+                            End = new DateTime(2022, 12, 22, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2022, 12, 22, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 36
+                        },
+                        new
+                        {
+                            Id = 15,
+                            End = new DateTime(2023, 1, 26, 11, 48, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 1, 26, 10, 20, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 37
+                        },
+                        new
+                        {
+                            Id = 16,
+                            End = new DateTime(2023, 2, 1, 10, 45, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 1, 9, 30, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 57
+                        },
+                        new
+                        {
+                            Id = 17,
+                            End = new DateTime(2023, 2, 2, 13, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 2, 12, 15, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 58
+                        },
+                        new
+                        {
+                            Id = 18,
+                            End = new DateTime(2023, 2, 3, 14, 23, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 3, 13, 5, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 59
+                        },
+                        new
+                        {
+                            Id = 19,
+                            End = new DateTime(2023, 2, 6, 12, 32, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 6, 11, 8, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 60
+                        },
+                        new
+                        {
+                            Id = 20,
+                            End = new DateTime(2023, 2, 7, 11, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 7, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 61
+                        },
+                        new
+                        {
+                            Id = 21,
+                            End = new DateTime(2023, 2, 1, 13, 45, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 1, 12, 20, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 73
+                        },
+                        new
+                        {
+                            Id = 22,
+                            End = new DateTime(2023, 2, 2, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 2, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 74
+                        },
+                        new
+                        {
+                            Id = 23,
+                            End = new DateTime(2023, 2, 3, 11, 15, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 3, 10, 5, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 75
+                        },
+                        new
+                        {
+                            Id = 24,
+                            End = new DateTime(2023, 2, 6, 12, 48, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 6, 11, 32, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 76
+                        },
+                        new
+                        {
+                            Id = 25,
+                            End = new DateTime(2023, 2, 7, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 7, 14, 15, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 77
+                        },
+                        new
+                        {
+                            Id = 26,
+                            End = new DateTime(2023, 2, 1, 11, 25, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 1, 10, 17, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 89
+                        },
+                        new
+                        {
+                            Id = 27,
+                            End = new DateTime(2023, 2, 2, 14, 32, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 2, 11, 13, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 90
+                        },
+                        new
+                        {
+                            Id = 28,
+                            End = new DateTime(2023, 2, 3, 12, 48, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 3, 11, 30, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 91
+                        },
+                        new
+                        {
+                            Id = 29,
+                            End = new DateTime(2023, 2, 6, 15, 15, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 6, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 92
+                        },
+                        new
+                        {
+                            Id = 30,
+                            End = new DateTime(2023, 2, 8, 15, 32, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 8, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 94
+                        },
+                        new
+                        {
+                            Id = 31,
+                            End = new DateTime(2023, 2, 2, 12, 23, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 2, 9, 45, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 106
+                        },
+                        new
+                        {
+                            Id = 32,
+                            End = new DateTime(2023, 2, 3, 11, 46, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 3, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 107
+                        },
+                        new
+                        {
+                            Id = 33,
+                            End = new DateTime(2023, 2, 6, 14, 47, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 6, 13, 23, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 108
+                        },
+                        new
+                        {
+                            Id = 34,
+                            End = new DateTime(2023, 2, 7, 12, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 7, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 109
+                        },
+                        new
+                        {
+                            Id = 35,
+                            End = new DateTime(2023, 2, 9, 13, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 9, 11, 30, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 111
+                        },
+                        new
+                        {
+                            Id = 36,
+                            End = new DateTime(2023, 1, 30, 10, 45, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 1, 30, 9, 52, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 119
+                        },
+                        new
+                        {
+                            Id = 37,
+                            End = new DateTime(2023, 1, 31, 13, 36, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 1, 31, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 120
+                        },
+                        new
+                        {
+                            Id = 38,
+                            End = new DateTime(2023, 2, 1, 13, 54, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 1, 11, 43, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 121
+                        },
+                        new
+                        {
+                            Id = 39,
+                            End = new DateTime(2023, 2, 2, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 2, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 122
+                        },
+                        new
+                        {
+                            Id = 40,
+                            End = new DateTime(2023, 2, 3, 12, 23, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 3, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 123
+                        },
+                        new
+                        {
+                            Id = 41,
+                            End = new DateTime(2023, 2, 2, 12, 20, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 2, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 138
+                        },
+                        new
+                        {
+                            Id = 42,
+                            End = new DateTime(2023, 2, 3, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 3, 11, 30, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 139
+                        },
+                        new
+                        {
+                            Id = 43,
+                            End = new DateTime(2023, 2, 6, 13, 45, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 6, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 140
+                        },
+                        new
+                        {
+                            Id = 44,
+                            End = new DateTime(2023, 2, 7, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 7, 14, 15, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 141
+                        },
+                        new
+                        {
+                            Id = 45,
+                            End = new DateTime(2023, 2, 8, 12, 40, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 8, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 142
+                        },
+                        new
+                        {
+                            Id = 46,
+                            End = new DateTime(2023, 2, 6, 11, 15, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 6, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 156
+                        },
+                        new
+                        {
+                            Id = 47,
+                            End = new DateTime(2023, 2, 7, 12, 40, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 7, 11, 15, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 157
+                        },
+                        new
+                        {
+                            Id = 48,
+                            End = new DateTime(2023, 2, 8, 15, 15, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 8, 14, 2, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 158
+                        },
+                        new
+                        {
+                            Id = 49,
+                            End = new DateTime(2023, 2, 9, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = false,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 9, 13, 10, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 159
+                        },
+                        new
+                        {
+                            Id = 50,
+                            End = new DateTime(2023, 2, 10, 11, 30, 0, 0, DateTimeKind.Unspecified),
+                            IsPersonal = true,
+                            Reason = "",
+                            Start = new DateTime(2023, 2, 10, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkingDayId = 160
+                        });
+                });
+
             modelBuilder.Entity("BMG_Schedule.Data.Models.RecordType", b =>
                 {
                     b.Property<int>("Id")
@@ -1463,6 +1950,19 @@ namespace BMG_Schedule.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BMG_Schedule.Data.Models.Exit", b =>
+                {
+                    b.HasOne("BMG_Schedule.Data.Models.Employee", null)
+                        .WithMany("Exits")
+                        .HasForeignKey("EmployeeId");
+
+                    b.HasOne("BMG_Schedule.Data.Models.WorkingDay", null)
+                        .WithMany("Exits")
+                        .HasForeignKey("WorkingDayId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("BMG_Schedule.Data.Models.WorkingDay", b =>
                 {
                     b.HasOne("BMG_Schedule.Data.Models.Employee", null)
@@ -1474,7 +1974,14 @@ namespace BMG_Schedule.Migrations
 
             modelBuilder.Entity("BMG_Schedule.Data.Models.Employee", b =>
                 {
+                    b.Navigation("Exits");
+
                     b.Navigation("WorkingDays");
+                });
+
+            modelBuilder.Entity("BMG_Schedule.Data.Models.WorkingDay", b =>
+                {
+                    b.Navigation("Exits");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,11 +1,14 @@
 using BMG_Schedule.Data;
 using BMG_Schedule.Shared;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages()
+                .AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
 builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContextFactory<EmployeeManagerDbContext>(
     options => options.UseSqlServer(
