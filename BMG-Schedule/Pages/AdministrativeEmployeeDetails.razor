@@ -133,7 +133,15 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        Month = DateTime.Now.Month;
+        if (StateContainer.Month == 0)
+        {
+            Month = DateTime.Now.Month;
+        }
+        else
+        {
+            Month = StateContainer.Month;
+        }
+
         Year = DateTime.Now.Year;
 
         await LoadData();
@@ -164,6 +172,7 @@ else
 
     private void HandleCancel()
     {
+        StateContainer.Month = 0;
         NavigationManager.NavigateTo($"/administrative/mainPage/{StateContainer.AdministrativeOverviewPage}");
     }
 
@@ -222,6 +231,7 @@ else
             Month = 12;
             Year--;
 
+            StateContainer.Month = Month;
             await LoadData();
 
             return;
@@ -229,6 +239,7 @@ else
 
         Month--;
 
+        StateContainer.Month = Month;
         await LoadData();
 
     }
@@ -241,12 +252,14 @@ else
             Month = 1;
             Year++;
 
+            StateContainer.Month = Month;
             await LoadData();
 
             return;
         }
         Month++;
 
+        StateContainer.Month = Month;
         await LoadData();
     }
 

@@ -1,0 +1,68 @@
+﻿@page "/administrative/employeeDetails/{employeeId:int}/{exitId:int}"
+@inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
+@inject StateContainer StateContainer
+@inject NavigationManager NavigationManager
+
+<PageTitle>Излизане</PageTitle>
+
+@if (Employee is not null)
+{
+    <EditForm Model="Employee" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+        <div class="col-md-10 d-grid gap-md-5 d-md-flex justify-content-md-start">
+            <button type="submit" class="btn btn-sm btn-outline-primary">Запази</button>
+            <button type="button" class="btn btn-sm btn-outline-danger">Изтрий</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" @onclick="HandleCancel">Затвори</button>
+        </div>
+    </EditForm>
+}
+
+
+
+@code {
+    [Parameter]
+    public int EmployeeId { get; set; }
+
+    [Parameter]
+    public int ExitId { get; set; }
+
+    private Exit? Exit { get; set; }
+
+    private Employee? Employee { get; set; }
+
+    private int Month { get; set; }
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Month = StateContainer.Month;
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        using var context = ContextFactory.CreateDbContext();
+
+        //може и да не е необходимо
+        Exit = await context.Exits.FirstOrDefaultAsync(ex => ex.Id == ExitId);
+
+        Employee = await context.Employees
+                                .Include(emp => emp.WorkingDays)
+                                .Include(emp => emp.Exits)
+                                .FirstOrDefaultAsync(emp => emp.Id == EmployeeId);
+    }
+
+    private async Task HandleValidSubmit()
+    {
+
+    }
+
+    private void HandleInvalidSubmit()
+    {
+
+    }
+
+    private void HandleCancel()
+    {
+        NavigationManager.NavigateTo($"/administrative/employeeDetails/{EmployeeId}");
+    }
+}
