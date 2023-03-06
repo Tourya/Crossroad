@@ -49,6 +49,7 @@
             <label for="others" class="form-label">Други: </label>
             <InputSelect class="ms-2" id="others" @bind-Value="SelectedWorkingDayId">
                 @if (OthersDropdown is not null) {
+                    <option selected disabled hidden>Въведете</option>
                     @foreach (var record in OthersDropdown) 
                     {
                         <option value="@record.Id">@record.Name</option>
