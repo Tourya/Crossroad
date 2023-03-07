@@ -18,6 +18,7 @@ else
             <InputSelect id="employee" class="form-select col-md-6" @bind-Value="@SelectedEmployeeId">
                 @if (EmployeesForDropdown is not null)
                 {
+                    <option selected disabled hidden>Изберете служител</option>
                     @foreach (var employee in EmployeesForDropdown)
                     {
                         <option value="@employee.Id">@employee.ToString()</option>

@@ -47,17 +47,35 @@
         <br />
         <div class="ms-3 d-md-flex">
             <label for="others" class="form-label">Други: </label>
-            <InputSelect class="ms-2" id="others" @bind-Value="SelectedWorkingDayId">
-                @if (OthersDropdown is not null) {
+            <InputSelect class="ms-2 form-select-sm" id="others" @bind-Value="SelectedRecordTypeId">
+                @if (OthersDropdown is not null)
+                {
                     <option selected disabled hidden>Въведете</option>
-                    @foreach (var record in OthersDropdown) 
+                    @foreach (var record in OthersDropdown)
                     {
-                        <option value="@record.Id">@record.Name</option>
+                        <option value="@record.Id">@(record.Name == "Работен ден" ? "Край на работен ден" : @record.Name)</option>
                     }
                 }
             </InputSelect>
+            @if (SelectedRecordTypeId != 1 && SelectedRecordTypeId != null)
+            {
+                <div>
+                    <label for="numberOfDays" class="ms-3">Брой дни:</label>
+                    <input id="numberOfDays" min="0" step="1" class="form-select-sm col-md-3 ms-2" @bind-value="NumberOfDays" type="number" />
+                </div>
+            }
         </div>
-
+        <br />
+        <div class="d-md-flex">
+            <InputCheckbox class="ms-2 form-check-input" id="isPersonal" @bind-Value="Exit.IsPersonal"></InputCheckbox>
+            <label for="isPersonal" class="form-label ms-2">Лично</label>
+        </div>
+        <br />
+        <div class="d-grid">
+            <label for="reason">Причина:</label>
+            <InputTextArea id="reason" placeholder="Въведете текст (до 1000 символа)." rows="3" class="col-md-6" @bind-Value="Exit.Reason"></InputTextArea>
+        </div>
+        <br />
         <br />
         <div class="col-md-6 d-md-grid gap-md-5 d-md-flex justify-content-md-start">
             <button type="submit" class="btn btn-sm btn-outline-primary">Запази</button>
@@ -65,6 +83,7 @@
             <button type="button" class="btn btn-sm btn-outline-secondary ms-5" @onclick="HandleCancel">Затвори</button>
         </div>
     </EditForm>
+
 }
 
 
@@ -77,7 +96,10 @@
     public int ExitId { get; set; }
 
     [Parameter]
-    public int? SelectedWorkingDayId { get; set; }
+    public int? SelectedRecordTypeId { get; set; }
+
+    [Parameter]
+    public int NumberOfDays { get; set; }
 
     private Exit? Exit { get; set; }
 
@@ -112,7 +134,7 @@
 
     private async Task HandleValidSubmit()
     {
-
+        NavigationManager.NavigateTo($"/administrative/employeeDetails/{EmployeeId}");
     }
 
     private void HandleInvalidSubmit()

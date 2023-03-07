@@ -16,7 +16,7 @@ else
     <div class="container">
         <div class="row">
             <div class="col-md-12 border border-light">
-                <h6 style="color:darkgray">Работно време</h6>
+                <h6 style="color:darkgray"class="mt-3">Работно време</h6>
                 <br />
                 <div class="col-md-12 d-grid d-md-flex">
                     <div class="col-md-5">Служител: @Employee?.FirstName @Employee?.LastName</div>
@@ -55,14 +55,14 @@ else
                 <div class="d-md-flex justify-content-end">Общо работни часове за месеца: @Employee?.CountHours(Month, Year).hours.ToString("N2")</div>
                 <div class="d-md-flex justify-content-end">Общо неработни дни за месеца: @Employee?.CountHours(Month, Year).noWorkingDays.ToString()</div>
                 <br />
-                <button class="btn btn-outline-primary">Ново излизане</button>
+                <button class="btn btn-outline-primary mb-3">Ново излизане</button>
             </div>
         </div>
         <br />
         <div class="container">
             <div class="row">
                 <div class="col-6 border border-light">
-                    <h6 style="color:darkgray">Излизания</h6>
+                    <h6 style="color:darkgray" class="mt-3">Излизания</h6>
                     <br />
                     <table class="table table-sm table-bordered">
                         <thead class="bg-light">
@@ -74,11 +74,31 @@ else
                                 <th>Причина за излизане</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @{
+                                @if (Exits is not null)
+                                {
+                                    @foreach (var exit in Exits)
+                                    {
+                                        <tr class="text-center align-middle">
+                                            <td>
+                                            <a href="/administrative/employeeDetails/@EmployeeId/@exit.Id" class="btn btn-sm btn-outline-primary oi oi-magnifying-glass"></a>
+                                            </td>
+                                            <td>@exit.Start.ToString("dd/MM/yyyy")</td>
+                                            <td>@exit.Start.ToString("HH:mm")</td>
+                                            <td>@exit.End.ToString("HH:mm")</td>
+                                            <td>@exit.Reason</td>
+                                        </tr>
+
+                                    }
+                                }
+                            }
+                        </tbody>
                     </table>
                 </div>
 
                 <div class="col-5 offset-1 border border-light">
-                    <h6 style="color:darkgray">Други</h6>
+                    <h6 style="color:darkgray" class="mt-3">Други</h6>
                     <br />
                     <table class="table table-sm table-bordered">
                         <thead class="bg-light align-middle">
@@ -127,6 +147,8 @@ else
 
     private RecordType[]? RecordTypes { get; set; }
 
+    private Exit[]? Exits { get; set; }
+
     private string? ErrorMessage { get; set; }
 
 
@@ -143,7 +165,6 @@ else
         }
 
         Year = DateTime.Now.Year;
-
         await LoadData();
     }
 
@@ -158,6 +179,14 @@ else
                                 .FirstOrDefaultAsync(emp => emp.Id == EmployeeId);
 
         RecordTypes = await context.RecordTypes.ToArrayAsync();
+
+        Exits = await context.Exits
+                             .AsNoTracking()
+                             .Where(ext => ext.EmployeeId == EmployeeId)
+                             .Where(ext => ext.Start.Year == Year)
+                             .Where(ext => ext.Start.Month == Month)
+                             .OrderBy(ext => ext.Start)
+                             .ToArrayAsync();
 
         WorkingDays = await context.WorkingDays
                                    .AsNoTracking()
