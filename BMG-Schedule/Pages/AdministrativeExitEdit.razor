@@ -10,6 +10,28 @@
 {
     <div class="alert alert-danger">Излизане с Id @ExitId не беше намерено.</div>
 }
+else
+{
+    <ExitForm Employee="@Employee"
+          Exit="@Exit"
+          IsBusy="@IsBusy"
+          OthersDropdown="@OthersDropdown"
+          OnSubmit="HandleSubmit"
+          OnDelete="HandleDelete"
+          OnCancel="HandleCancel"/>
+
+}
+
+@if (ErrorMessage is not null)
+{
+    <br />
+    <div class="alert alert-danger">@ErrorMessage</div>
+}
+
+@*@if (Exit is null && !IsBusy)
+{
+    <div class="alert alert-danger">Излизане с Id @ExitId не беше намерено.</div>
+}
 else if (Exit is not null)
 {
     <EditForm Model="Exit" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
@@ -24,13 +46,8 @@ else if (Exit is not null)
             <div class="pb-3 ms-3 d-md-flex justify-content-between">
                 <div class="d-md-flex">
                     <label for="startDate" class="col-form-label">Дата:</label>
-                    @*<InputDate Type="InputDateType.Date" id="startDate" class="form-control ms-2" @bind-Value="Exit.Start"></InputDate>*@
                     <InputDate Type="InputDateType.DateTimeLocal" id="startDateTime" class="form-control ms-2" @bind-Value="Exit.Start"></InputDate>
                 </div>
-                @*<div class="d-md-flex">
-            <label for="startTime" class="col-form-label">Час:</label>
-            <InputDate Type="InputDateType.Time" id="startTime" class="form-control ms-2" @bind-Value="Exit.Start"></InputDate>
-            </div>*@
                 <br />
             </div>
         </div>
@@ -43,10 +60,6 @@ else if (Exit is not null)
                     <label for="startDate" class="col-form-label">Дата: </label>
                     <InputDate Type="InputDateType.DateTimeLocal" id="endDateTime" class="form-control ms-2" onchange="@(EndDate = Exit.End)" @bind-Value="Exit.End"></InputDate>
                 </div>
-                @*<div class="d-md-flex">
-            <label for="startTime" class="col-form-label">Час: </label>
-            <InputDate Type="InputDateType.Time" id="startTime" class="form-control ms-3" @bind-Value="Exit.End"></InputDate>
-            </div>*@
                 <br />
             </div>
         </div>
@@ -90,13 +103,7 @@ else if (Exit is not null)
         </div>
     </EditForm>
 
-}
-
-@if (ErrorMessage is not null)
-{
-    <br />
-    <div class="alert alert-danger">@ErrorMessage</div>
-}
+}*@
 
 
 @code {
@@ -149,6 +156,87 @@ else if (Exit is not null)
                                 .FirstOrDefaultAsync(emp => emp.Id == EmployeeId);
     }
 
+    private async Task HandleSubmit(bool isValid)
+    {
+        if (Exit is null || IsBusy || !isValid)
+        {
+            ErrorMessage = null;
+            return;
+        }
+
+        IsBusy = true;
+
+        using var context = ContextFactory.CreateDbContext();
+        int workingDayId = Exit.WorkingDayId;
+
+        try
+        {
+            if (SelectedRecordTypeId == null)
+            {
+                if (Exit.Start.Date > Exit.End.Date)
+                {
+                    throw new ArgumentException("Датата за начало на излизането трябва да бъде по-малка от датата за край на излизането!");
+                }
+
+                if (Exit.Start.TimeOfDay > Exit.End.TimeOfDay)
+                {
+                    throw new ArgumentException("Часът за край на излизането трябва да бъде по-голям от часът за начало на излизането!");
+                }
+            }
+            else if (SelectedRecordTypeId == 1)
+            {
+                if (WorkingDay is not null)
+                {
+                    if (WorkingDay.Start > WorkingDay.End)
+                    {
+                        throw new ArgumentException("Датата и часът за край на работния трябва да бъдат по-големи от датата и часа за начало на работния ден!");
+                    }
+
+                    WorkingDay.End = EndDate;
+                    context.Update(WorkingDay);
+                }
+            }
+            else
+            {
+                if (WorkingDay is not null)
+                {
+                    for (var i = 0; i < NumberOfDays; i++)
+                    {
+                        var newWorkingDay = new WorkingDay
+                            {
+                                Start = DateTime.Today.AddDays(i) + new TimeSpan(9, 0, 0),
+                                End = DateTime.Today.AddDays(i) + new TimeSpan(18, 0, 0),
+                                RecordTypeId = (int)SelectedRecordTypeId,
+                                EmployeeId = EmployeeId
+                            };
+
+                        context.Update(newWorkingDay);
+                        await context.SaveChangesAsync();
+                    }
+                }
+            }
+
+            ErrorMessage = null;
+
+            context.Update(Exit);
+            await context.SaveChangesAsync();
+
+            NavigateToOverview();
+
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            ErrorMessage = "Излизането беше променено от друг администратор. Моля, презаредете страницата.";
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Грешка при записване на Излизане: {ex.Message}";
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
 
     private async Task HandleValidSubmit()
     {
@@ -264,7 +352,6 @@ else if (Exit is not null)
     {
         NavigateToOverview();
     }
-
 
     private void NavigateToOverview()
     {

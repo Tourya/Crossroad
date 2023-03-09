@@ -16,7 +16,7 @@ else
     <div class="container">
         <div class="row">
             <div class="col-md-12 border border-light">
-                <h6 style="color:darkgray"class="mt-3">Работно време</h6>
+                <h6 style="color:darkgray" class="mt-3">Работно време</h6>
                 <br />
                 <div class="col-md-12 d-grid d-md-flex">
                     <div class="col-md-5">Служител: @Employee?.FirstName @Employee?.LastName</div>
@@ -82,7 +82,7 @@ else
                                     {
                                         <tr class="text-center align-middle">
                                             <td>
-                                            <a href="/administrative/employeeDetails/@EmployeeId/@exit.Id" class="btn btn-sm btn-outline-primary oi oi-magnifying-glass"></a>
+                                                <a href="/administrative/employeeDetails/@EmployeeId/@exit.Id" class="btn btn-sm btn-outline-primary oi oi-magnifying-glass"></a>
                                             </td>
                                             <td>@exit.Start.ToString("dd/MM/yyyy")</td>
                                             <td>@exit.Start.ToString("HH:mm")</td>
@@ -174,7 +174,6 @@ else
 
 
         Employee = await context.Employees
-                                .AsNoTracking()
                                 .Include(emp => emp.WorkingDays)
                                 .FirstOrDefaultAsync(emp => emp.Id == EmployeeId);
 
@@ -189,7 +188,6 @@ else
                              .ToArrayAsync();
 
         WorkingDays = await context.WorkingDays
-                                   .AsNoTracking()
                                    .Where(emp => emp.EmployeeId == EmployeeId)
                                    .Where(day => day.Start.Year == Year)
                                    .Where(day => day.Start.Month == Month)
