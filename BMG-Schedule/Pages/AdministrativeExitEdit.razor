@@ -2,6 +2,7 @@
 @inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
 @inject StateContainer StateContainer
 @inject NavigationManager NavigationManager
+@inject IJSRuntime JS
 
 <PageTitle>Излизане</PageTitle>
 
@@ -66,7 +67,7 @@ else if (Exit is not null)
             {
                 <div>
                     <label for="numberOfDays" class="ms-3">Брой дни:</label>
-                    <input id="numberOfDays" min="0" step="1" class="form-select-sm col-md-3 ms-2" @bind-value="NumberOfDays" type="number" />
+                    <input id="numberOfDays" min="1" step="1" class="form-select-sm col-md-3 ms-2" @bind-value="NumberOfDays" type="number" />
                 </div>
             }
         </div>
@@ -84,7 +85,7 @@ else if (Exit is not null)
         <br />
         <div class="col-md-6 d-md-grid gap-md-5 d-md-flex justify-content-md-start">
             <button type="submit" class="btn btn-sm btn-outline-primary">Запази</button>
-            <button type="button" class="btn btn-sm btn-outline-danger">Изтрий</button>
+            <button type="button" class="btn btn-sm btn-outline-danger" @onclick="() => HandleDelete()">Изтрий</button>
             <button type="button" class="btn btn-sm btn-outline-secondary ms-5" @onclick="HandleCancel">Затвори</button>
         </div>
     </EditForm>
@@ -109,7 +110,7 @@ else if (Exit is not null)
     public int? SelectedRecordTypeId { get; set; }
 
     [Parameter]
-    public int NumberOfDays { get; set; }
+    public int NumberOfDays { get; set; } = 1;
 
     private Exit? Exit { get; set; }
 
@@ -191,7 +192,22 @@ else if (Exit is not null)
             }
             else
             {
+                if (WorkingDay is not null)
+                {
+                    for (var i = 0; i < NumberOfDays; i++)
+                    {
+                        var newWorkingDay = new WorkingDay
+                            {
+                                Start = DateTime.Today.AddDays(i) + new TimeSpan(9, 0, 0),
+                                End = DateTime.Today.AddDays(i) + new TimeSpan(18, 0, 0),
+                                RecordTypeId = (int)SelectedRecordTypeId,
+                                EmployeeId = EmployeeId
+                            };
 
+                        context.Update(newWorkingDay);
+                        await context.SaveChangesAsync();
+                    }
+                }
             }
 
             ErrorMessage = null;
@@ -220,6 +236,28 @@ else if (Exit is not null)
     private void HandleInvalidSubmit()
     {
 
+    }
+
+    private async Task HandleDelete()
+    {
+        using var context = ContextFactory.CreateDbContext();
+        var isOK = await JS.InvokeAsync<bool>("confirm", "Сигурни ли сте, че искате да изтриете текущото излизане?");
+
+        if (isOK)
+        {
+            try
+            {
+                context.Exits.Remove(Exit!);
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                //текущото излизане вече е било изтрито от друг администратор
+            }
+
+            await LoadData();
+            NavigateToOverview();
+        }
     }
 
     private void HandleCancel()
