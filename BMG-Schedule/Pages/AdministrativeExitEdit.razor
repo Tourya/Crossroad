@@ -5,7 +5,11 @@
 
 <PageTitle>Излизане</PageTitle>
 
-@if (Exit is not null)
+@if (Exit is null && !IsBusy)
+{
+    <div class="alert alert-danger">Излизане с Id @ExitId не беше намерено.</div>
+}
+else if (Exit is not null)
 {
     <EditForm Model="Exit" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
         <DataAnnotationsValidator />
@@ -19,12 +23,13 @@
             <div class="pb-3 ms-3 d-md-flex justify-content-between">
                 <div class="d-md-flex">
                     <label for="startDate" class="col-form-label">Дата:</label>
-                    <InputDate Type="InputDateType.Date" id="startDate" class="form-control ms-2" @bind-Value="Exit.Start"></InputDate>
+                    @*<InputDate Type="InputDateType.Date" id="startDate" class="form-control ms-2" @bind-Value="Exit.Start"></InputDate>*@
+                    <InputDate Type="InputDateType.DateTimeLocal" id="startDateTime" class="form-control ms-2" @bind-Value="Exit.Start"></InputDate>
                 </div>
-                <div class="d-md-flex">
-                    <label for="startTime" class="col-form-label">Час:</label>
-                    <InputDate Type="InputDateType.Time" id="startTime" class="form-control ms-2" @bind-Value="Exit.Start"></InputDate>
-                </div>
+                @*<div class="d-md-flex">
+            <label for="startTime" class="col-form-label">Час:</label>
+            <InputDate Type="InputDateType.Time" id="startTime" class="form-control ms-2" @bind-Value="Exit.Start"></InputDate>
+            </div>*@
                 <br />
             </div>
         </div>
@@ -35,12 +40,12 @@
             <div class="pb-3 ms-3 d-md-flex justify-content-md-between">
                 <div class="d-md-flex">
                     <label for="startDate" class="col-form-label">Дата: </label>
-                    <InputDate Type="InputDateType.Date" id="startDate" class="form-control ms-3" @bind-Value="Exit.End"></InputDate>
+                    <InputDate Type="InputDateType.DateTimeLocal" id="endDateTime" class="form-control ms-2" onchange="@(EndDate = Exit.End)" @bind-Value="Exit.End"></InputDate>
                 </div>
-                <div class="d-md-flex">
-                    <label for="startTime" class="col-form-label">Час: </label>
-                    <InputDate Type="InputDateType.Time" id="startTime" class="form-control ms-3" @bind-Value="Exit.End"></InputDate>
-                </div>
+                @*<div class="d-md-flex">
+            <label for="startTime" class="col-form-label">Час: </label>
+            <InputDate Type="InputDateType.Time" id="startTime" class="form-control ms-3" @bind-Value="Exit.End"></InputDate>
+            </div>*@
                 <br />
             </div>
         </div>
@@ -86,6 +91,11 @@
 
 }
 
+@if (ErrorMessage is not null)
+{
+    <br />
+    <div class="alert alert-danger">@ErrorMessage</div>
+}
 
 
 @code {
@@ -105,10 +115,15 @@
 
     private Employee? Employee { get; set; }
 
+    private WorkingDay? WorkingDay { get; set; }
+
     private IEnumerable<RecordType>? OthersDropdown { get; set; }
 
-    private DateOnly StartDate { get; set; }
-    private TimeOnly StartTime { get; set; }
+    private DateTime EndDate { get; set; }
+
+    private bool IsBusy { get; set; }
+
+    private string? ErrorMessage { get; set; }
 
 
     protected override async Task OnParametersSetAsync()
@@ -122,6 +137,8 @@
 
         Exit = await context.Exits.FirstOrDefaultAsync(ex => ex.Id == ExitId);
 
+        WorkingDay = await context.WorkingDays.FirstOrDefaultAsync(wd => wd.ExitId == ExitId);
+
         OthersDropdown = await context.RecordTypes.ToArrayAsync();
 
         Employee = await context.Employees
@@ -134,8 +151,71 @@
 
     private async Task HandleValidSubmit()
     {
-        NavigationManager.NavigateTo($"/administrative/employeeDetails/{EmployeeId}");
+        if (Exit is null || IsBusy)
+        {
+            ErrorMessage = null;
+            return;
+        }
+
+        IsBusy = true;
+
+        using var context = ContextFactory.CreateDbContext();
+        int workingDayId = Exit.WorkingDayId;
+
+        try
+        {
+            if (SelectedRecordTypeId == null)
+            {
+                if (Exit.Start.Date > Exit.End.Date)
+                {
+                    throw new ArgumentException("Датата за начало на излизането трябва да бъде по-малка от датата за край на излизането!");
+                }
+
+                if (Exit.Start.TimeOfDay > Exit.End.TimeOfDay)
+                {
+                    throw new ArgumentException("Часът за край на излизането трябва да бъде по-голям от часът за начало на излизането!");
+                }
+            }
+            else if (SelectedRecordTypeId == 1)
+            {
+                if (WorkingDay is not null)
+                {
+                    if (WorkingDay.Start > WorkingDay.End)
+                    {
+                        throw new ArgumentException("Датата и часът за край на работния трябва да бъдат по-големи от датата и часа за начало на работния ден!");
+                    }
+
+                    WorkingDay.End = EndDate;
+                    context.Update(WorkingDay);
+                }
+            }
+            else
+            {
+
+            }
+
+            ErrorMessage = null;
+
+            context.Update(Exit);
+            await context.SaveChangesAsync();
+
+            NavigateToOverview();
+
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            ErrorMessage = "Излизането беше променено от друг администратор. Моля, презаредете страницата.";
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Грешка при записване на Излизане: {ex.Message}";
+        }
+        finally
+        {
+            IsBusy = false;
+        }
     }
+
 
     private void HandleInvalidSubmit()
     {
@@ -143,6 +223,12 @@
     }
 
     private void HandleCancel()
+    {
+        NavigateToOverview();
+    }
+
+
+    private void NavigateToOverview()
     {
         NavigationManager.NavigateTo($"/administrative/employeeDetails/{EmployeeId}");
     }
