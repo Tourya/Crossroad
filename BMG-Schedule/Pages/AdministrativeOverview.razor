@@ -84,10 +84,11 @@ else
                     <td class="col-md-1">
                         @{
                             bool disabled = false;
-                            if (CurrentDateTime.Date == employee.WorkingDays?.OrderBy(day => day.Id).Last().End.Date)
+                            if (CurrentDateTime.Date == employee.WorkingDays?.OrderBy(day => day.Id).Last().End.Date || employee.WorkingDays?.FirstOrDefault(day => day.Start.Date == CurrentDateTime.Date) != null)
                             {
                                 disabled = true;
                             }
+
                         }
                         <button class="btn btn-outline-primary" disabled="@disabled" @onclick="() => HandleBeginEndDay(employee!)">@BeginEndButton(employee!)</button>
                     </td>

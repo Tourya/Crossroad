@@ -16,17 +16,18 @@ else
           Exit="@Exit"
           IsBusy="@IsBusy"
           OthersDropdown="@OthersDropdown"
-          OnSubmit="HandleSubmit"
-          OnDelete="HandleDelete"
-          OnCancel="HandleCancel"/>
-
+          SelectedRecordTypeId="@SelectedRecordTypeId"
+          NumberOfDays="@NumberOfDays"
+          EndDate="@EndDate"
+          OnSubmit="@HandleSubmit"
+          OnDelete="@HandleDelete"
+          OnCancel="@HandleCancel"/>
 }
+<div>@(SelectedRecordTypeId == null)</div>
+<div>@EndDate</div>
+<div>@NumberOfDays</div>
 
-@if (ErrorMessage is not null)
-{
-    <br />
-    <div class="alert alert-danger">@ErrorMessage</div>
-}
+
 
 @*@if (Exit is null && !IsBusy)
 {
@@ -102,9 +103,14 @@ else if (Exit is not null)
             <button type="button" class="btn btn-sm btn-outline-secondary ms-5" @onclick="HandleCancel">Затвори</button>
         </div>
     </EditForm>
-
 }*@
 
+
+@if (ErrorMessage is not null)
+{
+    <br />
+    <div class="alert alert-danger">@ErrorMessage</div>
+}
 
 @code {
     [Parameter]
@@ -113,11 +119,9 @@ else if (Exit is not null)
     [Parameter]
     public int ExitId { get; set; }
 
-    [Parameter]
-    public int? SelectedRecordTypeId { get; set; }
+    private int? SelectedRecordTypeId { get; set; }
 
-    [Parameter]
-    public int NumberOfDays { get; set; } = 1;
+    private int NumberOfDays { get; set; } = 1;
 
     private Exit? Exit { get; set; }
 
@@ -319,7 +323,6 @@ else if (Exit is not null)
             IsBusy = false;
         }
     }
-
 
     private void HandleInvalidSubmit()
     {

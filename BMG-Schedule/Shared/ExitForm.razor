@@ -1,8 +1,4 @@
-﻿@if (Exit is null && !IsBusy)
-{
-    <div class="alert alert-danger">Излизане с Id @ExitId не беше намерено.</div>
-}
-else if (Exit is not null)
+﻿@if (Exit is not null)
 {
     <EditForm Model="Exit" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
         <DataAnnotationsValidator />
@@ -17,7 +13,7 @@ else if (Exit is not null)
                 <div class="d-md-flex">
                     <label for="startDate" class="col-form-label">Дата:</label>
                     @*<InputDate Type="InputDateType.Date" id="startDate" class="form-control ms-2" @bind-Value="Exit.Start"></InputDate>*@
-                    <InputDate Type="InputDateType.DateTimeLocal" id="startDateTime" class="form-control ms-2" @bind-Value="Exit.Start"></InputDate>
+                    <InputDate Type="InputDateType.DateTimeLocal" id="startDateTime" class="form-control ms-2" @bind-Value="Exit!.Start"></InputDate>
                 </div>
                 @*<div class="d-md-flex">
             <label for="startTime" class="col-form-label">Час:</label>
@@ -81,7 +77,6 @@ else if (Exit is not null)
             <button type="button" class="btn btn-sm btn-outline-secondary ms-5" @onclick="HandleCancel">Затвори</button>
         </div>
     </EditForm>
-
 }
 
 @code {
@@ -90,12 +85,6 @@ else if (Exit is not null)
 
     [Parameter]
     public Employee? Employee { get; set; }
-
-    [Parameter]
-    public int ExitId { get; set; }
-
-    [Parameter]
-    public int EmployeeId { get; set; }
 
     [Parameter]
     public bool IsBusy { get; set; }
