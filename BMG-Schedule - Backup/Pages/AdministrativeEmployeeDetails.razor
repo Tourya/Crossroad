@@ -1,0 +1,311 @@
+﻿@page "/administrative/employeeDetails/{employeeId:int}"
+@inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
+@inject StateContainer StateContainer
+@inject NavigationManager NavigationManager
+
+
+<PageTitle>Детайли за служител</PageTitle>
+@*<AdministrativeOverview CurrentPage="@currentPage" />*@
+
+@if (WorkingDays is null)
+{
+    <div>Loading...</div>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 border border-light">
+                <h6 style="color:darkgray" class="mt-3">Работно време</h6>
+                <br />
+                <div class="col-md-12 d-grid d-md-flex">
+                    <div class="col-md-5">Служител: @Employee?.FirstName @Employee?.LastName</div>
+                    <div class="col-md-3">Месец: @DisplayMonth(Month), @Year</div>
+                    <button class="col-md-1 btn btn-sm btn-outline-primary oi oi-caret-left" @onclick="@OnClickLeft"></button>
+                    <button class="col-md-1 btn btn-sm btn-outline-primary oi oi-caret-right" @onclick="@OnClickRight"></button>
+                </div>
+                <br />
+                <table class="table table-sm table-bordered">
+                    <thead class="bg-light">
+                        <tr class="align-middle">
+                            <th class="col-md-1"></th>
+                            <th>Тип на записа</th>
+                            <th>Дата</th>
+                            <th>Работен ден - начало</th>
+                            <th>Работрн ден - край</th>
+                            <th>Общо часове за деня</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var workingDay in WorkingDays)
+                        {
+                            <tr class="text-center align-middle">
+                                <td class="btn-group-sm col-md-1">
+                                    <a href="/administrative/employeeDetails/@EmployeeId/@workingDay.ExitId" class="btn btn-outline-primary oi oi-magnifying-glass @EnableDisableMagnifyingGlass(workingDay)"></a>
+                                </td>
+                                <td>@RecordTypes!.FirstOrDefault(type => type.Id == workingDay.RecordTypeId)!.Name</td>
+                                <td class="col-md-2">@workingDay.Start.Date.ToString("dd/MM/yyyy")</td>
+                                <td>@workingDay.Start.ToString("HH:mm")</td>
+                                <td>@workingDay.End.ToString("HH:mm")</td>
+                                <td>@(@workingDay.RecordTypeId == 1 ? Employee?.CountHours(workingDay).ToString("N2") : "-")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="d-md-flex justify-content-end">Общо работни часове за месеца: @Employee?.CountHours(Month, Year).hours.ToString("N2")</div>
+                <div class="d-md-flex justify-content-end">Общо неработни дни за месеца: @Employee?.CountHours(Month, Year).noWorkingDays.ToString()</div>
+                <br />
+                <a href="/administrative/employeeDetails/@EmployeeId/addExit" class="btn btn-outline-primary mb-3">Ново излизане</a>
+            </div>
+        </div>
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-6 border border-light">
+                    <h6 style="color:darkgray" class="mt-3">Излизания</h6>
+                    <br />
+                    <table class="table table-sm table-bordered">
+                        <thead class="bg-light">
+                            <tr class="align-middle">
+                                <th></th>
+                                <th>Дата</th>
+                                <th>Излизане - начало</th>
+                                <th>Излизане - край</th>
+                                <th>Причина за излизане</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                @if (Exits is not null)
+                                {
+                                    @foreach (var exit in Exits)
+                                    {
+                                        <tr class="text-center align-middle">
+                                            <td>
+                                                <a href="/administrative/employeeDetails/@EmployeeId/@exit.Id" class="btn btn-sm btn-outline-primary oi oi-magnifying-glass @(exit.Start.Month < (DateTime.Now.Month - 1)? "disabled" : "")"></a>
+                                            </td>
+                                            <td>@exit.Start.ToString("dd/MM/yyyy")</td>
+                                            <td>@exit.Start.ToString("HH:mm")</td>
+                                            <td>@exit.End.ToString("HH:mm")</td>
+                                            <td>@exit.Reason</td>
+                                        </tr>
+
+                                    }
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-5 offset-1 border border-light">
+                    <h6 style="color:darkgray" class="mt-3">Други</h6>
+                    <br />
+                    <table class="table table-sm table-bordered">
+                        <thead class="bg-light align-middle">
+                            <tr>
+                                <th>Командировка</th>
+                                <th>Отпуск - платен</th>
+                                <th>Отпуск - неплатен</th>
+                                <th>Болнични</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center align-middle">
+                                <td>@(@Employee?.CountHours(Month, Year).businessTrip != 0 ? @Employee?.CountHours(Month, Year).businessTrip : "-")</td>
+                                <td>@(@Employee?.CountHours(Month, Year).offPayed != 0 ? @Employee?.CountHours(Month, Year).offPayed : "-")</td>
+                                <td>@(@Employee?.CountHours(Month, Year).offUnpayed != 0 ? @Employee?.CountHours(Month, Year).offUnpayed : "-")</td>
+                                <td>@(@Employee?.CountHours(Month, Year).sick != 0 ? @Employee?.CountHours(Month, Year).sick : "-")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="col-md-3 d-grid gap-3 mb-3 d-md-flex">
+            <button class="btn btn-outline-primary">Експорт към Excel</button>
+            <button type="button" class="btn btn-outline-secondary" @onclick="HandleCancel">Назад</button>
+        </div>
+    </div>
+}
+
+
+@code {
+    [Parameter]
+    public int EmployeeId { get; set; }
+
+    [Parameter]
+    public int Month { get; set; }
+
+    [Parameter]
+    public int Year { get; set; }
+
+    private Employee? Employee { get; set; }
+
+    private WorkingDay[]? WorkingDays { get; set; }
+
+    private RecordType[]? RecordTypes { get; set; }
+
+    private Exit[]? Exits { get; set; }
+
+    private string? ErrorMessage { get; set; }
+
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (StateContainer.Month == 0)
+        {
+            Month = DateTime.Now.Month;
+        }
+        else
+        {
+            Month = StateContainer.Month;
+        }
+
+        Year = DateTime.Now.Year;
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        using var context = ContextFactory.CreateDbContext();
+
+
+        Employee = await context.Employees
+                                .Include(emp => emp.WorkingDays)
+                                .FirstOrDefaultAsync(emp => emp.Id == EmployeeId);
+
+        RecordTypes = await context.RecordTypes.ToArrayAsync();
+
+        Exits = await context.Exits
+                             .AsNoTracking()
+                             .Where(ext => ext.EmployeeId == EmployeeId)
+                             .Where(ext => ext.Start.Year == Year)
+                             .Where(ext => ext.Start.Month == Month)
+                             .OrderBy(ext => ext.Start)
+                             .ToArrayAsync();
+
+        WorkingDays = await context.WorkingDays
+                                   .Where(emp => emp.EmployeeId == EmployeeId)
+                                   .Where(day => day.Start.Year == Year)
+                                   .Where(day => day.Start.Month == Month)
+                                   .OrderBy(day => day.Start)
+                                   .ToArrayAsync();
+
+
+    }
+
+    private void HandleCancel()
+    {
+        StateContainer.Month = 0;
+        NavigationManager.NavigateTo($"/administrative/mainPage/{StateContainer.AdministrativeOverviewPage}");
+    }
+
+    public string DisplayMonth(int month)
+    {
+        var displayMonth = "";
+
+        switch (month)
+        {
+            case 1:
+                displayMonth = "Януари";
+                break;
+            case 2:
+                displayMonth = "Февруари";
+                break;
+            case 3:
+                displayMonth = "Март";
+                break;
+            case 4:
+                displayMonth = "Април";
+                break;
+            case 5:
+                displayMonth = "Май";
+                break;
+            case 6:
+                displayMonth = "Юни";
+                break;
+            case 7:
+                displayMonth = "Юли";
+                break;
+            case 8:
+                displayMonth = "Август";
+                break;
+            case 9:
+                displayMonth = "Септември";
+                break;
+            case 10:
+                displayMonth = "Октомври";
+                break;
+            case 11:
+                displayMonth = "Ноември";
+                break;
+            case 12:
+                displayMonth = "Декември";
+                break;
+        }
+
+        return displayMonth;
+    }
+
+    public async Task OnClickLeft()
+    {
+
+        if (Month == 1)
+        {
+            Month = 12;
+            Year--;
+
+            StateContainer.Month = Month;
+            await LoadData();
+
+            return;
+        }
+
+        Month--;
+
+        StateContainer.Month = Month;
+        await LoadData();
+
+    }
+
+    public async Task OnClickRight()
+    {
+
+        if (Month == 12)
+        {
+            Month = 1;
+            Year++;
+
+            StateContainer.Month = Month;
+            await LoadData();
+
+            return;
+        }
+        Month++;
+
+        StateContainer.Month = Month;
+        await LoadData();
+    }
+
+    public string EnableDisableMagnifyingGlass(WorkingDay workingDay)
+    {
+        var currentExit = Exits?.FirstOrDefault(ex => ex.Id == workingDay.ExitId);
+        var makeDisable = "";
+
+        if (workingDay.ExitId == 0 || currentExit == null)
+        {
+            makeDisable = "disabled";
+        }
+
+        if (workingDay.Start.Month < (DateTime.Now.Month - 1))
+        {
+            makeDisable = "disabled";
+        }
+
+        return makeDisable;
+    }
+
+}

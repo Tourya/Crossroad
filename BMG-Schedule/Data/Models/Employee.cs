@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace BMG_Schedule.Data.Models
 {
-    public class Employee
+    public class Employee : IdentityUser<int>
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
+        public override int Id { get => base.Id; set => base.Id = value; }
 
         [Required(ErrorMessage = "Моля, въведете името на служителя.")]
         [StringLength(50)]

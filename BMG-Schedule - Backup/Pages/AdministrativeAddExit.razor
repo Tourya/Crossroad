@@ -1,0 +1,277 @@
+﻿@page "/administrative/employeeDetails/{employeeId:int}/addExit"
+@inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
+@inject NavigationManager NavigationManager
+
+
+@if (Exit is not null)
+{
+    <EditForm Model="Exit" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div>Служител: @Employee?.FirstName @Employee?.LastName</div>
+        <br />
+        <div class="col-md-6 border border-light">
+            <h6 class="ms-3 mt-3" style="color:darkgray">Начало</h6>
+            <br />
+            <div class="pb-3 ms-3 d-md-flex justify-content-between">
+                <div class="d-md-flex">
+                    <label for="start" class="col-form-label">Дата:</label>
+                    <InputDate Type="InputDateType.DateTimeLocal" id="start" TValue="DateTime" @bind-Value="Exit.Start" class="form-control ms-2" onchange="@(Start = Exit.Start)"></InputDate>
+                    <div>@Start</div>
+                </div>
+                <br />
+            </div>
+        </div>
+        <br />
+        <div class="col-md-6 border border-light">
+            <h6 class="ms-3 mt-3" style="color:darkgray">Край</h6>
+            <br />
+            <div class="pb-3 ms-3 d-md-flex justify-content-md-between">
+                <div class="d-md-flex">
+                    <label for="startDate" class="col-form-label">Дата: </label>
+                    <InputDate Type="InputDateType.DateTimeLocal" id="endDateTime" class="form-control ms-2" @bind-Value="Exit.End" onchange="@(End = Exit.End)"></InputDate>
+                    <div>@End</div>
+                </div>
+                <br />
+            </div>
+        </div>
+        <br />
+        <div class="ms-3 d-md-flex">
+            <label for="others" class="form-label">Други: </label>
+            <InputSelect class="ms-2 form-select-sm" id="others" @bind-Value="SelectedRecordTypeId">
+                @if (OthersDropdown is not null)
+                {
+                    <option selected disabled hidden>Въведете</option>
+                    @foreach (var record in OthersDropdown)
+                    {
+                        <option value="@record.Id">@(record.Name == "Работен ден" ? "Край на работен ден" : @record.Name)</option>
+                    }
+                }
+            </InputSelect>
+            @if (SelectedRecordTypeId != 1 && SelectedRecordTypeId != null)
+            {
+                <div>
+                    <label for="numberOfDays" class="ms-3">Брой дни:</label>
+                    <input id="numberOfDays" min="1" step="1" class="form-select-sm col-md-3 ms-2" @bind-value="NumberOfDays" type="number" />
+                </div>
+            }
+        </div>
+        <br />
+        <div class="d-md-flex">
+            <InputCheckbox class="ms-2 form-check-input" id="isPersonal" @bind-Value="Exit.IsPersonal"></InputCheckbox>
+            <label for="isPersonal" class="form-label ms-2">Лично</label>
+        </div>
+        <br />
+        <div class="d-grid">
+            <label for="reason">Причина:</label>
+            <InputTextArea id="reason" placeholder="Въведете текст (до 1000 символа)." rows="3" class="col-md-6" @bind-Value="Exit.Reason"></InputTextArea>
+        </div>
+        <br />
+        <br />
+        <div class="col-md-6 d-md-grid gap-md-5 d-md-flex justify-content-md-start">
+            <button type="submit" class="btn btn-sm btn-outline-primary">Запази</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary ms-5" @onclick="HandleCancel">Затвори</button>
+        </div>
+    </EditForm>
+}
+
+@if (SuccessMessage is not null)
+{
+    <br />
+    <div class="alert alert-success">@SuccessMessage</div>
+}
+
+@if (ErrorMessage is not null)
+{
+    <br />
+    <div class="alert alert-danger">@ErrorMessage</div>
+}
+
+
+@code {
+    [Parameter]
+    public int EmployeeId { get; set; }
+
+    private Employee? Employee { get; set; }
+
+    private Exit? Exit { get; set; }
+
+    private WorkingDay? WorkingDay { get; set; }
+
+    private IEnumerable<RecordType>? OthersDropdown { get; set; }
+
+    private int? SelectedRecordTypeId { get; set; }
+
+    private int NumberOfDays { get; set; } = 1;
+
+    private DateTime Start { get; set; }
+
+    private DateTime End { get; set; }
+
+    private bool IsBusy { get; set; }
+
+    private string? SuccessMessage { get; set; }
+
+    private string? ErrorMessage { get; set; }
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Exit = new();
+
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        using var context = ContextFactory.CreateDbContext();
+
+        Employee = await context.Employees
+                                .AsNoTracking()
+                                .Include(emp => emp.Exits)
+                                .Include(emp => emp.WorkingDays)
+                                .FirstOrDefaultAsync(emp => emp.Id == EmployeeId);
+
+        OthersDropdown = await context.RecordTypes.ToArrayAsync();
+
+        Exit = new()
+            {
+                Start = DateTime.Now,
+                End = DateTime.Now
+            };
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        if (IsBusy)
+        {
+            return;
+        }
+
+        IsBusy = true;
+
+        if (Exit is not null)
+        {
+            try
+            {
+                using var context = ContextFactory.CreateDbContext();
+
+                WorkingDay = await context.WorkingDays
+                                  .Where(wd => wd.EmployeeId == EmployeeId)
+                                  .FirstOrDefaultAsync(wd => wd.Start.Date == Start.Date);
+
+                if (SelectedRecordTypeId == null)
+                {
+
+                    if (WorkingDay == null)
+                    {
+                        throw new ArgumentNullException("Първо трябва да бъде въведен работен ден. Моля, въведете начало на работния ден от основния екран.");
+                    }
+
+                    if (Start < WorkingDay.Start)
+                    {
+                        throw new ArgumentOutOfRangeException("Началото на излизането не трябва да бъде по-рано от началото на работния ден.");
+                    }
+
+                    if (Start.Date != End.Date)
+                    {
+                        throw new ArgumentException("Датите за начало и край на излизането трябва да съвпадат!");
+                    }
+
+                    if (WorkingDay.RecordTypeId != 1)
+                    {
+                        throw new Exception("Не може да бъде добавено излизане на тип запис различен от работен ден.");
+                    }
+
+                    Exit.WorkingDayId = WorkingDay.Id;
+                    Exit.EmployeeId = EmployeeId;
+                    context.Exits.Add(Exit);
+
+                    await context.SaveChangesAsync();
+
+                    var newExit = context.Exits.OrderBy(ex => ex.Id).Last();
+
+                    WorkingDay.ExitId = newExit.Id;
+                    context.Update(WorkingDay);
+
+                    SuccessMessage = $"Излизане с Id {newExit.Id} беше запазено!";
+
+                }
+                else if (SelectedRecordTypeId == 1)
+                {
+
+                    if (WorkingDay == null)
+                    {
+                        throw new ArgumentNullException("Първо трябва да бъде въведен работен ден. Моля, въведете начало на работния ден от основния екран.");
+                    }
+                    else
+                    {
+                        if (WorkingDay.Start > WorkingDay.End)
+                        {
+                            throw new ArgumentException("Датата и часът за край на работния трябва да бъдат по-големи от датата и часа за начало на работния ден.");
+                        }
+
+                        if (WorkingDay.Start.Date != WorkingDay.End.Date)
+                        {
+                            throw new ArgumentException("Датите за начало и край на излизането трябва да съвпадат.");
+                        }
+
+                        WorkingDay.End = End;
+                        context.Update(WorkingDay);
+
+                        await context.SaveChangesAsync();
+                    }
+                }
+                else
+                {
+                    for (var i = 0; i < NumberOfDays; i++)
+                    {
+                        var newWorkingDay = new WorkingDay
+                            {
+                                Start = DateTime.Today.AddDays(i) + new TimeSpan(9, 0, 0),
+                                End = DateTime.Today.AddDays(i) + new TimeSpan(18, 0, 0),
+                                RecordTypeId = (int)SelectedRecordTypeId,
+                                EmployeeId = EmployeeId
+                            };
+
+                        context.Update(newWorkingDay);
+                        await context.SaveChangesAsync();
+                    }
+                }
+
+                ErrorMessage = null;
+                SuccessMessage = null;
+
+                await context.SaveChangesAsync();
+                NavigateToOverview();
+            }
+
+            catch (Exception ex)
+            {
+                SuccessMessage = null;
+                ErrorMessage = $"Грешка при записване на Излизане: {ex.Message}";
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+    }
+
+    private void HandleInvalidSubmit()
+    {
+        SuccessMessage = null;
+        ErrorMessage = null;
+    }
+
+    private void HandleCancel()
+    {
+        NavigateToOverview();
+    }
+
+    private void NavigateToOverview()
+    {
+        NavigationManager.NavigateTo($"/administrative/employeeDetails/{EmployeeId}");
+    }
+}

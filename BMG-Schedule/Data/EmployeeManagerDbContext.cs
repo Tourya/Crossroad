@@ -1,9 +1,11 @@
 ﻿using BMG_Schedule.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BMG_Schedule.Data
 {
-    public class EmployeeManagerDbContext : DbContext
+    public class EmployeeManagerDbContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>,int>
     {
         public EmployeeManagerDbContext(DbContextOptions<EmployeeManagerDbContext> options) : base(options) { }
 

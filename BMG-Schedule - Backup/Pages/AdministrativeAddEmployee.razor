@@ -1,0 +1,112 @@
+﻿@page "/administrative/employee/add"
+@inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
+@inject NavigationManager NavigationManager
+@inject StateContainer StateContainer
+
+<PageTitle>Нов служител</PageTitle>
+
+<h5 class="col-md-3 d-md-flex justify-content-md-center">Нов служител</h5>
+
+<EditForm Model="Employee" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="col-md-3">
+        <label for="firstName" class="form-label">Име: </label>
+        <InputText id="firstName" class="form-control col-sm-10" @bind-Value="Employee!.FirstName"></InputText>
+        @* <ValidationMessage For="() => Employee.FirstName" />*@
+    </div>
+    <br />
+    <div class="col-md-3">
+        <label for="lastName" class="form-label">Фамилия: </label>
+        <InputText id="lastName" class="form-control" @bind-Value="Employee!.LastName"></InputText>
+        @*<ValidationMessage For="() => Employee.LastName" />*@
+    </div>
+    <br />
+    <div class="col-md-3">
+        <label for="info" class="form-label">Служител: </label>
+        <InputText id="info" class="form-control" @bind-Value="Employee!.Info"></InputText>
+    </div>
+    <br />
+    <div class="col-md-3 d-grid gap-3 d-md-flex justify-content-md-center">
+        <button type="submit" class="btn btn-primary">Запиши</button>
+        <button type="button" class="btn btn-secondary" @onclick="HandleCancel">Затвори</button>
+    </div>
+
+</EditForm>
+
+@if (SuccessMessage is not null)
+{
+    <br />
+    <div class="alert alert-success">@SuccessMessage</div>
+}
+
+@if (ErrorMessage is not null)
+{
+    <br />
+    <div class="alert alert-danger">@ErrorMessage</div>
+}
+
+
+@code {
+    private Employee? Employee { get; set; }
+    private bool IsBusy { get; set; }
+    private string? SuccessMessage { get; set; }
+    private string? ErrorMessage { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Employee = new();
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        if (IsBusy)
+        {
+            return;
+        }
+
+        IsBusy = true;
+
+        if (Employee is not null)
+        {
+            try
+            {
+                using var context = ContextFactory.CreateDbContext();
+
+                context.Employees.Add(Employee);
+                await context.SaveChangesAsync();
+
+                var newEmployee = context.Employees.OrderBy(emp => emp.Id).Last();
+
+                var newWorkingDay = new WorkingDay
+                    {
+                        RecordTypeId = 1,
+                        EmployeeId = newEmployee.Id
+                    };
+
+                context.WorkingDays.Add(newWorkingDay);
+                await context.SaveChangesAsync();
+
+                SuccessMessage = $"Служител {Employee.FirstName} {Employee.LastName} беше добавен успешно!";
+                ErrorMessage = null;
+            }
+            catch (Exception ex)
+            {
+                SuccessMessage = null;
+                ErrorMessage = $"Грешка при добавяне на служител: {ex.Message}";
+            }
+        }
+    }
+
+    private void HandleInvalidSubmit()
+    {
+        SuccessMessage = null;
+        ErrorMessage = null;
+    }
+
+    private void HandleCancel()
+    {
+        NavigationManager.NavigateTo($"/administrative/mainPage/{StateContainer.AdministrativeOverviewPage}");
+    }
+}

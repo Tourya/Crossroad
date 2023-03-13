@@ -18,7 +18,6 @@
                 <div class="d-md-flex">
                     <label for="start" class="col-form-label">Дата:</label>
                     <InputDate Type="InputDateType.DateTimeLocal" id="start" TValue="DateTime" @bind-Value="Exit.Start" class="form-control ms-2" onchange="@(Start = Exit.Start)"></InputDate>
-                    <div>@Start</div>
                 </div>
                 <br />
             </div>
@@ -31,7 +30,6 @@
                 <div class="d-md-flex">
                     <label for="startDate" class="col-form-label">Дата: </label>
                     <InputDate Type="InputDateType.DateTimeLocal" id="endDateTime" class="form-control ms-2" @bind-Value="Exit.End" onchange="@(End = Exit.End)"></InputDate>
-                    <div>@End</div>
                 </div>
                 <br />
             </div>
@@ -69,7 +67,7 @@
         </div>
         <br />
         <br />
-        <div class="col-md-6 d-md-grid gap-md-5 d-md-flex justify-content-md-start">
+        <div class="col-md-6 d-md-grid gap-md-5 d-md-flex justify-content-md-start mb-3">
             <button type="submit" class="btn btn-sm btn-outline-primary">Запази</button>
             <button type="button" class="btn btn-sm btn-outline-secondary ms-5" @onclick="HandleCancel">Затвори</button>
         </div>

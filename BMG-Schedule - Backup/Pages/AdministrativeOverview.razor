@@ -1,0 +1,278 @@
+﻿@page "/administrative/mainPage/{currentPage:int?}"
+@inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
+@inject NavigationManager NavigationManager
+@inject StateContainer StateContainer
+@inject IJSRuntime JS
+
+<PageTitle>Основен екран</PageTitle>
+
+@if (Employees is null)
+{
+    <div>Loading...</div>
+}
+else
+{
+    <EditForm Model="EmployeesForDropdown">
+        <div class="d-inline-flex col-md">
+            <label for="employee" class="form-label card-header bg-light">Служител: </label>
+            <InputSelect id="employee" class="form-select col-md-6" @bind-Value="@SelectedEmployeeId">
+                @if (EmployeesForDropdown is not null)
+                {
+                    <option selected disabled hidden>Изберете служител</option>
+                    @foreach (var employee in EmployeesForDropdown)
+                    {
+                        <option value="@employee.Id">@employee.ToString()</option>
+                    }
+                }
+            </InputSelect>
+            <button class="btn btn-outline-danger col-md-3 gap" @onclick="() => HandleDelete()">Изтрий</button>
+            <a href="/administrative/employee/add" class="btn btn-outline-primary col-md-4">Нов служител</a>
+        </div>
+    </EditForm>
+
+    <div class="mt-3">
+        <ul class="pagination mt-3">
+            <li class="page-item @(CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="administrative/mainPage/@(CurrentPage - 1)">Previous</a>
+            </li>
+            @for (int i = 1; i <= TotalPages; i++)
+            {
+                <li class="page-item @(CurrentPage == i ? "active" : "")">
+                    <a class="page-link" href="administrative/mainPage/@i">@i</a>
+                </li>
+            }
+            <li class="page-item @(CurrentPage == TotalPages ? "disabled" : "")">
+                <a class="page-link" href="administrative/mainPage/@(CurrentPage + 1)">Next</a>
+            </li>
+        </ul>
+    </div>
+
+    <table class="table table-bordered">
+        <thead class="bg-light">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Име</th>
+                <th>Фамилия</th>
+                <th>Потребителско име</th>
+                <th>Присъствие</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Employees)
+            {
+                <tr class="text-center align-middle">
+                    <td class="col-md-1">
+                        @{
+                            string onWorkColor = string.Empty;
+                            string onWorkText = string.Empty;
+
+                            if (employee.WorkingDays?.OrderBy(day => day.Id).Last().Start.Date == CurrentDateTime.Date && employee.WorkingDays?.OrderBy(day => day.Id).Last().RecordTypeId == 1)
+                            {
+                                onWorkColor = "background-color:rgba(76,153,0,0.5)";
+                                onWorkText = "На работа е";
+                            }
+                            else
+                            {
+                                onWorkColor = "background-color:rgba(154,0,0,0.5)";
+                                onWorkText = "Не е на работа";
+                            }
+                        }
+                        <button class="btn btn-outline-primary btn-lg" disabled style="@onWorkColor"></button>
+                    </td>
+                    <td class="col-md-1">
+                        @{
+                            bool disabled = false;
+                            if (CurrentDateTime.Date == employee.WorkingDays?.OrderBy(day => day.Id).Last().End.Date ||
+                            (employee.WorkingDays?.FirstOrDefault(day => day.Start.Date == CurrentDateTime.Date) != null && employee.WorkingDays?.FirstOrDefault(day => day.End.Date == CurrentDateTime.Date) != null))
+                            {
+                                disabled = true;
+                            }
+
+                        }
+                        <button class="btn btn-outline-primary" disabled="@disabled" @onclick="() => HandleBeginEndDay(employee!)">@BeginEndButton(employee!)</button>
+                    </td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.LastName</td>
+                    <td class="col-md-2"></td>
+                    <td class="col-md-2">
+                        <a>@onWorkText</a>
+                    </td>
+                    <td class="btn-group-sm col-md-1">
+                        <a href="/administrative/employeeDetails/@employee.Id">Детайли</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (ErrorMessage is not null)
+    {
+        <div class="alert-danger">@ErrorMessage</div>
+    }
+
+}
+
+@code {
+    private Employee[]? Employees { get; set; }
+
+    private IEnumerable<Employee>? EmployeesForDropdown { get; set; }
+
+    [Parameter]
+    public int? SelectedEmployeeId { get; set; }
+
+    [Parameter]
+    public int? CurrentPage { get; set; }
+
+    private int TotalPages { get; set; }
+
+    private const int ItemsPerPage = 5;
+
+    private string? ErrorMessage { get; set; }
+
+    [Parameter]
+    public DateTime CurrentDateTime { get; set; }
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        CurrentDateTime = DateTime.Now;
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        if (CurrentPage is null or < 1)
+        {
+            NavigationManager.NavigateTo("/administrative/mainPage/1");
+            return;
+        }
+
+        using var context = ContextFactory.CreateDbContext();
+
+        var employeeCount = await context.Employees.CountAsync();
+        TotalPages = employeeCount == 0 ? 1 : (int)Math.Ceiling((double)employeeCount / ItemsPerPage);
+
+        if (CurrentPage > TotalPages)
+        {
+            NavigationManager.NavigateTo($"/administrative/mainPage/{TotalPages}");
+            return;
+        }
+
+        StateContainer.AdministrativeOverviewPage = CurrentPage.Value;
+
+        var itemsToSkip = (CurrentPage.Value - 1) * ItemsPerPage;
+
+        Employees = await context.Employees
+        .Include(emp => emp.WorkingDays)
+        .OrderBy(emp => emp.FirstName)
+        .Skip(itemsToSkip)
+        .Take(ItemsPerPage)
+        .ToArrayAsync();
+
+        EmployeesForDropdown = await context.Employees
+        .OrderBy(emp => emp.FirstName)
+        .ToArrayAsync();
+    }
+
+    private async Task HandleDelete()
+    {
+        using var context = ContextFactory.CreateDbContext();
+        var currentEmployee = await context.Employees.FirstOrDefaultAsync(emp => emp.Id == SelectedEmployeeId);
+
+
+        if (currentEmployee is null)
+        {
+            ErrorMessage = "Моля, изберете служител.";
+            return;
+        }
+
+        ErrorMessage = null;
+        var isOK = await JS.InvokeAsync<bool>("confirm", $"Сигурни ли сте, че искате да изтриете служител {currentEmployee.FirstName} {currentEmployee.LastName}?");
+
+        if (isOK)
+        {
+            try
+            {
+                context.Employees.Remove(currentEmployee);
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                // If we get this exeption, the employee  was deleted or modified.
+                // After reloading the data below, we will ignore this exeption.
+            }
+
+            await LoadData();
+        }
+    }
+
+    private async Task HandleBeginEndDay(Employee employee)
+    {
+        using var context = ContextFactory.CreateDbContext();
+
+        var newWorkingDay = new WorkingDay
+            {
+                EmployeeId = employee.Id,
+                RecordTypeId = 1
+            };
+
+        try
+        {
+            var lastDay = context.WorkingDays.Where(day => day.EmployeeId == employee.Id).OrderBy(day => day.Start).Last();
+
+
+            if (lastDay is null || (lastDay.Start != default(DateTime) && lastDay.End != default(DateTime)))
+            {
+                newWorkingDay.Start = DateTime.Now;
+
+                context.WorkingDays.Add(newWorkingDay);
+                await context.SaveChangesAsync();
+
+                await LoadData();
+                return;
+            }
+            else
+            {
+                if (lastDay.Start == default(DateTime))
+                {
+                    lastDay.Start = DateTime.Now;
+                }
+                else
+                {
+                    lastDay.End = DateTime.Now;
+                }
+
+            }
+
+            context.WorkingDays.Update(lastDay);
+            await context.SaveChangesAsync();
+
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Грешка при запис на начален/краен час на работен ден: {ex}";
+        }
+    }
+
+    public string BeginEndButton(Employee employee)
+    {
+        var lastWorkingDay = employee.WorkingDays?.OrderBy(day => day.Id).Last();
+
+        if (lastWorkingDay is not null && lastWorkingDay.Start == default(DateTime))
+        {
+            return "Начало";
+        }
+
+        if (lastWorkingDay is not null && lastWorkingDay.End == default(DateTime))
+        {
+            return "Край";
+        }
+        else
+        {
+            return "Начало";
+        }
+    }
+}
