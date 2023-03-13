@@ -5,6 +5,7 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BMG_Schedule
 build_property.RootNamespace = BMG_Schedule
@@ -21,6 +22,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/TouryaData/CSharp/Crossroad/Crossroad/BMG-Schedule/Pages/AdministrativeAddEmployee.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYXRpdmVBZGRFbXBsb3llZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/TouryaData/CSharp/Crossroad/Crossroad/BMG-Schedule/Pages/AdministrativeAddExit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYXRpdmVBZGRFeGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/TouryaData/CSharp/Crossroad/Crossroad/BMG-Schedule/Pages/AdministrativeEmployeeDetails.razor]

@@ -55,7 +55,7 @@ else
                 <div class="d-md-flex justify-content-end">Общо работни часове за месеца: @Employee?.CountHours(Month, Year).hours.ToString("N2")</div>
                 <div class="d-md-flex justify-content-end">Общо неработни дни за месеца: @Employee?.CountHours(Month, Year).noWorkingDays.ToString()</div>
                 <br />
-                <button class="btn btn-outline-primary mb-3">Ново излизане</button>
+                <a href="/administrative/employeeDetails/@EmployeeId/addExit" class="btn btn-outline-primary mb-3">Ново излизане</a>
             </div>
         </div>
         <br />
@@ -82,7 +82,7 @@ else
                                     {
                                         <tr class="text-center align-middle">
                                             <td>
-                                                <a href="/administrative/employeeDetails/@EmployeeId/@exit.Id" class="btn btn-sm btn-outline-primary oi oi-magnifying-glass"></a>
+                                                <a href="/administrative/employeeDetails/@EmployeeId/@exit.Id" class="btn btn-sm btn-outline-primary oi oi-magnifying-glass @(exit.Start.Month < (DateTime.Now.Month - 1)? "disabled" : "")"></a>
                                             </td>
                                             <td>@exit.Start.ToString("dd/MM/yyyy")</td>
                                             <td>@exit.Start.ToString("HH:mm")</td>
@@ -294,7 +294,13 @@ else
     {
         var currentExit = Exits?.FirstOrDefault(ex => ex.Id == workingDay.ExitId);
         var makeDisable = "";
+
         if (workingDay.ExitId == 0 || currentExit == null)
+        {
+            makeDisable = "disabled";
+        }
+
+        if (workingDay.Start.Month < (DateTime.Now.Month - 1))
         {
             makeDisable = "disabled";
         }

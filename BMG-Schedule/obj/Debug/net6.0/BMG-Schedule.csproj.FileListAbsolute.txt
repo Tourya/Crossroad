@@ -85,3 +85,8 @@ C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Microsoft
 C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\obj\Debug\net6.0\staticwebassets\msbuild.BMG-Schedule.Microsoft.AspNetCore.StaticWebAssets.props
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\obj\Debug\net6.0\staticwebassets\msbuild.build.BMG-Schedule.props
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.BMG-Schedule.props
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.BMG-Schedule.props
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\obj\Debug\net6.0\staticwebassets.pack.json

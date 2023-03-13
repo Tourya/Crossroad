@@ -79,12 +79,13 @@ else
                                 onWorkText = "Не е на работа";
                             }
                         }
-                        <button class="btn btn-outline-primary" disabled style="@onWorkColor"></button>
+                        <button class="btn btn-outline-primary btn-lg" disabled style="@onWorkColor"></button>
                     </td>
                     <td class="col-md-1">
                         @{
                             bool disabled = false;
-                            if (CurrentDateTime.Date == employee.WorkingDays?.OrderBy(day => day.Id).Last().End.Date || employee.WorkingDays?.FirstOrDefault(day => day.Start.Date == CurrentDateTime.Date) != null)
+                            if (CurrentDateTime.Date == employee.WorkingDays?.OrderBy(day => day.Id).Last().End.Date ||
+                            (employee.WorkingDays?.FirstOrDefault(day => day.Start.Date == CurrentDateTime.Date) != null && employee.WorkingDays?.FirstOrDefault(day => day.End.Date == CurrentDateTime.Date) != null))
                             {
                                 disabled = true;
                             }

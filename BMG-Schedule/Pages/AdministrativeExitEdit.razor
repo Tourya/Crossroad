@@ -6,14 +6,14 @@
 
 <PageTitle>Излизане</PageTitle>
 
-@if (Exit is null && !IsBusy)
+@*@if (Exit is null && !IsBusy)
 {
     <div class="alert alert-danger">Излизане с Id @ExitId не беше намерено.</div>
 }
 else
 {
-    <ExitForm Employee="@Employee"
-          Exit="@Exit"
+    <ExitForm Exit="@Exit"
+          Employee="@Employee"
           IsBusy="@IsBusy"
           OthersDropdown="@OthersDropdown"
           SelectedRecordTypeId="@SelectedRecordTypeId"
@@ -21,15 +21,15 @@ else
           EndDate="@EndDate"
           OnSubmit="@HandleSubmit"
           OnDelete="@HandleDelete"
-          OnCancel="@HandleCancel"/>
+          OnCancel="@HandleCancel" />
 }
 <div>@(SelectedRecordTypeId == null)</div>
 <div>@EndDate</div>
-<div>@NumberOfDays</div>
+<div>@NumberOfDays</div>*@
 
 
 
-@*@if (Exit is null && !IsBusy)
+@if (Exit is null && !IsBusy)
 {
     <div class="alert alert-danger">Излизане с Id @ExitId не беше намерено.</div>
 }
@@ -102,8 +102,9 @@ else if (Exit is not null)
             <button type="button" class="btn btn-sm btn-outline-danger" @onclick="() => HandleDelete()">Изтрий</button>
             <button type="button" class="btn btn-sm btn-outline-secondary ms-5" @onclick="HandleCancel">Затвори</button>
         </div>
+        <br />
     </EditForm>
-}*@
+}
 
 
 @if (ErrorMessage is not null)
@@ -186,6 +187,9 @@ else if (Exit is not null)
                 {
                     throw new ArgumentException("Часът за край на излизането трябва да бъде по-голям от часът за начало на излизането!");
                 }
+
+                context.Update(Exit);
+
             }
             else if (SelectedRecordTypeId == 1)
             {
@@ -198,6 +202,10 @@ else if (Exit is not null)
 
                     WorkingDay.End = EndDate;
                     context.Update(WorkingDay);
+
+                    //Провери дали не променя изхода и дали не трябва да се запише тук и да се върне към началния екран!
+                    // await context.SaveChanges();
+                    // NavigateToOverview();
                 }
             }
             else
@@ -216,13 +224,15 @@ else if (Exit is not null)
 
                         context.Update(newWorkingDay);
                         await context.SaveChangesAsync();
+
+                        //Провери дали не променя изхода и дали не трябва да се запише тук и да се върне към началния екран!
+                        // NavigateToOverview();
                     }
                 }
             }
 
             ErrorMessage = null;
 
-            context.Update(Exit);
             await context.SaveChangesAsync();
 
             NavigateToOverview();
@@ -268,6 +278,14 @@ else if (Exit is not null)
                 {
                     throw new ArgumentException("Часът за край на излизането трябва да бъде по-голям от часът за начало на излизането!");
                 }
+
+                if (Exit.Start.Date != Exit.End.Date)
+                {
+                    throw new ArgumentException("Датите за начало и край на излизането трябва да съвпадат!");
+                }
+
+
+                context.Update(Exit);
             }
             else if (SelectedRecordTypeId == 1)
             {
@@ -304,7 +322,6 @@ else if (Exit is not null)
 
             ErrorMessage = null;
 
-            context.Update(Exit);
             await context.SaveChangesAsync();
 
             NavigateToOverview();

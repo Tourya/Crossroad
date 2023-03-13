@@ -14,7 +14,7 @@ namespace BMG_Schedule.Data.Models
 
         public bool IsPersonal { get; set; }
 
-        [StringLength(1000)]
+        [StringLength(1000, ErrorMessage ="Текстът трябва да съдържа по-малко по 1000 символа.")]
         public string? Reason { get; set; }
 
         public int EmployeeId { get; set; }
