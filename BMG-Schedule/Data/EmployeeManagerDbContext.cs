@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BMG_Schedule.Data
 {
-    public class EmployeeManagerDbContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>,int>
+    public class EmployeeManagerDbContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>, int>
     {
         public EmployeeManagerDbContext(DbContextOptions<EmployeeManagerDbContext> options) : base(options) { }
 
@@ -21,16 +21,16 @@ namespace BMG_Schedule.Data
 
             modelBuilder.Entity<Employee>()
                 .HasData(
-                new Employee { Id = 1, FirstName = "Миглена", LastName = "Велева" },
-                new Employee { Id = 2, FirstName = "Иван", LastName = "Петров" },
-                new Employee { Id = 3, FirstName = "Никола", LastName = "Попов" },
-                new Employee { Id = 4, FirstName = "Стефка", LastName = "Стоянова" },
-                new Employee { Id = 5, FirstName = "Мария", LastName = "Донева" },
-                new Employee { Id = 6, FirstName = "Георги", LastName = "Митев" },
-                new Employee { Id = 7, FirstName = "Петър", LastName = "Николов" },
-                new Employee { Id = 8, FirstName = "Павел", LastName = "Попов" },
-                new Employee { Id = 9, FirstName = "Стоян", LastName = "Константинов" },
-                new Employee { Id = 10, FirstName = "Галя", LastName = "Стоянова" }
+                new Employee { Id = 1, UserName = "migleva@abv.bg", NormalizedUserName = "MIGLEVA@ABV.BG", Email = "migleva@abv.bg", NormalizedEmail = "MIGLEVA@ABV.BG", PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), "12345"), SecurityStamp = Guid.NewGuid().ToString(), FirstName = "Миглена", LastName = "Велева" },
+                new Employee { Id = 2, UserName = "ivan_petrov@abv.bg", NormalizedUserName = "IVAN_PETROV@ABV.BG", Email = "ivan_petrov@abv.bg", NormalizedEmail = "IVAN_PETROV@ABV.BG", PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), "45678"), SecurityStamp = Guid.NewGuid().ToString(), FirstName = "Иван", LastName = "Петров" },
+                new Employee { Id = 3, UserName = "n.popov@gmail.com", NormalizedUserName = "N.POPOV@GMAIL.COM", Email = "n.popov@gmail.com", NormalizedEmail = "N.POPOV@GMAIL.COM", PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), "1qaz2wsx"), SecurityStamp = Guid.NewGuid().ToString(), FirstName = "Никола", LastName = "Попов" },
+                new Employee { Id = 4, UserName = "stevka_52@gmail.com", NormalizedUserName = "STEFKA_52@GMAIL.COM", Email = "stevka_52@gmail.com", NormalizedEmail = "STEFKA_52@GMAIL.COM", PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), "QAZ2wsx"), SecurityStamp = Guid.NewGuid().ToString(), FirstName = "Стефка", LastName = "Стоянова" },
+                new Employee { Id = 5, UserName = "maria_doneva@yahoo.com", NormalizedUserName="MARIA_DONEVA@YAHOO.COM", Email = "maria_doneva@yahoo.com", NormalizedEmail = "MARIA_DONEVA@YAHOO.COM", PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), "123789"), SecurityStamp = Guid.NewGuid().ToString(), FirstName = "Мария", LastName = "Донева" },
+                new Employee { Id = 6, UserName = "georgi_mitev@abv.bg", NormalizedUserName="GEORGI_MITEV@ABV.BG", Email = "georgi_mitev@abv.bg", NormalizedEmail = "GEORGI_MITEV@ABV.BG", PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), "qwert1234"), SecurityStamp = Guid.NewGuid().ToString(), FirstName = "Георги", LastName = "Митев" },
+                new Employee { Id = 7, UserName = "pnikolov@gmail.com", NormalizedUserName="PNIKOLOV@GMAIL.COM", Email = "pnikolov@gmail.com", NormalizedEmail= "PNIKOLOV@GMAIL.COM", PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), "qwertyQWERTY"), SecurityStamp = Guid.NewGuid().ToString(), FirstName = "Петър", LastName = "Николов" },
+                new Employee { Id = 8, UserName = "pavel_popov@yahoo.com", NormalizedUserName="PAVEL_POPOV@YAHOO.COM", Email = "pavel_popov@yahoo.com", NormalizedEmail= "PAVEL_POPOV@YAHOO.COM", PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), "147852"), SecurityStamp = Guid.NewGuid().ToString(), FirstName = "Павел", LastName = "Попов" },
+                new Employee { Id = 9, UserName = "s_konstantinov@gmail.com", NormalizedUserName="S_KONSTANTINOV@GMAIL.COM", Email = "s_konstantinov@gmail.com", NormalizedEmail= "S_KONSTANTINOV@GMAIL.COM", PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), "asdfgZXCV"), SecurityStamp = Guid.NewGuid().ToString(), FirstName = "Стоян", LastName = "Константинов" },
+                new Employee { Id = 10, UserName = "gg_stoyanova@gbg.bg", NormalizedUserName="GG_STOYANOVA@GBG.BG", Email = "gg_stoyanova@gbg.bg", NormalizedEmail = "GG_STOYANOVA@GBG.BG", PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), "1qaz@WSX"), SecurityStamp = Guid.NewGuid().ToString(), FirstName = "Галя", LastName = "Стоянова" }
                 );
 
             modelBuilder.Entity<RecordType>().HasData(

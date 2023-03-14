@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMG_Schedule.Migrations
 {
     [DbContext(typeof(EmployeeManagerDbContext))]
-    [Migration("20230313195421_Initial")]
+    [Migration("20230314195838_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -2314,11 +2314,17 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "baeaf13e-cd5a-468f-abff-0c22999e3997",
+                            ConcurrencyStamp = "fd6ea293-a998-4ebe-95b7-d461b496d113",
+                            Email = "migleva@abv.bg",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "MIGLEVA@ABV.BG",
+                            NormalizedUserName = "MIGLEVA@ABV.BG",
+                            PasswordHash = "AQAAAAEAACcQAAAAECx+W0xAtXhCwI20246cBfyXDDFpwlO68Hfr8ixHuA+9hozHqv6oFsgWObsxqWh8XQ==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "ccd2fb39-d30b-4d7f-b934-c200765238e0",
                             TwoFactorEnabled = false,
+                            UserName = "migleva@abv.bg",
                             FirstName = "Миглена",
                             LastName = "Велева"
                         },
@@ -2326,11 +2332,17 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "35e71ef4-77d6-4fae-bb4a-318ce736751f",
+                            ConcurrencyStamp = "4da2e120-8c64-4015-91df-8a340478f407",
+                            Email = "ivan_petrov@abv.bg",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "IVAN_PETROV@ABV.BG",
+                            NormalizedUserName = "IVAN_PETROV@ABV.BG",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDinJTt4Df1H5sDwle7aXnRA+eSiL2PzqZggXubOwRD34Uacvl9JhKyhaS/WlTAd4g==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "a136071e-7822-492f-a01a-36f0fe5c0cda",
                             TwoFactorEnabled = false,
+                            UserName = "ivan_petrov@abv.bg",
                             FirstName = "Иван",
                             LastName = "Петров"
                         },
@@ -2338,11 +2350,17 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e05415ac-ccfe-430f-9a43-6bd7bca3beff",
+                            ConcurrencyStamp = "be76688d-d614-478b-9de0-5d12d4ab2982",
+                            Email = "n.popov@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "N.POPOV@GMAIL.COM",
+                            NormalizedUserName = "N.POPOV@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN5vBGZzP/qtXU50g2x43FGmCWyuHLVOqIegJv73elq0gTXj6sdplH1gL2iRMuB4qw==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "42043327-88e2-4a01-b193-8f5f0765d872",
                             TwoFactorEnabled = false,
+                            UserName = "n.popov@gmail.com",
                             FirstName = "Никола",
                             LastName = "Попов"
                         },
@@ -2350,11 +2368,17 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a0521079-9892-4a57-8d57-0a0213ca25a4",
+                            ConcurrencyStamp = "2d95b945-6098-490d-a6dc-d6b76a6f9a35",
+                            Email = "stevka_52@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "STEFKA_52@GMAIL.COM",
+                            NormalizedUserName = "STEFKA_52@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBbhbTw4nybJQk8WuyAXxTDccdrZEGcpJcyNfvVaTJS0UoNtKMMFu/mDuSH9qLtLXA==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "39c6b4c6-b7cc-426f-937e-9fedcd0370a7",
                             TwoFactorEnabled = false,
+                            UserName = "stevka_52@gmail.com",
                             FirstName = "Стефка",
                             LastName = "Стоянова"
                         },
@@ -2362,11 +2386,17 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 5,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c2255d71-1ebe-4ade-ba63-6e35783e2897",
+                            ConcurrencyStamp = "ec10e17c-bf61-43cc-8b79-c7a30e5609d1",
+                            Email = "maria_doneva@yahoo.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "MARIA_DONEVA@YAHOO.COM",
+                            NormalizedUserName = "MARIA_DONEVA@YAHOO.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOSefydUjjksC2i2ZH5u+FrOlXcElXopS9cmcslwzakdscq8j0G9ZDC8cM9NdFSQjg==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "31eb589d-28b4-45f2-9853-1d846d29cbc9",
                             TwoFactorEnabled = false,
+                            UserName = "maria_doneva@yahoo.com",
                             FirstName = "Мария",
                             LastName = "Донева"
                         },
@@ -2374,11 +2404,17 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 6,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cfb46318-b4b6-4953-a457-629a7028651a",
+                            ConcurrencyStamp = "6e0c6632-e64e-4c6f-b55c-476c2fecfc43",
+                            Email = "georgi_mitev@abv.bg",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "GEORGI_MITEV@ABV.BG",
+                            NormalizedUserName = "GEORGI_MITEV@ABV.BG",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJwJr338bzfNTejibgIlp+60UCScsnLjB5JbrIyQRZvHajvYzhFr9MWaA5RmCW9Xdg==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "7f997aab-3c36-4b41-afd4-5799a3ba11a0",
                             TwoFactorEnabled = false,
+                            UserName = "georgi_mitev@abv.bg",
                             FirstName = "Георги",
                             LastName = "Митев"
                         },
@@ -2386,11 +2422,17 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 7,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "73fc0aaf-cbdf-4775-96c0-ba6ca12b461a",
+                            ConcurrencyStamp = "0a946072-8ea7-4e9a-bd9a-ee2ad8768358",
+                            Email = "pnikolov@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "PNIKOLOV@GMAIL.COM",
+                            NormalizedUserName = "PNIKOLOV@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBR22NNahlNeKrcJef07r13/4PRo+N0rJGAYsE8yN8ZRH3K9tCaSQTyEXbVRNTR1Eg==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "ea67c1fa-cb18-417e-86b6-e9e60baf60a2",
                             TwoFactorEnabled = false,
+                            UserName = "pnikolov@gmail.com",
                             FirstName = "Петър",
                             LastName = "Николов"
                         },
@@ -2398,11 +2440,17 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 8,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4bd76eab-be34-4169-b1af-409c49643227",
+                            ConcurrencyStamp = "89eedea6-54ca-487f-a9ee-27e82c58a77e",
+                            Email = "pavel_popov@yahoo.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "PAVEL_POPOV@YAHOO.COM",
+                            NormalizedUserName = "PAVEL_POPOV@YAHOO.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAELvWQRcnY7W66WRDhGmkrMBzq56S5lbEypgaYSop30go6DRhNkO6qpK+XeoOGmJHXg==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "7439cced-b615-4051-b50e-e2c8f230f3b4",
                             TwoFactorEnabled = false,
+                            UserName = "pavel_popov@yahoo.com",
                             FirstName = "Павел",
                             LastName = "Попов"
                         },
@@ -2410,11 +2458,17 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 9,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8a44c616-5fd2-457d-949c-d275ceabfd95",
+                            ConcurrencyStamp = "02fe2043-a385-46f7-9eba-72dc5b169516",
+                            Email = "s_konstantinov@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "S_KONSTANTINOV@GMAIL.COM",
+                            NormalizedUserName = "S_KONSTANTINOV@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEERlpu+WDvtfV5FckXclhW42YqG6pt02afCoqlq+0ptnA+iicUSBD/k5IVOKXHvjBw==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "4f30b13e-96fd-4497-aa8f-245e73031c0b",
                             TwoFactorEnabled = false,
+                            UserName = "s_konstantinov@gmail.com",
                             FirstName = "Стоян",
                             LastName = "Константинов"
                         },
@@ -2422,11 +2476,17 @@ namespace BMG_Schedule.Migrations
                         {
                             Id = 10,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1417c33e-8fbd-4fe9-9807-afaea9c608b6",
+                            ConcurrencyStamp = "d084e6d4-a4a2-46bd-80ca-f878a1755dfe",
+                            Email = "gg_stoyanova@gbg.bg",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "GG_STOYANOVA@GBG.BG",
+                            NormalizedUserName = "GG_STOYANOVA@GBG.BG",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEzm7xnn+iC99aZgFFN5EvqHQpJsVTfieyrR5w2p8hGn7dwK0Jji60KeSuvPM0YP8Q==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "ea0f18ea-5ad5-4c15-90b2-564bedd98757",
                             TwoFactorEnabled = false,
+                            UserName = "gg_stoyanova@gbg.bg",
                             FirstName = "Галя",
                             LastName = "Стоянова"
                         });

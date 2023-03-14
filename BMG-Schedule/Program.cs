@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using BMG_Schedule.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication;
+using BMG_Schedule.Areas.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +15,15 @@ builder.Services.AddRazorPages()
 
 builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContextFactory<EmployeeManagerDbContext>(
-    options => options.UseSqlServer(
-builder.Configuration.GetConnectionString("BMGEmployeeManagerDb")));
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("BMGEmployeeManagerDb")));
 
 builder.Services.AddDefaultIdentity<IdentityUser<int>>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<EmployeeManagerDbContext>();
 
+builder.Services.AddAuthentication();
+
 builder.Services.AddScoped<StateContainer>();
+builder.Services.AddScoped<IClaimsTransformation, CalimsTransformer>();
 
 var app = builder.Build();
 
@@ -56,6 +60,5 @@ app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
-app.UseAuthentication();;
 
 app.Run();

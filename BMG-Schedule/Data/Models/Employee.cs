@@ -10,12 +10,15 @@ namespace BMG_Schedule.Data.Models
 
         [Required(ErrorMessage = "Моля, въведете името на служителя.")]
         [StringLength(50)]
+        [PersonalData]
         public string? FirstName { get; set; }
 
         [Required(ErrorMessage = "Моля, въведете фамилията на служителя.")]
         [StringLength(50)]
+        [PersonalData]
         public string? LastName { get; set; }
 
+        [PersonalData]
         public string? Info { get; set; }
 
         public IEnumerable<WorkingDay>? WorkingDays { get; set; }
