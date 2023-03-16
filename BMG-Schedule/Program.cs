@@ -2,10 +2,7 @@ using BMG_Schedule.Data;
 using BMG_Schedule.Shared;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using BMG_Schedule.Data.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication;
-using BMG_Schedule.Areas.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,13 +14,15 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContextFactory<EmployeeManagerDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("BMGEmployeeManagerDb")));
 
-builder.Services.AddDefaultIdentity<IdentityUser<int>>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser<int>>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole<int>>()
     .AddEntityFrameworkStores<EmployeeManagerDbContext>();
 
 builder.Services.AddAuthentication();
 
 builder.Services.AddScoped<StateContainer>();
-builder.Services.AddScoped<IClaimsTransformation, CalimsTransformer>();
+//builder.Services.AddScoped<IEmailSender, EmailSender>();
+//builder.Services.AddScoped<IClaimsTransformation, CalimsTransformer>();
 
 var app = builder.Build();
 

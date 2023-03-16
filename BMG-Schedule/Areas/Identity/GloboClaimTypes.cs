@@ -1,4 +1,4 @@
-﻿namespace BMG_Schedule.Areas.Identity.Pages
+﻿namespace BMG_Schedule.Areas.Identity
 {
     public static class GloboClaimTypes
     {

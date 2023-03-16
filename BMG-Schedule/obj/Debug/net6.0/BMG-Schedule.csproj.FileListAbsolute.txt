@@ -299,3 +299,4 @@ C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Microsoft
 C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll

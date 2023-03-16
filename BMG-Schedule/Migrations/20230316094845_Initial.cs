@@ -21,7 +21,8 @@ namespace BMG_Schedule.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -225,20 +226,29 @@ namespace BMG_Schedule.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { 1, "3b0c4605-3cd7-46f4-9efd-5378317f938d", "Role", "User", "USER" },
+                    { 2, "505d5152-6601-42e8-a6b9-e63316d21ee2", "Role", "Administrator", "ADMINISTRATOR" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "Info", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "fd6ea293-a998-4ebe-95b7-d461b496d113", "Employee", "migleva@abv.bg", false, "Миглена", null, "Велева", false, null, "MIGLEVA@ABV.BG", "MIGLEVA@ABV.BG", "AQAAAAEAACcQAAAAECx+W0xAtXhCwI20246cBfyXDDFpwlO68Hfr8ixHuA+9hozHqv6oFsgWObsxqWh8XQ==", null, false, "ccd2fb39-d30b-4d7f-b934-c200765238e0", false, "migleva@abv.bg" },
-                    { 2, 0, "4da2e120-8c64-4015-91df-8a340478f407", "Employee", "ivan_petrov@abv.bg", false, "Иван", null, "Петров", false, null, "IVAN_PETROV@ABV.BG", "IVAN_PETROV@ABV.BG", "AQAAAAEAACcQAAAAEDinJTt4Df1H5sDwle7aXnRA+eSiL2PzqZggXubOwRD34Uacvl9JhKyhaS/WlTAd4g==", null, false, "a136071e-7822-492f-a01a-36f0fe5c0cda", false, "ivan_petrov@abv.bg" },
-                    { 3, 0, "be76688d-d614-478b-9de0-5d12d4ab2982", "Employee", "n.popov@gmail.com", false, "Никола", null, "Попов", false, null, "N.POPOV@GMAIL.COM", "N.POPOV@GMAIL.COM", "AQAAAAEAACcQAAAAEN5vBGZzP/qtXU50g2x43FGmCWyuHLVOqIegJv73elq0gTXj6sdplH1gL2iRMuB4qw==", null, false, "42043327-88e2-4a01-b193-8f5f0765d872", false, "n.popov@gmail.com" },
-                    { 4, 0, "2d95b945-6098-490d-a6dc-d6b76a6f9a35", "Employee", "stevka_52@gmail.com", false, "Стефка", null, "Стоянова", false, null, "STEFKA_52@GMAIL.COM", "STEFKA_52@GMAIL.COM", "AQAAAAEAACcQAAAAEBbhbTw4nybJQk8WuyAXxTDccdrZEGcpJcyNfvVaTJS0UoNtKMMFu/mDuSH9qLtLXA==", null, false, "39c6b4c6-b7cc-426f-937e-9fedcd0370a7", false, "stevka_52@gmail.com" },
-                    { 5, 0, "ec10e17c-bf61-43cc-8b79-c7a30e5609d1", "Employee", "maria_doneva@yahoo.com", false, "Мария", null, "Донева", false, null, "MARIA_DONEVA@YAHOO.COM", "MARIA_DONEVA@YAHOO.COM", "AQAAAAEAACcQAAAAEOSefydUjjksC2i2ZH5u+FrOlXcElXopS9cmcslwzakdscq8j0G9ZDC8cM9NdFSQjg==", null, false, "31eb589d-28b4-45f2-9853-1d846d29cbc9", false, "maria_doneva@yahoo.com" },
-                    { 6, 0, "6e0c6632-e64e-4c6f-b55c-476c2fecfc43", "Employee", "georgi_mitev@abv.bg", false, "Георги", null, "Митев", false, null, "GEORGI_MITEV@ABV.BG", "GEORGI_MITEV@ABV.BG", "AQAAAAEAACcQAAAAEJwJr338bzfNTejibgIlp+60UCScsnLjB5JbrIyQRZvHajvYzhFr9MWaA5RmCW9Xdg==", null, false, "7f997aab-3c36-4b41-afd4-5799a3ba11a0", false, "georgi_mitev@abv.bg" },
-                    { 7, 0, "0a946072-8ea7-4e9a-bd9a-ee2ad8768358", "Employee", "pnikolov@gmail.com", false, "Петър", null, "Николов", false, null, "PNIKOLOV@GMAIL.COM", "PNIKOLOV@GMAIL.COM", "AQAAAAEAACcQAAAAEBR22NNahlNeKrcJef07r13/4PRo+N0rJGAYsE8yN8ZRH3K9tCaSQTyEXbVRNTR1Eg==", null, false, "ea67c1fa-cb18-417e-86b6-e9e60baf60a2", false, "pnikolov@gmail.com" },
-                    { 8, 0, "89eedea6-54ca-487f-a9ee-27e82c58a77e", "Employee", "pavel_popov@yahoo.com", false, "Павел", null, "Попов", false, null, "PAVEL_POPOV@YAHOO.COM", "PAVEL_POPOV@YAHOO.COM", "AQAAAAEAACcQAAAAELvWQRcnY7W66WRDhGmkrMBzq56S5lbEypgaYSop30go6DRhNkO6qpK+XeoOGmJHXg==", null, false, "7439cced-b615-4051-b50e-e2c8f230f3b4", false, "pavel_popov@yahoo.com" },
-                    { 9, 0, "02fe2043-a385-46f7-9eba-72dc5b169516", "Employee", "s_konstantinov@gmail.com", false, "Стоян", null, "Константинов", false, null, "S_KONSTANTINOV@GMAIL.COM", "S_KONSTANTINOV@GMAIL.COM", "AQAAAAEAACcQAAAAEERlpu+WDvtfV5FckXclhW42YqG6pt02afCoqlq+0ptnA+iicUSBD/k5IVOKXHvjBw==", null, false, "4f30b13e-96fd-4497-aa8f-245e73031c0b", false, "s_konstantinov@gmail.com" },
-                    { 10, 0, "d084e6d4-a4a2-46bd-80ca-f878a1755dfe", "Employee", "gg_stoyanova@gbg.bg", false, "Галя", null, "Стоянова", false, null, "GG_STOYANOVA@GBG.BG", "GG_STOYANOVA@GBG.BG", "AQAAAAEAACcQAAAAEEzm7xnn+iC99aZgFFN5EvqHQpJsVTfieyrR5w2p8hGn7dwK0Jji60KeSuvPM0YP8Q==", null, false, "ea0f18ea-5ad5-4c15-90b2-564bedd98757", false, "gg_stoyanova@gbg.bg" }
+                    { 1, 0, "8d40da25-f1fb-4017-8e8d-09972fe6c024", "Employee", "migleva@abv.bg", false, "Миглена", null, "Велева", false, null, "MIGLEVA@ABV.BG", "MIGLEVA@ABV.BG", "AQAAAAEAACcQAAAAEJtl8roIhH7G182nKySq/3fzJKiB9Tv560EGZMMu0YBXVJsAINu7UCtjLc+LRePF5Q==", null, false, "c1bce49d-dd20-4845-abd1-d8bbc2deb84a", false, "migleva@abv.bg" },
+                    { 2, 0, "fe7a15ce-a9f7-48f0-aa2f-3d860b5b5918", "Employee", "ivan_petrov@abv.bg", false, "Иван", null, "Петров", false, null, "IVAN_PETROV@ABV.BG", "IVAN_PETROV@ABV.BG", "AQAAAAEAACcQAAAAEJQRyoEkDoGUjwkrqTzZe7ingto3fUnfOgvcZ/rp2FpD6IeJoJR27qypmHv37uqn4g==", null, false, "1b487067-9c5c-4f84-a800-b13f688b71aa", false, "ivan_petrov@abv.bg" },
+                    { 3, 0, "8e6bd8b3-5dd9-4d47-9422-a9dcad7dd39f", "Employee", "n.popov@gmail.com", false, "Никола", null, "Попов", false, null, "N.POPOV@GMAIL.COM", "N.POPOV@GMAIL.COM", "AQAAAAEAACcQAAAAEA5bPc2idsWtk1vYYa9oOduqy900xOGO/9ZBVqVWWr1QwLhoZ0eeRDb7lZTUK9g/ng==", null, false, "30f4f320-7b19-4bb1-b41a-fc94646b40bc", false, "n.popov@gmail.com" },
+                    { 4, 0, "1dbeae75-e8ac-4c9c-a56d-797d9ade7ff1", "Employee", "stevka_52@gmail.com", false, "Стефка", null, "Стоянова", false, null, "STEFKA_52@GMAIL.COM", "STEFKA_52@GMAIL.COM", "AQAAAAEAACcQAAAAEMFKxvfHpIsuWsxG24D8tSjx9twyjDroJp8TO2XMR5Cldn+wz5tMzcHmN7R3pQrpjQ==", null, false, "7d5e062f-b7ba-408c-93bd-9e67201c4026", false, "stevka_52@gmail.com" },
+                    { 5, 0, "b8935528-a656-4a45-bcb4-5517f709d4cb", "Employee", "maria_doneva@yahoo.com", false, "Мария", null, "Донева", false, null, "MARIA_DONEVA@YAHOO.COM", "MARIA_DONEVA@YAHOO.COM", "AQAAAAEAACcQAAAAEHMJIVi4YNM2xIMdH6aZkFm8tS4OVp3dBkhujy8nejZr7hYFjNmrFPkR2pjavSp/SA==", null, false, "d6c3b359-e6c0-4e8c-96dc-e0d8589cedbd", false, "maria_doneva@yahoo.com" },
+                    { 6, 0, "78befb7c-8cb5-4560-a104-522b74d2accf", "Employee", "georgi_mitev@abv.bg", false, "Георги", null, "Митев", false, null, "GEORGI_MITEV@ABV.BG", "GEORGI_MITEV@ABV.BG", "AQAAAAEAACcQAAAAEIx06K+7BR1BQr2OoBjXC153bvSBMTcnjB8nOAR3RTBI73OGs+iSQuR2u8+11ZB30g==", null, false, "cfb74e8b-e496-4ff2-8df1-cd54c17cfeed", false, "georgi_mitev@abv.bg" },
+                    { 7, 0, "6cd7290a-d9de-4aae-8113-e19b91862969", "Employee", "pnikolov@gmail.com", false, "Петър", null, "Николов", false, null, "PNIKOLOV@GMAIL.COM", "PNIKOLOV@GMAIL.COM", "AQAAAAEAACcQAAAAEC8P8wIb/U+UvZUUcfZqSwpZNwbY4QcgV3vez+CiUZuL8Irp1ukGmzEB2p24YxQ7zw==", null, false, "c119fd12-ae96-4804-a879-65146c1abba4", false, "pnikolov@gmail.com" },
+                    { 8, 0, "ca356097-f9d1-4619-8d16-4a98da6a4ebf", "Employee", "pavel_popov@yahoo.com", false, "Павел", null, "Попов", false, null, "PAVEL_POPOV@YAHOO.COM", "PAVEL_POPOV@YAHOO.COM", "AQAAAAEAACcQAAAAEMniDsdbyyF58aMaKZMNlBTwpUnuyLZ+TFKOTUKVUAiyipNyQ6up+R+MBVV8JdhJng==", null, false, "f759d1d2-fd79-4dbb-8acd-923874cc98e5", false, "pavel_popov@yahoo.com" },
+                    { 9, 0, "f7836c52-773d-43d5-94e0-8c276d897ff3", "Employee", "s_konstantinov@gmail.com", false, "Стоян", null, "Константинов", false, null, "S_KONSTANTINOV@GMAIL.COM", "S_KONSTANTINOV@GMAIL.COM", "AQAAAAEAACcQAAAAEA6ZUiGBs4WKJzUak2UQjmHaaCgDKcsxO9SKhivfI6t1fDnYSl3q501bcmLzCurFqQ==", null, false, "78b95e8e-ccce-4aab-a36f-ed5cf299c224", false, "s_konstantinov@gmail.com" },
+                    { 10, 0, "74b82b5f-0161-4b67-ae1f-aeaa505d7ecc", "Employee", "gg_stoyanova@gbg.bg", false, "Галя", null, "Стоянова", false, null, "GG_STOYANOVA@GBG.BG", "GG_STOYANOVA@GBG.BG", "AQAAAAEAACcQAAAAEGTdiDURuVByi0iv2Fj1aEjekpWRYYcLfXuGWbSA6wd1xklX2NTd3h2K5RhDANf+7A==", null, false, "ff7e17e8-494f-496e-896e-676d226e70f2", false, "gg_stoyanova@gbg.bg" }
                 });
 
             migrationBuilder.InsertData(
@@ -251,6 +261,23 @@ namespace BMG_Schedule.Migrations
                     { 3, "Отпуск - платен" },
                     { 4, "Отпуск - неплатен" },
                     { 5, "Болнични" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { 2, 1 },
+                    { 1, 2 },
+                    { 1, 3 },
+                    { 1, 4 },
+                    { 1, 5 },
+                    { 1, 6 },
+                    { 1, 7 },
+                    { 1, 8 },
+                    { 1, 9 },
+                    { 1, 10 }
                 });
 
             migrationBuilder.InsertData(

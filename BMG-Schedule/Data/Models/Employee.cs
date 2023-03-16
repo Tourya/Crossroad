@@ -25,7 +25,6 @@ namespace BMG_Schedule.Data.Models
 
         public IEnumerable<Exit>? Exits { get; set; }
 
-
         public (double hours, int noWorkingDays, int businessTrip, int sick, int offPayed, int offUnpayed) CountHours(int month, int year)
         {
             var currentMonthWorking = WorkingDays?
@@ -51,7 +50,7 @@ namespace BMG_Schedule.Data.Models
             {
                 noWorkingDays = currentMonthNoWorking.Length;
 
-                foreach (var day in currentMonthNoWorking)  
+                foreach (var day in currentMonthNoWorking)
                 {
                     switch (day.RecordTypeId)
                     {

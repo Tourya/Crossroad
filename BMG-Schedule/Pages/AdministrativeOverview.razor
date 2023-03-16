@@ -1,6 +1,6 @@
 ﻿@page "/administrative/mainPage/{currentPage:int?}"
 @using Microsoft.AspNetCore.Authorization
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Administrator")]
 @inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
 @inject NavigationManager NavigationManager
 @inject StateContainer StateContainer
