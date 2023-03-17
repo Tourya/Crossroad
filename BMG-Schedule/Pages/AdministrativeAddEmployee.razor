@@ -1,4 +1,5 @@
 ﻿@page "/administrative/employee/add"
+@using Microsoft.AspNetCore.Identity;
 @inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
 @inject NavigationManager NavigationManager
 @inject StateContainer StateContainer
@@ -28,10 +29,31 @@
         <InputText id="info" class="form-control" @bind-Value="Employee!.Info"></InputText>
     </div>
     <br />
+    <div class="col-md-3">
+        <label for="email" class="form-label">Имейл: </label>
+        <InputText id="email" class="form-control" @bind-Value="Email"></InputText>
+    </div>
+    <br />
+    <div class="col-md-3">
+        <label for="password" class="form-label">Парола: </label>
+        <InputText id="password" type="password" class="form-control" @bind-Value="Password"></InputText>
+    </div>
+    <br />
+    <div class="col-md-3">
+        <label for="confirmPassword" class="form-label">Повтори паролата: </label>
+        <InputText id="confirmPassword" type="password" class="form-control" @bind-Value="ConfirmPassword"></InputText>
+    </div>
+    <br />
+    <div>
+        <InputCheckbox id="isAdmin" class="form-check-input" @bind-Value="isAdmin"></InputCheckbox>
+        <label for="isAdmin" class="form-label">Администратор</label>
+    </div>
+    <br />
     <div class="col-md-3 d-grid gap-3 d-md-flex justify-content-md-center">
         <button type="submit" class="btn btn-primary">Запиши</button>
         <button type="button" class="btn btn-secondary" @onclick="HandleCancel">Затвори</button>
     </div>
+    <br />
 
 </EditForm>
 
@@ -53,6 +75,11 @@
     private bool IsBusy { get; set; }
     private string? SuccessMessage { get; set; }
     private string? ErrorMessage { get; set; }
+    private string? Password { get; set; }
+    private string? ConfirmPassword { get; set; }
+    private string? Email { get; set; }
+
+    private bool isAdmin { get; set; }
 
     protected override void OnInitialized()
     {
@@ -74,10 +101,41 @@
             {
                 using var context = ContextFactory.CreateDbContext();
 
+                if (Email is null)
+                {
+                    throw new ArgumentNullException("Полето \"Имейл\" е задължително.");
+                }
+
+                Employee.UserName = Email;
+                Employee.NormalizedUserName = Email.ToUpper();
+                Employee.Email = Email;
+                Employee.NormalizedEmail = Email.ToUpper();
+                Employee.SecurityStamp = Guid.NewGuid().ToString();
+
+                if (Password == null || ConfirmPassword == null)
+                {
+                    throw new ArgumentNullException("Полето \"Парола\" и \"Повтори паролата\" са задължителни.");
+                }
+                if (Password?.ToUpper() == ConfirmPassword?.ToUpper())
+                {
+                    Employee.PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), Password);
+                }
+
                 context.Employees.Add(Employee);
                 await context.SaveChangesAsync();
 
                 var newEmployee = context.Employees.OrderBy(emp => emp.Id).Last();
+
+                IdentityUserRole<int> newRole = new()
+                    {
+                        RoleId = 1,
+                        UserId = newEmployee.Id
+                    };
+
+                if (isAdmin)
+                {
+                    newRole.RoleId = 2;
+                }
 
                 var newWorkingDay = new WorkingDay
                     {
@@ -85,6 +143,7 @@
                         EmployeeId = newEmployee.Id
                     };
 
+                context.UserRoles.Add(newRole);
                 context.WorkingDays.Add(newWorkingDay);
                 await context.SaveChangesAsync();
 

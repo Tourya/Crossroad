@@ -6,12 +6,16 @@
     <div class="sidebar">
         <NavMenu />
     </div>
-
     <main>
         <div class="top-row px-4">
             <AuthorizeView>
                 <Authorized>
                     <div class="top-row px-4">Здравей, @context.User!.Identity!.Name</div>
+                    <div class="nav-item px-3">
+                        <NavLink class="top-row px-4" href="/identity/account/logout" Match="NavLinkMatch.All">
+                            <span class="oi oi-power-standby" aria-hidden="true"></span> Изход
+                        </NavLink>
+                    </div>
                 </Authorized>
             </AuthorizeView>
             <a href="https://github.com/Tourya" target="_blank">About</a>
