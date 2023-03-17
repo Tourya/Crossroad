@@ -69,7 +69,16 @@
         <br />
         <div class="col-md-6 d-md-grid gap-md-5 d-md-flex justify-content-md-start mb-3">
             <button type="submit" class="btn btn-sm btn-outline-primary">Запази</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary ms-5" @onclick="HandleCancel">Затвори</button>
+            <AuthorizeView Roles="Administrator">
+                <ChildContent Context="logContext">
+                <button type="button" class="btn btn-sm btn-outline-secondary ms-5" @onclick="HandleCancel">Затвори</button>
+                </ChildContent>
+            </AuthorizeView>
+            <AuthorizeView Roles="User">
+                <ChildContent Context="logContext">
+                <button type="button" class="btn btn-sm btn-outline-secondary ms-5" @onclick="NavigateToOverviewNotAdministrator">Затвори</button>
+                </ChildContent>
+            </AuthorizeView>
         </div>
     </EditForm>
 }
@@ -271,5 +280,10 @@
     private void NavigateToOverview()
     {
         NavigationManager.NavigateTo($"/administrative/employeeDetails/{EmployeeId}");
+    }
+
+    private void NavigateToOverviewNotAdministrator()
+    {
+        NavigationManager.NavigateTo($"/user/mainPage");
     }
 }
