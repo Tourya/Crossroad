@@ -3,6 +3,8 @@ using BMG_Schedule.Shared;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication;
+using BMG_Schedule.Areas.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +23,8 @@ builder.Services.AddDefaultIdentity<IdentityUser<int>>(options => options.SignIn
 builder.Services.AddAuthentication();
 
 builder.Services.AddScoped<StateContainer>();
-//builder.Services.AddScoped<IEmailSender, EmailSender>();
 //builder.Services.AddScoped<IClaimsTransformation, CalimsTransformer>();
+//builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 var app = builder.Build();
 

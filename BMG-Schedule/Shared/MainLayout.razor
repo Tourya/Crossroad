@@ -9,6 +9,11 @@
 
     <main>
         <div class="top-row px-4">
+            <AuthorizeView>
+                <Authorized>
+                    <div class="top-row px-4">Здравей, @context.User!.Identity!.Name</div>
+                </Authorized>
+            </AuthorizeView>
             <a href="https://github.com/Tourya" target="_blank">About</a>
         </div>
 

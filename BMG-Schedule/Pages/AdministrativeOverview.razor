@@ -1,10 +1,13 @@
 ﻿@page "/administrative/mainPage/{currentPage:int?}"
-@using Microsoft.AspNetCore.Authorization
-@attribute [Authorize(Roles = "Administrator")]
 @inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
 @inject NavigationManager NavigationManager
 @inject StateContainer StateContainer
 @inject IJSRuntime JS
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject SignInManager<IdentityUser<int>> SignInManager
+@inject UserManager<IdentityUser<int>> UserManager
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity;
 
 <PageTitle>Основен екран</PageTitle>
 
@@ -114,6 +117,7 @@ else
         <div class="alert-danger">@ErrorMessage</div>
     }
 
+
 }
 
 @code {
@@ -136,11 +140,15 @@ else
     [Parameter]
     public DateTime CurrentDateTime { get; set; }
 
+    private Employee? CurrentUser { get; set; }
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
+
 
     protected override async Task OnParametersSetAsync()
     {
         CurrentDateTime = DateTime.Now;
         await LoadData();
+        await GetUserDetails();
     }
 
     private async Task LoadData()
@@ -208,6 +216,29 @@ else
 
             await LoadData();
         }
+    }
+
+    //private async Task GetClaimsPrincipalData()
+    //{
+    //    var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+    //    var user = authState.User;
+
+    //    if(user.Identity is not null && user.Identity.IsAuthenticated)
+    //    {
+    //        claims = user.Claims;
+    //        //surname = user.FindFirst(c => c.Type == ClaimTypes.Id)?.Value;
+    //    }
+    //}
+
+    private async Task GetUserDetails()
+    {
+        using var context = ContextFactory.CreateDbContext();
+
+        var authstate = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authstate.User;
+        var userName = user?.Identity?.Name;
+
+        CurrentUser = await context.Employees.FirstOrDefaultAsync(emp => emp.Email == userName);
     }
 
     private async Task HandleBeginEndDay(Employee employee)

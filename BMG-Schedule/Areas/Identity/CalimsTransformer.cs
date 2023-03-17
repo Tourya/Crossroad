@@ -25,7 +25,7 @@ namespace BMG_Schedule.Areas.Identity
     //        }
 
     //        var identity = (ClaimsIdentity)clonedPrincipal.Identity;
-    //        var existingClaim = identity.Claims.FirstOrDefault(c => c.Type == GloboClaimTypes.FirstName);
+    //        var existingClaim = identity.Claims.FirstOrDefault(c => c.Type == GloboClaimTypes.Id);
 
     //        if (existingClaim != null)
     //        {
@@ -38,14 +38,14 @@ namespace BMG_Schedule.Areas.Identity
     //            return clonedPrincipal;
     //        };
 
-    //        //var user = await _UserStore.FindByIdAsync(nameIdClaim.Value, CancellationToken.None);
+    //        var user = await _UserStore.FindByIdAsync(nameIdClaim.Value, CancellationToken.None);
 
-    //        //if(user != null)
-    //        //{
-    //        //    identity.AddClaim(new Claim(GloboClaimTypes.FirstName, user.FirstName!.ToString()));
-    //        //}
+    //        if (user != null)
+    //        {
+    //            identity.AddClaim(new Claim(GloboClaimTypes.Id, user.Id.ToString()));
+    //        }
 
-    //        identity.AddClaim(new Claim("Foo", "Bar"));
+    //        identity.AddClaim(new Claim(GloboClaimTypes.Id, "Bar"));
 
     //        return clonedPrincipal;
     //    }
