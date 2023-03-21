@@ -59,14 +59,14 @@
 
 @if (SuccessMessage is not null)
 {
-    <br />
-    <div class="alert alert-success">@SuccessMessage</div>
+        <br />
+        <div class="alert alert-success">@SuccessMessage</div>
 }
 
 @if (ErrorMessage is not null)
 {
-    <br />
-    <div class="alert alert-danger">@ErrorMessage</div>
+        <br />
+        <div class="alert alert-danger">@ErrorMessage</div>
 }
 
 
@@ -116,6 +116,13 @@
                 {
                     throw new ArgumentNullException("Полето \"Парола\" и \"Повтори паролата\" са задължителни.");
                 }
+
+
+                if ((Password?.ToUpper() != ConfirmPassword?.ToUpper()))
+                {
+                    throw new ArithmeticException("Полето \"Парола\" и \"Повтори паролата\" трябва да съвпадат.");
+                }
+
                 if (Password?.ToUpper() == ConfirmPassword?.ToUpper())
                 {
                     Employee.PasswordHash = new PasswordHasher<Employee>().HashPassword(new Employee(), Password);
@@ -154,6 +161,7 @@
             {
                 SuccessMessage = null;
                 ErrorMessage = $"Грешка при добавяне на служител: {ex.Message}";
+                return;
             }
         }
     }

@@ -1,8 +1,9 @@
 ﻿@page "/administrative/employeeDetails/{employeeId:int}"
+@using ClosedXML.Excel;
 @inject IDbContextFactory<EmployeeManagerDbContext> ContextFactory
 @inject StateContainer StateContainer
 @inject NavigationManager NavigationManager
-
+@inject IJSRuntime JS
 
 <PageTitle>Детайли за служител</PageTitle>
 @*<AdministrativeOverview CurrentPage="@currentPage" />*@
@@ -124,10 +125,15 @@ else
         </div>
         <br />
         <div class="col-md-3 d-grid gap-3 mb-3 d-md-flex">
-            <button class="btn btn-outline-primary">Експорт към Excel</button>
+            <button class="btn btn-outline-primary" @onclick="SaveExcelFile">Експорт към Excel</button>
             <button type="button" class="btn btn-outline-secondary" @onclick="HandleCancel">Назад</button>
         </div>
     </div>
+
+    @if (ErrorMessage is not null)
+    {
+        <div>@ErrorMessage</div>
+    }
 }
 
 
@@ -151,6 +157,14 @@ else
 
     private string? ErrorMessage { get; set; }
 
+    private IXLWorksheet? WsWorkingDay { get; set; }
+
+    private IXLWorksheet? WsExits { get; set; }
+
+    private IXLWorksheet? WsOthers { get; set; }
+
+
+
 
 
     protected override async Task OnParametersSetAsync()
@@ -165,6 +179,7 @@ else
         }
 
         Year = DateTime.Now.Year;
+
         await LoadData();
     }
 
@@ -308,4 +323,93 @@ else
         return makeDisable;
     }
 
+    public async Task SaveExcelFile()
+    {
+        using (var workBook = new XLWorkbook())
+        {
+            try
+            {
+                workBook.Author = "Tourya";
+                workBook.Properties.Title = "BMG-Schedule";
+                workBook.Properties.Subject = "BMG-Schedule";
+
+                WsWorkingDay = workBook.Worksheets.Add("Работно време");
+                WsExits = workBook.Worksheets.Add("Излизания");
+                WsOthers = workBook.Worksheets.Add("Други");
+
+                TablesExport();
+
+                var bytes = new byte[0];
+                using (var stream = new MemoryStream())
+                {
+                    workBook.SaveAs(stream);
+                    bytes = stream.ToArray();
+                }
+
+                await SaveAs(JS, $"bmgSchedule-{Employee!.FirstName}-{Month}-{Year}.xlsx", bytes);
+            }
+            catch { }
+        }
+    }
+
+    async Task SaveAs(IJSRuntime js, string fileName, byte[] data)
+    {
+        await js.InvokeAsync<object>(
+            "saveAsFile",
+            fileName,
+            Convert.ToBase64String(data)
+        );
+    }
+
+    public void TablesExport()
+    {
+
+        if (WorkingDays is not null)
+        {
+            WsWorkingDay!.Cell(1, 1).Value = "Тип на записа";
+            WsWorkingDay.Cell(1, 2).Value = "Дата";
+            WsWorkingDay.Cell(1, 3).Value = "Работен ден - начало";
+            WsWorkingDay.Cell(1, 4).Value = "Работен ден - край";
+            WsWorkingDay.Cell(1, 5).Value = "Общо часове за деня";
+
+            for (int row = 0; row < WorkingDays.Length; row++)
+            {
+
+                WsWorkingDay.Cell(row + 2, 1).Value = RecordTypes!.FirstOrDefault(type => type.Id == WorkingDays[row].RecordTypeId)!.Name;
+                WsWorkingDay.Cell(row + 2, 2).Value = WorkingDays[row].Start.Date.ToString("dd/MM/yyyy");
+                WsWorkingDay.Cell(row + 2, 3).Value = WorkingDays[row].Start.ToString("HH:mm");
+                WsWorkingDay.Cell(row + 2, 4).Value = WorkingDays[row].End.ToString("HH:mm");
+                WsWorkingDay.Cell(row + 2, 5).Value = WorkingDays[row].RecordTypeId == 1 ? Employee?.CountHours(WorkingDays[row]).ToString("N2") : "";
+            }
+        }
+
+        if (Exits is not null)
+        {
+            WsExits!.Cell(1, 1).Value = "Дата";
+            WsExits.Cell(1, 2).Value = "Излизане - начало";
+            WsExits.Cell(1, 3).Value = "Излизане - край";
+            WsExits.Cell(1, 3).Value = "Причина за излизането";
+
+            for (int row = 0; row < Exits.Length; row++)
+            {
+                WsExits.Cell(row + 2, 1).Value = Exits[row].Start.Date.ToString("dd/MM/yyyy");
+                WsExits.Cell(row + 2, 2).Value = Exits[row].Start.ToString("HH:mm");
+                WsExits.Cell(row + 2, 3).Value = Exits[row].End.ToString("HH:mm");
+                WsExits.Cell(row + 2, 4).Value = Exits[row].Reason;
+            }
+        }
+
+        if (Employee is not null)
+        {
+            WsOthers!.Cell(1, 1).Value = "Командировка";
+            WsOthers.Cell(1, 2).Value = "Отпуск - платен";
+            WsOthers.Cell(1, 3).Value = "Отпуск - неплатен";
+            WsOthers.Cell(1, 4).Value = "Болнични";
+
+            WsOthers.Cell(2, 1).Value = Employee.CountHours(Month, Year).businessTrip != 0 ? Employee.CountHours(Month, Year).businessTrip : "";
+            WsOthers.Cell(2, 2).Value = Employee.CountHours(Month, Year).offPayed != 0 ? Employee.CountHours(Month, Year).offPayed : "";
+            WsOthers.Cell(2, 3).Value = Employee.CountHours(Month, Year).offUnpayed != 0 ? Employee.CountHours(Month, Year).offUnpayed : "";
+            WsOthers.Cell(2, 4).Value = Employee.CountHours(Month, Year).sick != 0 ? Employee.CountHours(Month, Year).sick : "";
+        }
+    }
 }

@@ -300,3 +300,10 @@ C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Microsoft
 C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
 C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\ClosedXML.dll
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\ExcelNumberFormat.dll
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\Irony.dll
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\TouryaData\CSharp\Crossroad\Crossroad\BMG-Schedule\bin\Debug\net6.0\XLParser.dll
